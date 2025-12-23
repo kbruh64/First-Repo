@@ -959,6 +959,13 @@
             font-size: 0;
             color: transparent;
             text-indent: -9999px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+            padding: 0;
+            min-width: auto;
+            min-height: auto;
         }
         .click-btn.cookie-btn::before,
         .click-btn.capybara-btn::before,
@@ -976,8 +983,10 @@
         .click-btn.ghost-btn::before,
         .click-btn.pumpkin-btn::before,
         .click-btn.bee-btn::before {
-            display: inline-block;
-            animation: themed-3d-float 3s ease-in-out infinite;
+            display: block;
+            font-size: 6rem;
+            cursor: pointer;
+            animation: themed-3d-float 6s ease-in-out infinite;
             text-shadow:
                 0 1px 0 rgba(0,0,0,0.2),
                 0 2px 0 rgba(0,0,0,0.19),
@@ -1068,7 +1077,7 @@
         .click-btn.dragon-btn::before,
         .click-btn.rocket-btn::before,
         .click-btn.pumpkin-btn::before {
-            animation: themed-3d-roar 2s ease-in-out infinite;
+            animation: themed-3d-roar 4s ease-in-out infinite;
         }
         .click-btn.cat-btn::before,
         .click-btn.dog-btn::before,
@@ -1076,14 +1085,14 @@
         .click-btn.bee-btn::before,
         .click-btn.penguin-btn::before,
         .click-btn.alien-btn::before {
-            animation: themed-3d-dance 1.5s ease-in-out infinite;
+            animation: themed-3d-dance 3s ease-in-out infinite;
         }
         .click-btn.capybara-btn::before,
         .click-btn.fish-btn::before,
         .click-btn.snowman-btn::before,
         .click-btn.ghost-btn::before,
         .click-btn.cookie-btn::before {
-            animation: themed-3d-sleep 4s ease-in-out infinite;
+            animation: themed-3d-sleep 8s ease-in-out infinite;
         }
 
         .click-btn.cookie-btn {
