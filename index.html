@@ -2243,6 +2243,174 @@
         }
         .chest-claim-btn:hover { transform: scale(1.1); box-shadow: 0 5px 25px rgba(255, 215, 0, 0.6); }
 
+        /* Egg Machine */
+        .egg-machine-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 400;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+        }
+        .egg-machine-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 107, 157, 0.6);
+        }
+        .egg-machine-btn .egg-icon {
+            font-size: 1.5rem;
+            animation: egg-wobble 1s ease-in-out infinite;
+        }
+        @keyframes egg-wobble {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .egg-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); z-index: 9999; display: none; }
+        .egg-overlay.active { display: block; }
+
+        .egg-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #2a1a3e, #1a1a2e);
+            border: 3px solid #ff6b9d;
+            border-radius: 25px;
+            padding: 30px;
+            z-index: 10000;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            display: none;
+        }
+        .egg-modal.active { display: block; animation: egg-modal-open 0.4s ease forwards; }
+        @keyframes egg-modal-open { from { transform: translate(-50%, -50%) scale(0) rotate(-10deg); } to { transform: translate(-50%, -50%) scale(1) rotate(0deg); } }
+
+        .egg-modal-title {
+            font-size: 1.8rem;
+            color: #ff6b9d;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+        .egg-modal-subtitle {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .egg-display {
+            font-size: 6rem;
+            margin: 20px 0;
+            animation: egg-float 2s ease-in-out infinite;
+        }
+        @keyframes egg-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .egg-display.cracking {
+            animation: egg-crack 0.5s ease-in-out;
+        }
+        @keyframes egg-crack {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-10deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .egg-cost {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .egg-roll-btn {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        .egg-roll-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+        }
+        .egg-roll-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .egg-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .egg-close:hover { color: #ff6b9d; }
+
+        .egg-result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid;
+        }
+        .egg-result.active { display: block; animation: result-pop 0.5s ease; }
+        @keyframes result-pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .egg-result.common { border-color: #888; }
+        .egg-result.uncommon { border-color: #4ade80; }
+        .egg-result.rare { border-color: #60a5fa; }
+        .egg-result.epic { border-color: #c084fc; }
+        .egg-result.legendary { border-color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+        .egg-result-title {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .egg-result-name {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: bold;
+        }
+        .egg-result-rarity {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        .egg-result-rarity.common { color: #888; }
+        .egg-result-rarity.uncommon { color: #4ade80; }
+        .egg-result-rarity.rare { color: #60a5fa; }
+        .egg-result-rarity.epic { color: #c084fc; }
+        .egg-result-rarity.legendary { color: #ffd700; }
+        .egg-result-duplicate {
+            color: #ffd700;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
         /* Token Shop */
         .shop-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 9999; display: none; }
         .shop-overlay.active { display: block; }
@@ -2371,6 +2539,32 @@
     <div class="token-display" id="tokenDisplay" title="Click to open shop">
         <span class="token-icon">🪙</span>
         <span id="tokenCount">0</span>
+    </div>
+
+    <!-- Gacha Machine Button -->
+    <button class="egg-machine-btn" id="eggMachineBtn" title="Gacha Machine">
+        <span class="egg-icon">🔮</span>
+        <span>Gacha</span>
+    </button>
+
+    <!-- Gacha Machine Modal -->
+    <div class="egg-overlay" id="eggOverlay"></div>
+    <div class="egg-modal" id="eggModal">
+        <button class="egg-close" id="eggClose">&times;</button>
+        <div class="egg-modal-title">🎰 Gacha Machine</div>
+        <div class="egg-modal-subtitle">Pop a capsule for a random cosmetic!</div>
+        <div class="egg-display" id="eggDisplay">🔮</div>
+        <div class="egg-cost">
+            <span class="token-icon">🪙</span>
+            <span>100 Tokens per roll</span>
+        </div>
+        <button class="egg-roll-btn" id="eggRollBtn">Roll!</button>
+        <div class="egg-result" id="eggResult">
+            <div class="egg-result-title">You got:</div>
+            <div class="egg-result-name" id="eggResultName"></div>
+            <div class="egg-result-rarity" id="eggResultRarity"></div>
+            <div class="egg-result-duplicate" id="eggResultDuplicate"></div>
+        </div>
     </div>
 
     <!-- Shop Overlay -->
@@ -2649,6 +2843,132 @@
         document.getElementById('tokenDisplay').addEventListener('click', openShop);
         document.getElementById('shopClose').addEventListener('click', closeShop);
         document.getElementById('shopOverlay').addEventListener('click', closeShop);
+
+        // Egg Machine functionality
+        const eggMachineBtn = document.getElementById('eggMachineBtn');
+        const eggModal = document.getElementById('eggModal');
+        const eggOverlay = document.getElementById('eggOverlay');
+        const eggClose = document.getElementById('eggClose');
+        const eggRollBtn = document.getElementById('eggRollBtn');
+        const eggDisplay = document.getElementById('eggDisplay');
+        const eggResult = document.getElementById('eggResult');
+        const eggResultName = document.getElementById('eggResultName');
+        const eggResultRarity = document.getElementById('eggResultRarity');
+        const eggResultDuplicate = document.getElementById('eggResultDuplicate');
+        const EGG_COST = 100;
+
+        function openEggMachine() {
+            eggModal.classList.add('active');
+            eggOverlay.classList.add('active');
+            eggResult.classList.remove('active');
+            eggDisplay.textContent = '🔮';
+            eggDisplay.classList.remove('cracking');
+            updateEggRollButton();
+        }
+
+        function closeEggMachine() {
+            eggModal.classList.remove('active');
+            eggOverlay.classList.remove('active');
+        }
+
+        function updateEggRollButton() {
+            eggRollBtn.disabled = tokens < EGG_COST;
+            eggRollBtn.textContent = tokens >= EGG_COST ? 'Roll!' : 'Not enough tokens';
+        }
+
+        function getRandomCosmetic() {
+            // Get all cosmetics that can be obtained (excluding dimension-exclusive and default)
+            const availableCosmetics = Object.entries(cosmetics).filter(([key, cosmetic]) => {
+                return key !== 'default' && !cosmetic.dimension;
+            });
+
+            // Weighted random based on rarity (rarer items are less likely)
+            const weights = {
+                common: 30,
+                uncommon: 25,
+                rare: 20,
+                epic: 15,
+                legendary: 10
+            };
+
+            // Create weighted list
+            const weightedList = [];
+            availableCosmetics.forEach(([key, cosmetic]) => {
+                const weight = weights[cosmetic.rarity] || 10;
+                for (let i = 0; i < weight; i++) {
+                    weightedList.push({ key, cosmetic });
+                }
+            });
+
+            // Pick random item
+            const randomIndex = Math.floor(Math.random() * weightedList.length);
+            return weightedList[randomIndex];
+        }
+
+        function rollEgg() {
+            if (tokens < EGG_COST) return;
+
+            // Deduct tokens
+            tokens -= EGG_COST;
+            updateTokenDisplay();
+            updateEggRollButton();
+
+            // Hide previous result
+            eggResult.classList.remove('active');
+
+            // Crack animation
+            eggDisplay.classList.add('cracking');
+
+            // Roll after animation
+            setTimeout(() => {
+                const { key, cosmetic } = getRandomCosmetic();
+                const wasAlreadyUnlocked = cosmetic.unlocked;
+
+                // Show result
+                eggDisplay.textContent = '✨';
+
+                // Remove rarity classes
+                eggResult.classList.remove('common', 'uncommon', 'rare', 'epic', 'legendary');
+                eggResultRarity.classList.remove('common', 'uncommon', 'rare', 'epic', 'legendary');
+
+                // Add rarity class
+                eggResult.classList.add(cosmetic.rarity);
+                eggResultRarity.classList.add(cosmetic.rarity);
+
+                // Set result text
+                eggResultName.textContent = cosmetic.name;
+                eggResultRarity.textContent = cosmetic.rarity;
+
+                // Handle duplicate
+                if (wasAlreadyUnlocked) {
+                    // Give tokens back as compensation
+                    const refund = shopPrices[cosmetic.rarity] || 25;
+                    tokens += refund;
+                    updateTokenDisplay();
+                    eggResultDuplicate.textContent = `Already owned! +${refund} tokens refunded`;
+                    eggResultDuplicate.style.display = 'block';
+                } else {
+                    // Unlock the cosmetic
+                    cosmetic.unlocked = true;
+                    eggResultDuplicate.style.display = 'none';
+                    // Refresh the cosmetics panel
+                    initCosmeticsPanel();
+                }
+
+                // Show result with animation
+                setTimeout(() => {
+                    eggResult.classList.add('active');
+                    eggDisplay.classList.remove('cracking');
+                    updateEggRollButton();
+                }, 100);
+
+            }, 500);
+        }
+
+        eggMachineBtn.addEventListener('click', openEggMachine);
+        eggClose.addEventListener('click', closeEggMachine);
+        eggOverlay.addEventListener('click', closeEggMachine);
+        eggRollBtn.addEventListener('click', rollEgg);
 
         const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
                                'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX',
