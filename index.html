@@ -974,7 +974,7 @@
         .click-btn.pumpkin-btn::before,
         .click-btn.bee-btn::before {
             display: inline-block;
-            transform: rotateX(10deg) rotateY(-5deg) translateZ(20px);
+            animation: themed-3d-float 3s ease-in-out infinite;
             text-shadow:
                 0 1px 0 rgba(0,0,0,0.2),
                 0 2px 0 rgba(0,0,0,0.19),
@@ -983,6 +983,20 @@
                 0 5px 0 rgba(0,0,0,0.16),
                 0 6px 1px rgba(0,0,0,0.15),
                 0 10px 10px rgba(0,0,0,0.3);
+        }
+        @keyframes themed-3d-float {
+            0%, 100% {
+                transform: rotateX(10deg) rotateY(-10deg) translateZ(20px);
+            }
+            25% {
+                transform: rotateX(-5deg) rotateY(5deg) translateZ(30px);
+            }
+            50% {
+                transform: rotateX(10deg) rotateY(10deg) translateZ(20px);
+            }
+            75% {
+                transform: rotateX(-5deg) rotateY(-5deg) translateZ(30px);
+            }
         }
 
         .click-btn.cookie-btn {
