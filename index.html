@@ -1116,7 +1116,7 @@
             position: relative;
         }
         .click-btn.dragon-btn::before { content: '🐉'; font-size: 5rem; text-shadow: 0 8px 35px rgba(255, 69, 0, 1); animation: dragon-glow 0.5s ease-in-out infinite alternate; }
-        .click-btn.dragon-btn::after { content: '🔥'; position: absolute; font-size: 1.5rem; right: -40px; top: 50%; transform: translateY(-50%); animation: fire-roar 0.2s ease-in-out infinite alternate; }
+        .click-btn.dragon-btn::after { content: '🔥'; position: absolute; font-size: 1.5rem; left: -40px; top: 50%; transform: translateY(-50%); animation: fire-roar 0.2s ease-in-out infinite alternate; }
         @keyframes dragon-soar { 0%, 100% { transform: translateY(0) rotate(-8deg) scale(1); } 50% { transform: translateY(-25px) rotate(8deg) scale(1.15); } }
         @keyframes dragon-glow { from { filter: brightness(1) hue-rotate(0deg); } to { filter: brightness(1.4) hue-rotate(15deg); } }
         @keyframes fire-roar { from { transform: translateY(-50%) scaleX(1); opacity: 1; } to { transform: translateY(-50%) scaleX(1.5); opacity: 0.8; } }
