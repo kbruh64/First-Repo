@@ -67,6 +67,32 @@
             z-index: 50;
         }
 
+        .multiplier-indicator {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            padding: 8px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .multiplier-indicator.active {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            animation: multiplier-pulse 0.5s ease-in-out infinite;
+        }
+        @keyframes multiplier-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 107, 107, 0.8); transform: translateX(-50%) scale(1); }
+            50% { box-shadow: 0 0 50px rgba(255, 107, 107, 1); transform: translateX(-50%) scale(1.1); }
+        }
+
         .laser {
             position: fixed;
             height: 3px;
@@ -918,13 +944,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: cookie-wobble 1s ease-in-out infinite;
+            animation: cookie-wobble 0.6s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(210, 105, 30, 0.6));
         }
-        .click-btn.cookie-btn::before { content: '🍪'; font-size: 4rem; text-shadow: 0 5px 15px rgba(139, 69, 19, 0.5); }
-        .click-btn.cookie-btn::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%); animation: cookie-sparkle 0.5s ease-in-out infinite alternate; pointer-events: none; border-radius: 10px; }
-        @keyframes cookie-wobble { 0%, 100% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.1); } }
-        @keyframes cookie-sparkle { from { opacity: 0.3; } to { opacity: 0.8; } }
+        .click-btn.cookie-btn::before { content: '🍪'; font-size: 5rem; text-shadow: 0 8px 25px rgba(139, 69, 19, 0.8); }
+        .click-btn.cookie-btn::after { content: '✨🥛✨'; position: absolute; font-size: 1.2rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: cookie-dunk 2s ease-in-out infinite; }
+        @keyframes cookie-wobble { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.15); } }
+        @keyframes cookie-dunk { 0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; } 50% { transform: translateX(-50%) translateY(10px); opacity: 0.6; } }
 
         .click-btn.capybara-btn {
             background: transparent;
@@ -932,13 +959,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: capybara-chill 3s ease-in-out infinite;
+            animation: capybara-chill 2s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 15px rgba(139, 115, 85, 0.5));
         }
-        .click-btn.capybara-btn::before { content: '🦫'; font-size: 4rem; text-shadow: 0 5px 15px rgba(139, 115, 85, 0.5); }
-        .click-btn.capybara-btn::after { content: '🍊'; position: absolute; font-size: 1.5rem; top: -5px; left: 50%; transform: translateX(-50%); animation: orange-head 3s ease-in-out infinite; }
-        @keyframes capybara-chill { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        @keyframes orange-head { 0%, 100% { transform: translateX(-50%) rotate(-5deg); } 50% { transform: translateX(-50%) rotate(5deg); } }
+        .click-btn.capybara-btn::before { content: '🦫'; font-size: 5rem; text-shadow: 0 8px 20px rgba(139, 115, 85, 0.7); }
+        .click-btn.capybara-btn::after { content: '🍊'; position: absolute; font-size: 2rem; top: -10px; left: 50%; transform: translateX(-50%); animation: orange-balance 2s ease-in-out infinite; }
+        @keyframes capybara-chill { 0%, 100% { transform: translateY(0) scale(1); } 25% { transform: translateY(-8px) scale(1.02); } 75% { transform: translateY(-3px) scale(1.01); } }
+        @keyframes orange-balance { 0%, 100% { transform: translateX(-50%) rotate(-10deg) translateY(0); } 25% { transform: translateX(-40%) rotate(5deg) translateY(-5px); } 75% { transform: translateX(-60%) rotate(-5deg) translateY(-3px); } }
 
         .click-btn.fish-btn {
             background: transparent;
@@ -946,13 +974,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: fish-swim 2s ease-in-out infinite;
+            animation: fish-swim 1.5s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(65, 105, 225, 0.6));
         }
-        .click-btn.fish-btn::before { content: '🐟'; font-size: 4rem; text-shadow: 0 5px 15px rgba(65, 105, 225, 0.5); }
-        .click-btn.fish-btn::after { content: '💧💧💧'; position: absolute; font-size: 0.8rem; bottom: -10px; left: 50%; transform: translateX(-50%); animation: bubbles-rise 1s ease-in-out infinite; opacity: 0.7; }
-        @keyframes fish-swim { 0%, 100% { transform: translateX(-5px) rotate(-10deg); } 50% { transform: translateX(5px) rotate(10deg); } }
-        @keyframes bubbles-rise { 0% { transform: translateX(-50%) translateY(0); opacity: 0.7; } 100% { transform: translateX(-50%) translateY(-20px); opacity: 0; } }
+        .click-btn.fish-btn::before { content: '🐟'; font-size: 5rem; text-shadow: 0 8px 25px rgba(65, 105, 225, 0.8); }
+        .click-btn.fish-btn::after { content: '💧'; position: absolute; font-size: 1.5rem; bottom: -5px; left: 20%; animation: bubbles-float 1.5s ease-out infinite; }
+        @keyframes fish-swim { 0%, 100% { transform: translateX(-10px) rotate(-15deg) scaleX(1); } 50% { transform: translateX(10px) rotate(15deg) scaleX(-1); } }
+        @keyframes bubbles-float { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-40px) scale(0.5); opacity: 0; } }
 
         .click-btn.christmas-btn {
             background: transparent;
@@ -960,14 +989,15 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: tree-glow 2s ease-in-out infinite;
+            animation: tree-dance 1s ease-in-out infinite;
             border: none;
             position: relative;
+            filter: drop-shadow(0 0 25px rgba(34, 139, 34, 0.7));
         }
-        .click-btn.christmas-btn::before { content: '🎄'; font-size: 4rem; text-shadow: 0 0 30px rgba(34, 139, 34, 0.8); }
-        .click-btn.christmas-btn::after { content: '⭐'; position: absolute; font-size: 1.5rem; top: -15px; left: 50%; transform: translateX(-50%); animation: star-twinkle 1s ease-in-out infinite alternate; }
-        @keyframes tree-glow { 0%, 100% { filter: brightness(1); transform: scale(1); } 50% { filter: brightness(1.2) drop-shadow(0 0 20px gold); transform: scale(1.05); } }
-        @keyframes star-twinkle { from { filter: brightness(1); transform: translateX(-50%) scale(1); } to { filter: brightness(1.5) drop-shadow(0 0 10px gold); transform: translateX(-50%) scale(1.2); } }
+        .click-btn.christmas-btn::before { content: '🎄'; font-size: 5rem; text-shadow: 0 0 40px rgba(34, 139, 34, 1); }
+        .click-btn.christmas-btn::after { content: '⭐'; position: absolute; font-size: 2rem; top: -20px; left: 50%; transform: translateX(-50%); animation: star-burst 0.8s ease-in-out infinite; }
+        @keyframes tree-dance { 0%, 100% { transform: scale(1) rotate(-3deg); filter: brightness(1); } 50% { transform: scale(1.1) rotate(3deg); filter: brightness(1.3) hue-rotate(10deg); } }
+        @keyframes star-burst { 0%, 100% { transform: translateX(-50%) scale(1) rotate(0deg); filter: brightness(1); } 50% { transform: translateX(-50%) scale(1.4) rotate(180deg); filter: brightness(2) drop-shadow(0 0 20px gold); } }
 
         .click-btn.pizza-btn {
             background: transparent;
@@ -975,13 +1005,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: pizza-spin 4s linear infinite;
+            animation: pizza-spin 2s linear infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.6));
         }
-        .click-btn.pizza-btn::before { content: '🍕'; font-size: 4rem; text-shadow: 0 5px 15px rgba(255, 140, 0, 0.5); }
-        .click-btn.pizza-btn::after { content: '🧀'; position: absolute; font-size: 1rem; bottom: 0; right: 10px; animation: cheese-stretch 1s ease-in-out infinite; }
-        @keyframes pizza-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes cheese-stretch { 0%, 100% { transform: translateY(0) scaleY(1); } 50% { transform: translateY(5px) scaleY(1.3); } }
+        .click-btn.pizza-btn::before { content: '🍕'; font-size: 5rem; text-shadow: 0 8px 25px rgba(255, 140, 0, 0.8); }
+        .click-btn.pizza-btn::after { content: '🧀🍅🫒'; position: absolute; font-size: 1rem; top: -15px; left: 50%; transform: translateX(-50%); animation: toppings-fly 2s linear infinite; }
+        @keyframes pizza-spin { from { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.1); } to { transform: rotate(360deg) scale(1); } }
+        @keyframes toppings-fly { 0% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateX(-50%) translateY(-30px) rotate(360deg); opacity: 0; } }
 
         .click-btn.cat-btn {
             background: transparent;
@@ -989,13 +1020,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: cat-bounce 0.8s ease-in-out infinite;
+            animation: cat-playful 0.6s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
         }
-        .click-btn.cat-btn::before { content: '🐱'; font-size: 4rem; text-shadow: 0 5px 15px rgba(255, 105, 180, 0.5); }
-        .click-btn.cat-btn::after { content: '💕'; position: absolute; font-size: 1.2rem; top: -10px; right: 0; animation: hearts-float 1s ease-in-out infinite; }
-        @keyframes cat-bounce { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
-        @keyframes hearts-float { 0%, 100% { transform: translateY(0) scale(1); opacity: 1; } 50% { transform: translateY(-15px) scale(1.3); opacity: 0.5; } }
+        .click-btn.cat-btn::before { content: '🐱'; font-size: 5rem; text-shadow: 0 8px 25px rgba(255, 105, 180, 0.7); }
+        .click-btn.cat-btn::after { content: '💕😻💕'; position: absolute; font-size: 1.2rem; top: -15px; left: 50%; transform: translateX(-50%); animation: hearts-burst 1s ease-in-out infinite; }
+        @keyframes cat-playful { 0%, 100% { transform: translateY(0) rotate(-8deg) scale(1); } 25% { transform: translateY(-15px) rotate(0deg) scale(1.1); } 75% { transform: translateY(-5px) rotate(8deg) scale(1.05); } }
+        @keyframes hearts-burst { 0%, 100% { transform: translateX(-50%) scale(0.8); opacity: 0.5; } 50% { transform: translateX(-50%) scale(1.3); opacity: 1; } }
 
         .click-btn.dog-btn {
             background: transparent;
@@ -1003,13 +1035,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: dog-excited 0.3s ease-in-out infinite;
+            animation: dog-excited 0.2s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(222, 184, 135, 0.6));
         }
-        .click-btn.dog-btn::before { content: '🐶'; font-size: 4rem; text-shadow: 0 5px 15px rgba(222, 184, 135, 0.5); }
-        .click-btn.dog-btn::after { content: '🦴'; position: absolute; font-size: 1.2rem; top: -15px; left: 50%; animation: bone-spin 1s linear infinite; }
-        @keyframes dog-excited { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
-        @keyframes bone-spin { from { transform: translateX(-50%) rotate(0deg); } to { transform: translateX(-50%) rotate(360deg); } }
+        .click-btn.dog-btn::before { content: '🐶'; font-size: 5rem; text-shadow: 0 8px 25px rgba(222, 184, 135, 0.8); }
+        .click-btn.dog-btn::after { content: '🦴'; position: absolute; font-size: 1.8rem; top: -25px; left: 50%; animation: bone-bounce 0.5s ease-in-out infinite; }
+        @keyframes dog-excited { 0%, 100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(10deg) translateY(-5px); } }
+        @keyframes bone-bounce { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); } 50% { transform: translateX(-50%) translateY(-15px) rotate(360deg); } }
 
         .click-btn.unicorn-btn {
             background: transparent;
@@ -1017,14 +1050,15 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: unicorn-prance 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px #ff69b4);
+            animation: unicorn-magical 1.2s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px #ff69b4);
             position: relative;
         }
-        .click-btn.unicorn-btn::before { content: '🦄'; font-size: 4rem; text-shadow: 0 5px 20px rgba(218, 112, 214, 0.6); }
-        .click-btn.unicorn-btn::after { content: '✨🌈✨'; position: absolute; font-size: 1rem; bottom: -15px; left: 50%; transform: translateX(-50%); animation: rainbow-shimmer 1s ease-in-out infinite; }
-        @keyframes unicorn-prance { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
-        @keyframes rainbow-shimmer { 0%, 100% { opacity: 0.5; filter: hue-rotate(0deg); } 50% { opacity: 1; filter: hue-rotate(180deg); } }
+        .click-btn.unicorn-btn::before { content: '🦄'; font-size: 5rem; text-shadow: 0 8px 30px rgba(218, 112, 214, 0.9); animation: unicorn-rainbow 2s linear infinite; }
+        .click-btn.unicorn-btn::after { content: '✨🌈⭐💫✨'; position: absolute; font-size: 1.2rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: rainbow-trail 1.5s ease-in-out infinite; }
+        @keyframes unicorn-magical { 0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); } 50% { transform: translateY(-20px) rotate(5deg) scale(1.1); } }
+        @keyframes unicorn-rainbow { 0%, 100% { filter: hue-rotate(0deg) brightness(1); } 50% { filter: hue-rotate(60deg) brightness(1.2); } }
+        @keyframes rainbow-trail { 0%, 100% { opacity: 0.6; transform: translateX(-50%) scaleX(1); filter: hue-rotate(0deg); } 50% { opacity: 1; transform: translateX(-50%) scaleX(1.3); filter: hue-rotate(180deg); } }
 
         .click-btn.penguin-btn {
             background: transparent;
@@ -1032,13 +1066,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: penguin-waddle 0.5s ease-in-out infinite;
+            animation: penguin-waddle 0.4s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(135, 206, 235, 0.6));
         }
-        .click-btn.penguin-btn::before { content: '🐧'; font-size: 4rem; text-shadow: 0 5px 15px rgba(47, 47, 47, 0.5); }
-        .click-btn.penguin-btn::after { content: '❄️'; position: absolute; font-size: 1rem; top: -20px; left: 30%; animation: snow-fall 2s linear infinite; }
-        @keyframes penguin-waddle { 0%, 100% { transform: rotate(-15deg) translateX(-3px); } 50% { transform: rotate(15deg) translateX(3px); } }
-        @keyframes snow-fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(30px) rotate(360deg); opacity: 0; } }
+        .click-btn.penguin-btn::before { content: '🐧'; font-size: 5rem; text-shadow: 0 8px 25px rgba(47, 47, 47, 0.7); }
+        .click-btn.penguin-btn::after { content: '❄️'; position: absolute; font-size: 1.5rem; top: -20px; left: 50%; animation: snowflakes-fall 1.5s linear infinite; }
+        @keyframes penguin-waddle { 0%, 100% { transform: rotate(-20deg) translateX(-8px); } 50% { transform: rotate(20deg) translateX(8px); } }
+        @keyframes snowflakes-fall { 0% { transform: translateX(-50%) translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateX(-50%) translateY(40px) rotate(360deg); opacity: 0; } }
 
         .click-btn.rocket-btn {
             background: transparent;
@@ -1046,13 +1081,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: rocket-blast 0.5s ease-in-out infinite;
+            animation: rocket-launch 0.3s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 25px rgba(255, 69, 0, 0.7));
         }
-        .click-btn.rocket-btn::before { content: '🚀'; font-size: 4rem; text-shadow: 0 5px 20px rgba(255, 69, 0, 0.6); }
-        .click-btn.rocket-btn::after { content: '🔥💨'; position: absolute; font-size: 1.5rem; bottom: -20px; left: 50%; transform: translateX(-50%) rotate(180deg); animation: exhaust-flame 0.1s ease-in-out infinite alternate; }
-        @keyframes rocket-blast { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        @keyframes exhaust-flame { from { transform: translateX(-50%) rotate(180deg) scale(1); } to { transform: translateX(-50%) rotate(180deg) scale(1.2); } }
+        .click-btn.rocket-btn::before { content: '🚀'; font-size: 5rem; text-shadow: 0 8px 30px rgba(255, 69, 0, 0.9); }
+        .click-btn.rocket-btn::after { content: '🔥💥🔥'; position: absolute; font-size: 1.8rem; bottom: -25px; left: 50%; transform: translateX(-50%); animation: rocket-exhaust 0.15s ease-in-out infinite alternate; }
+        @keyframes rocket-launch { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-12px) rotate(5deg); } }
+        @keyframes rocket-exhaust { from { transform: translateX(-50%) scaleY(1) scaleX(1); filter: brightness(1); } to { transform: translateX(-50%) scaleY(1.4) scaleX(1.2); filter: brightness(1.5); } }
 
         .click-btn.snowman-btn {
             background: transparent;
@@ -1060,14 +1096,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: snowman-sway 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px white);
+            animation: snowman-dance 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
             position: relative;
         }
-        .click-btn.snowman-btn::before { content: '⛄'; font-size: 4rem; text-shadow: 0 5px 20px rgba(255, 255, 255, 0.8); }
-        .click-btn.snowman-btn::after { content: '❄️❄️'; position: absolute; font-size: 0.8rem; top: -10px; left: 50%; transform: translateX(-50%); animation: snow-sparkle 1s ease-in-out infinite; }
-        @keyframes snowman-sway { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
-        @keyframes snow-sparkle { 0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); } 50% { opacity: 1; transform: translateX(-50%) scale(1.2); } }
+        .click-btn.snowman-btn::before { content: '⛄'; font-size: 5rem; text-shadow: 0 8px 30px rgba(255, 255, 255, 1); }
+        .click-btn.snowman-btn::after { content: '❄️🌨️❄️'; position: absolute; font-size: 1.2rem; top: -20px; left: 50%; transform: translateX(-50%); animation: blizzard 1.5s linear infinite; }
+        @keyframes snowman-dance { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.08); } }
+        @keyframes blizzard { 0% { transform: translateX(-50%) translateY(-10px); opacity: 1; } 100% { transform: translateX(-30%) translateY(30px); opacity: 0; } }
 
         .click-btn.dragon-btn {
             background: transparent;
@@ -1075,14 +1111,15 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: dragon-fly 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px #ff4500);
+            animation: dragon-soar 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px #ff4500);
             position: relative;
         }
-        .click-btn.dragon-btn::before { content: '🐉'; font-size: 4rem; text-shadow: 0 5px 25px rgba(255, 69, 0, 0.7); }
-        .click-btn.dragon-btn::after { content: '🔥🔥🔥'; position: absolute; font-size: 1.2rem; right: -30px; top: 50%; transform: translateY(-50%); animation: fire-breath 0.3s ease-in-out infinite alternate; }
-        @keyframes dragon-fly { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-15px) rotate(5deg); } }
-        @keyframes fire-breath { from { transform: translateY(-50%) scaleX(1); opacity: 1; } to { transform: translateY(-50%) scaleX(1.3); opacity: 0.7; } }
+        .click-btn.dragon-btn::before { content: '🐉'; font-size: 5rem; text-shadow: 0 8px 35px rgba(255, 69, 0, 1); animation: dragon-glow 0.5s ease-in-out infinite alternate; }
+        .click-btn.dragon-btn::after { content: '🔥🔥🔥🔥'; position: absolute; font-size: 1.5rem; right: -40px; top: 50%; transform: translateY(-50%); animation: fire-roar 0.2s ease-in-out infinite alternate; }
+        @keyframes dragon-soar { 0%, 100% { transform: translateY(0) rotate(-8deg) scale(1); } 50% { transform: translateY(-25px) rotate(8deg) scale(1.15); } }
+        @keyframes dragon-glow { from { filter: brightness(1) hue-rotate(0deg); } to { filter: brightness(1.4) hue-rotate(15deg); } }
+        @keyframes fire-roar { from { transform: translateY(-50%) scaleX(1); opacity: 1; } to { transform: translateY(-50%) scaleX(1.5); opacity: 0.8; } }
 
         .click-btn.alien-btn {
             background: transparent;
@@ -1090,14 +1127,15 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: alien-float 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px #00ff00);
+            animation: alien-abduct 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px #00ff00);
             position: relative;
         }
-        .click-btn.alien-btn::before { content: '👽'; font-size: 4rem; text-shadow: 0 5px 20px rgba(50, 205, 50, 0.6); }
-        .click-btn.alien-btn::after { content: '🛸'; position: absolute; font-size: 2rem; top: -30px; left: 50%; transform: translateX(-50%); animation: ufo-beam 1.5s ease-in-out infinite; }
-        @keyframes alien-float { 0%, 100% { transform: translateY(0); filter: hue-rotate(0deg); } 50% { transform: translateY(-10px); filter: hue-rotate(30deg); } }
-        @keyframes ufo-beam { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
+        .click-btn.alien-btn::before { content: '👽'; font-size: 5rem; text-shadow: 0 8px 30px rgba(50, 205, 50, 0.9); animation: alien-pulse 0.8s ease-in-out infinite; }
+        .click-btn.alien-btn::after { content: '🛸'; position: absolute; font-size: 2.5rem; top: -40px; left: 50%; transform: translateX(-50%); animation: ufo-hover 1s ease-in-out infinite; }
+        @keyframes alien-abduct { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.1); } }
+        @keyframes alien-pulse { 0%, 100% { filter: hue-rotate(0deg) brightness(1); } 50% { filter: hue-rotate(60deg) brightness(1.3); } }
+        @keyframes ufo-hover { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); } 50% { transform: translateX(-50%) translateY(-15px) rotate(5deg); } }
 
         .click-btn.ghost-btn {
             background: transparent;
@@ -1105,13 +1143,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: ghost-haunt 2s ease-in-out infinite;
+            animation: ghost-spooky 1.5s ease-in-out infinite;
             position: relative;
         }
-        .click-btn.ghost-btn::before { content: '👻'; font-size: 4rem; text-shadow: 0 5px 20px rgba(255, 255, 255, 0.5); }
-        .click-btn.ghost-btn::after { content: ''; position: absolute; inset: -10px; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%); animation: ghost-glow 1s ease-in-out infinite alternate; pointer-events: none; border-radius: 50%; }
-        @keyframes ghost-haunt { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; } 50% { transform: translateY(-15px) scale(1.1); opacity: 1; } }
-        @keyframes ghost-glow { from { transform: scale(1); opacity: 0.3; } to { transform: scale(1.3); opacity: 0.6; } }
+        .click-btn.ghost-btn::before { content: '👻'; font-size: 5rem; text-shadow: 0 8px 30px rgba(255, 255, 255, 0.7); animation: ghost-fade 2s ease-in-out infinite; }
+        .click-btn.ghost-btn::after { content: '👀'; position: absolute; font-size: 1.5rem; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: eyes-peek 3s ease-in-out infinite; }
+        @keyframes ghost-spooky { 0%, 100% { transform: translateY(0) scale(1) rotate(-5deg); } 50% { transform: translateY(-20px) scale(1.15) rotate(5deg); } }
+        @keyframes ghost-fade { 0%, 100% { opacity: 0.7; filter: blur(0px); } 50% { opacity: 1; filter: blur(1px); } }
+        @keyframes eyes-peek { 0%, 40%, 100% { opacity: 0; } 50%, 90% { opacity: 1; } }
 
         .click-btn.pumpkin-btn {
             background: transparent;
@@ -1119,14 +1158,15 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: pumpkin-glow 1s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px orange);
+            animation: pumpkin-scary 0.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px orange);
             position: relative;
         }
-        .click-btn.pumpkin-btn::before { content: '🎃'; font-size: 4rem; text-shadow: 0 5px 25px rgba(255, 140, 0, 0.6); }
-        .click-btn.pumpkin-btn::after { content: '🕯️'; position: absolute; font-size: 1.5rem; top: -10px; left: 50%; transform: translateX(-50%); animation: candle-flicker 0.2s ease-in-out infinite alternate; }
-        @keyframes pumpkin-glow { 0%, 100% { filter: brightness(1) drop-shadow(0 0 15px orange); transform: scale(1); } 50% { filter: brightness(1.3) drop-shadow(0 0 30px orange); transform: scale(1.05); } }
-        @keyframes candle-flicker { from { transform: translateX(-50%) scale(1); opacity: 0.8; } to { transform: translateX(-50%) scale(1.1); opacity: 1; } }
+        .click-btn.pumpkin-btn::before { content: '🎃'; font-size: 5rem; text-shadow: 0 8px 35px rgba(255, 140, 0, 0.9); animation: pumpkin-flicker 0.3s ease-in-out infinite; }
+        .click-btn.pumpkin-btn::after { content: '🕯️🔥🕯️'; position: absolute; font-size: 1.2rem; top: -15px; left: 50%; transform: translateX(-50%); animation: candles-dance 0.5s ease-in-out infinite alternate; }
+        @keyframes pumpkin-scary { 0%, 100% { transform: scale(1) rotate(-3deg); } 50% { transform: scale(1.12) rotate(3deg); } }
+        @keyframes pumpkin-flicker { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.5) drop-shadow(0 0 40px orange); } }
+        @keyframes candles-dance { from { transform: translateX(-50%) scaleY(1); } to { transform: translateX(-50%) scaleY(1.2); } }
 
         .click-btn.bee-btn {
             background: transparent;
@@ -1134,13 +1174,14 @@
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: bee-buzz 0.1s ease-in-out infinite;
+            animation: bee-fly 0.08s ease-in-out infinite;
             position: relative;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
         }
-        .click-btn.bee-btn::before { content: '🐝'; font-size: 4rem; text-shadow: 0 5px 15px rgba(255, 215, 0, 0.5); }
-        .click-btn.bee-btn::after { content: '🍯'; position: absolute; font-size: 1.5rem; bottom: -15px; left: 50%; transform: translateX(-50%); animation: honey-glow 1s ease-in-out infinite; }
-        @keyframes bee-buzz { 0%, 100% { transform: translate(0, 0) rotate(-5deg); } 25% { transform: translate(2px, -2px) rotate(0deg); } 50% { transform: translate(0, -3px) rotate(5deg); } 75% { transform: translate(-2px, -2px) rotate(0deg); } }
-        @keyframes honey-glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.3) drop-shadow(0 0 10px gold); } }
+        .click-btn.bee-btn::before { content: '🐝'; font-size: 5rem; text-shadow: 0 8px 25px rgba(255, 215, 0, 0.8); }
+        .click-btn.bee-btn::after { content: '🍯🌸🌻'; position: absolute; font-size: 1.3rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: flowers-sway 2s ease-in-out infinite; }
+        @keyframes bee-fly { 0%, 100% { transform: translate(0, 0) rotate(-8deg); } 25% { transform: translate(4px, -4px) rotate(0deg); } 50% { transform: translate(0, -6px) rotate(8deg); } 75% { transform: translate(-4px, -4px) rotate(0deg); } }
+        @keyframes flowers-sway { 0%, 100% { transform: translateX(-50%) rotate(-5deg); } 50% { transform: translateX(-50%) rotate(5deg); } }
 
         /* Button frame container */
         .button-frame-container {
@@ -2669,6 +2710,7 @@
     </div>
 
     <div class="high-score">High Score: <span id="highScore">0</span></div>
+    <div class="multiplier-indicator" id="multiplierIndicator">🔥 2x MULTIPLIER! 🔥</div>
     <h1>Click It👌</h1>
     <div class="button-frame-container" id="frameContainer">
         <div class="button-frame" id="buttonFrame"></div>
@@ -2716,6 +2758,40 @@
 
         // Shop prices by rarity
         const shopPrices = { common: 10, uncommon: 25, rare: 50, epic: 100, legendary: 200 };
+
+        // Multiplier system
+        let multiplierActive = false;
+        let multiplierTimeout = null;
+        const multiplierIndicator = document.getElementById('multiplierIndicator');
+
+        function checkMultiplier() {
+            const now = Date.now();
+            const recentClicks = clickTimes.filter(t => now - t < 2000);
+
+            if (recentClicks.length >= 10 && !multiplierActive) {
+                activateMultiplier();
+            }
+        }
+
+        function activateMultiplier() {
+            multiplierActive = true;
+            multiplierIndicator.classList.add('active');
+
+            // Clear existing timeout
+            if (multiplierTimeout) {
+                clearTimeout(multiplierTimeout);
+            }
+
+            // Multiplier lasts for 3 seconds after activation
+            multiplierTimeout = setTimeout(() => {
+                deactivateMultiplier();
+            }, 3000);
+        }
+
+        function deactivateMultiplier() {
+            multiplierActive = false;
+            multiplierIndicator.classList.remove('active');
+        }
 
         function updateTokenDisplay() {
             tokenCountDisplay.textContent = tokens;
@@ -3391,7 +3467,9 @@
         initDimensionSystem();
 
         btn.addEventListener('click', (e) => {
-            clickCount++;
+            // Apply multiplier if active
+            const clickValue = multiplierActive ? 2 : 1;
+            clickCount += clickValue;
             countDisplay.textContent = clickCount;
 
             // Update high score if current count exceeds it
@@ -3416,6 +3494,9 @@
             const now = Date.now();
             clickTimes.push(now);
             clickTimes = clickTimes.filter(t => now - t < 2000);
+
+            // Check for multiplier activation
+            checkMultiplier();
 
             // Check speed demon achievement
             if (clickTimes.length >= 10 && !unlockedAchievements.has('speed_demon')) {
@@ -4015,14 +4096,18 @@
                     btn.classList.add(cosmetic.class);
                 }
             } else if (type === 'frame') {
-                // Toggle frame - applies to screen border
+                // Toggle frame - applies to both button frame and screen border
                 if (activeCosmetics.frame === key) {
                     activeCosmetics.frame = null;
                     applyScreenFrame(null);
+                    // Remove from button frame
+                    buttonFrame.className = 'button-frame';
                 } else {
                     activeCosmetics.frame = key;
                     if (cosmetic.frameClass) {
                         applyScreenFrame(cosmetic.frameClass);
+                        // Apply to button frame too
+                        buttonFrame.className = 'button-frame ' + cosmetic.frameClass;
                     }
                     // Achievement for first frame equipped
                     unlockSpecialAchievement('framed');
