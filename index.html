@@ -56,6 +56,17 @@
             font-size: 1.2rem;
         }
 
+        .high-score {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffd700;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            z-index: 50;
+        }
+
         .laser {
             position: fixed;
             height: 3px;
@@ -2293,6 +2304,7 @@
         </div>
     </div>
 
+    <div class="high-score">High Score: <span id="highScore">0</span></div>
     <h1>Click It👌</h1>
     <div class="button-frame-container" id="frameContainer">
         <div class="button-frame" id="buttonFrame"></div>
@@ -2305,13 +2317,18 @@
     <script>
         let clickCount = 0;
         let tokens = 0;
+        let highScore = parseInt(localStorage.getItem('clickItHighScore')) || 0;
         const btn = document.getElementById('clickBtn');
         const countDisplay = document.getElementById('count');
+        const highScoreDisplay = document.getElementById('highScore');
         const achievementsList = document.getElementById('achievementsList');
         const cosmeticsList = document.getElementById('cosmeticsList');
         const tokenCountDisplay = document.getElementById('tokenCount');
         const shopTokenCount = document.getElementById('shopTokenCount');
         const screenFrame = document.getElementById('screenFrame');
+
+        // Initialize high score display
+        highScoreDisplay.textContent = highScore;
 
         // Lucky chest click thresholds (random intervals) - more common now
         let chestNumbers = new Set();
@@ -2886,6 +2903,13 @@
         btn.addEventListener('click', (e) => {
             clickCount++;
             countDisplay.textContent = clickCount;
+
+            // Update high score if current count exceeds it
+            if (clickCount > highScore) {
+                highScore = clickCount;
+                highScoreDisplay.textContent = highScore;
+                localStorage.setItem('clickItHighScore', highScore);
+            }
 
             // Apply click effect if active
             if (activeCosmetics.click) {
