@@ -3593,6 +3593,7 @@
         btn.addEventListener('click', (e) => {
             // Apply multiplier if active
             const clickValue = multiplierActive ? 2 : 1;
+            const previousClickCount = clickCount;
             clickCount += clickValue;
             countDisplay.textContent = clickCount;
 
@@ -3668,10 +3669,12 @@
                 }
             });
 
-            // Check tryhard achievements
-            if (clickCount % 100 === 0 && clickCount <= 5000) {
-                laserCelebration(clickCount);
-                unlockAchievement(clickCount);
+            // Check tryhard achievements (detect crossed milestones for 2x multiplier)
+            for (let milestone = 100; milestone <= 5000; milestone += 100) {
+                if (previousClickCount < milestone && clickCount >= milestone) {
+                    laserCelebration(milestone);
+                    unlockAchievement(milestone);
+                }
             }
 
             // Check for lucky drops
