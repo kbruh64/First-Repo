@@ -504,7 +504,7 @@
         .cosmetic-icon.icon-diamond { background: linear-gradient(135deg, #b9f2ff, #e0ffff, #87ceeb); }
         /* Fun themed skin icons */
         .cosmetic-icon.icon-cookie { background: radial-gradient(circle at 30% 30%, #d2691e, #8b4513); }
-        .cosmetic-icon.icon-capybara { background: linear-gradient(135deg, #8b7355, #c4a484); }
+        .cosmetic-icon.icon-hamster { background: linear-gradient(135deg, #f4a460, #deb887); }
         .cosmetic-icon.icon-fish { background: linear-gradient(135deg, #4169e1, #87ceeb); }
         .cosmetic-icon.icon-christmas { background: linear-gradient(135deg, #228b22, #006400); border: 1px solid #ffd700; }
         .cosmetic-icon.icon-pizza { background: linear-gradient(135deg, #ffa500, #ff6347); }
@@ -939,7 +939,7 @@
 
         /* Fun themed button skins - Full character buttons */
         .click-btn.cookie-btn,
-        .click-btn.capybara-btn,
+        .click-btn.hamster-btn,
         .click-btn.fish-btn,
         .click-btn.christmas-btn,
         .click-btn.pizza-btn,
@@ -968,7 +968,7 @@
             min-height: auto;
         }
         .click-btn.cookie-btn::before,
-        .click-btn.capybara-btn::before,
+        .click-btn.hamster-btn::before,
         .click-btn.fish-btn::before,
         .click-btn.christmas-btn::before,
         .click-btn.pizza-btn::before,
@@ -1087,7 +1087,7 @@
         .click-btn.alien-btn::before {
             animation: themed-3d-dance 3s ease-in-out infinite;
         }
-        .click-btn.capybara-btn::before,
+        .click-btn.hamster-btn::before,
         .click-btn.fish-btn::before,
         .click-btn.snowman-btn::before,
         .click-btn.ghost-btn::before,
@@ -1110,20 +1110,20 @@
         @keyframes cookie-wobble { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.15); } }
         @keyframes cookie-dunk { 0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; } 50% { transform: translateX(-50%) translateY(10px); opacity: 0.6; } }
 
-        .click-btn.capybara-btn {
+        .click-btn.hamster-btn {
             background: transparent;
             box-shadow: none;
             font-size: 0;
             padding: 10px 30px;
             line-height: 1;
-            animation: capybara-chill 2s ease-in-out infinite;
+            animation: hamster-chill 2s ease-in-out infinite;
             position: relative;
-            filter: drop-shadow(0 0 15px rgba(139, 115, 85, 0.5));
+            filter: drop-shadow(0 0 15px rgba(244, 164, 96, 0.5));
         }
-        .click-btn.capybara-btn::before { content: '🐹'; text-shadow: 0 8px 20px rgba(139, 115, 85, 0.7); }
-        .click-btn.capybara-btn::after { content: '🍊'; position: absolute; font-size: 2rem; top: -10px; left: 50%; transform: translateX(-50%); animation: orange-balance 2s ease-in-out infinite; }
-        @keyframes capybara-chill { 0%, 100% { transform: translateY(0) scale(1); } 25% { transform: translateY(-8px) scale(1.02); } 75% { transform: translateY(-3px) scale(1.01); } }
-        @keyframes orange-balance { 0%, 100% { transform: translateX(-50%) rotate(-10deg) translateY(0); } 25% { transform: translateX(-40%) rotate(5deg) translateY(-5px); } 75% { transform: translateX(-60%) rotate(-5deg) translateY(-3px); } }
+        .click-btn.hamster-btn::before { content: '🐹'; text-shadow: 0 8px 20px rgba(244, 164, 96, 0.7); }
+        .click-btn.hamster-btn::after { content: '🌻'; position: absolute; font-size: 2rem; top: -10px; left: 50%; transform: translateX(-50%); animation: seed-bounce 2s ease-in-out infinite; }
+        @keyframes hamster-chill { 0%, 100% { transform: translateY(0) scale(1); } 25% { transform: translateY(-8px) scale(1.02); } 75% { transform: translateY(-3px) scale(1.01); } }
+        @keyframes seed-bounce { 0%, 100% { transform: translateX(-50%) rotate(-10deg) translateY(0); } 25% { transform: translateX(-40%) rotate(5deg) translateY(-5px); } 75% { transform: translateX(-60%) rotate(-5deg) translateY(-3px); } }
 
         .click-btn.fish-btn {
             background: transparent;
@@ -3259,7 +3259,7 @@
             diamond: { name: 'Diamond', iconClass: 'icon-diamond', rarity: 'legendary', type: 'button', class: 'diamond', unlocked: false },
             // Fun themed skins
             cookie: { name: 'Cookie', iconClass: 'icon-cookie', rarity: 'uncommon', type: 'button', class: 'cookie-btn', unlocked: false },
-            capybara: { name: 'Hamster', iconClass: 'icon-capybara', rarity: 'rare', type: 'button', class: 'capybara-btn', unlocked: false },
+            hamster: { name: 'Hamster', iconClass: 'icon-hamster', rarity: 'rare', type: 'button', class: 'hamster-btn', unlocked: false },
             fish: { name: 'Fish', iconClass: 'icon-fish', rarity: 'uncommon', type: 'button', class: 'fish-btn', unlocked: false },
             christmas: { name: 'Christmas Tree', iconClass: 'icon-christmas', rarity: 'epic', type: 'button', class: 'christmas-btn', unlocked: false },
             pizza: { name: 'Pizza', iconClass: 'icon-pizza', rarity: 'uncommon', type: 'button', class: 'pizza-btn', unlocked: false },
