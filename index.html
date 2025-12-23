@@ -519,6 +519,22 @@
         .cosmetic-icon.icon-ghost { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(200,200,200,0.7)); }
         .cosmetic-icon.icon-pumpkin { background: linear-gradient(135deg, #ff8c00, #ff4500); }
         .cosmetic-icon.icon-bee { background: repeating-linear-gradient(135deg, #ffd700 0px, #ffd700 3px, #2f2f2f 3px, #2f2f2f 6px); }
+        .cosmetic-icon.icon-frog { background: linear-gradient(135deg, #32cd32, #228b22); }
+        .cosmetic-icon.icon-monkey { background: linear-gradient(135deg, #8b4513, #d2691e); }
+        .cosmetic-icon.icon-butterfly { background: linear-gradient(135deg, #ff69b4, #da70d6, #9370db); }
+        .cosmetic-icon.icon-turtle { background: linear-gradient(135deg, #3cb371, #2e8b57); }
+        .cosmetic-icon.icon-fox { background: linear-gradient(135deg, #ff8c00, #ff6347); }
+        .cosmetic-icon.icon-owl { background: linear-gradient(135deg, #8b5a2b, #a0522d); }
+        .cosmetic-icon.icon-crab { background: linear-gradient(135deg, #ff6347, #dc143c); }
+        .cosmetic-icon.icon-octopus { background: linear-gradient(135deg, #8a2be2, #9932cc); }
+        .cosmetic-icon.icon-lion { background: linear-gradient(135deg, #ffd700, #daa520); }
+        .cosmetic-icon.icon-shark { background: linear-gradient(135deg, #4682b4, #5f9ea0); }
+        .cosmetic-icon.icon-sloth { background: linear-gradient(135deg, #8b7765, #a0826d); }
+        .cosmetic-icon.icon-elephant { background: linear-gradient(135deg, #808080, #a9a9a9); }
+        .cosmetic-icon.icon-parrot { background: linear-gradient(135deg, #ff0000, #ffa500, #00ff00, #0000ff); }
+        .cosmetic-icon.icon-panda { background: linear-gradient(135deg, #ffffff 50%, #000000 50%); }
+        .cosmetic-icon.icon-koala { background: linear-gradient(135deg, #696969, #a9a9a9); }
+        .cosmetic-icon.icon-dino { background: linear-gradient(135deg, #228b22, #006400); }
         .cosmetic-icon.icon-bubble { background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), #87ceeb); }
         .cosmetic-icon.icon-smoke { background: linear-gradient(135deg, #2c3e50, #34495e, #95a5a6); }
         .cosmetic-icon.icon-plasma { background: linear-gradient(135deg, #8e44ad, #e74c3c, #f39c12); }
@@ -1182,6 +1198,260 @@
         .click-btn.bee-btn::after { content: '🍯'; position: absolute; font-size: 1.3rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: flowers-sway 2s ease-in-out infinite; }
         @keyframes bee-fly { 0%, 100% { transform: translate(0, 0) rotate(-8deg); } 25% { transform: translate(4px, -4px) rotate(0deg); } 50% { transform: translate(0, -6px) rotate(8deg); } 75% { transform: translate(-4px, -4px) rotate(0deg); } }
         @keyframes flowers-sway { 0%, 100% { transform: translateX(-50%) rotate(-5deg); } 50% { transform: translateX(-50%) rotate(5deg); } }
+
+        /* Frog themed button */
+        .click-btn.frog-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: frog-hop 2s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(50, 205, 50, 0.6));
+        }
+        .click-btn.frog-btn::before { content: '🐸'; font-size: 5rem; text-shadow: 0 8px 25px rgba(50, 205, 50, 0.8); }
+        .click-btn.frog-btn::after { content: '🪷'; position: absolute; font-size: 1.5rem; bottom: -25px; left: 50%; transform: translateX(-50%); animation: lilypad-float 3s ease-in-out infinite; }
+        @keyframes frog-hop { 0%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-25px) scale(1.1); } 50% { transform: translateY(0) scale(0.95); } }
+        @keyframes lilypad-float { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+
+        /* Monkey themed button */
+        .click-btn.monkey-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: monkey-swing 2.5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(139, 69, 19, 0.6));
+        }
+        .click-btn.monkey-btn::before { content: '🐵'; font-size: 5rem; text-shadow: 0 8px 25px rgba(139, 69, 19, 0.8); }
+        .click-btn.monkey-btn::after { content: '🍌'; position: absolute; font-size: 1.5rem; top: -25px; left: 50%; transform: translateX(-50%); animation: banana-swing 2s ease-in-out infinite; }
+        @keyframes monkey-swing { 0%, 100% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } }
+        @keyframes banana-swing { 0%, 100% { transform: translateX(-50%) rotate(-20deg); } 50% { transform: translateX(-50%) rotate(20deg); } }
+
+        /* Butterfly themed button */
+        .click-btn.butterfly-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: butterfly-flutter 1.5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.7));
+        }
+        .click-btn.butterfly-btn::before { content: '🦋'; font-size: 5rem; text-shadow: 0 8px 30px rgba(255, 105, 180, 0.9); animation: butterfly-color 4s linear infinite; }
+        .click-btn.butterfly-btn::after { content: '🌸'; position: absolute; font-size: 1.2rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: petal-fall 2.5s ease-in-out infinite; }
+        @keyframes butterfly-flutter { 0%, 100% { transform: translateY(0) rotate(-5deg); } 25% { transform: translateY(-15px) rotate(5deg); } 50% { transform: translateY(-5px) rotate(-3deg); } 75% { transform: translateY(-20px) rotate(3deg); } }
+        @keyframes butterfly-color { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(60deg); } }
+        @keyframes petal-fall { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; } 50% { transform: translateX(-30%) translateY(10px) rotate(45deg); opacity: 0.7; } }
+
+        /* Turtle themed button */
+        .click-btn.turtle-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: turtle-waddle 4s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(60, 179, 113, 0.6));
+        }
+        .click-btn.turtle-btn::before { content: '🐢'; font-size: 5rem; text-shadow: 0 8px 25px rgba(60, 179, 113, 0.8); }
+        .click-btn.turtle-btn::after { content: '🥬'; position: absolute; font-size: 1.3rem; top: -20px; right: -30px; animation: lettuce-munch 3s ease-in-out infinite; }
+        @keyframes turtle-waddle { 0%, 100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(-5px) rotate(-3deg); } 75% { transform: translateX(5px) rotate(3deg); } }
+        @keyframes lettuce-munch { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.8); opacity: 0.7; } }
+
+        /* Fox themed button */
+        .click-btn.fox-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: fox-pounce 2.5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 25px rgba(255, 140, 0, 0.7));
+        }
+        .click-btn.fox-btn::before { content: '🦊'; font-size: 5rem; text-shadow: 0 8px 30px rgba(255, 140, 0, 0.9); }
+        .click-btn.fox-btn::after { content: '🍂'; position: absolute; font-size: 1.2rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: leaf-scatter 2s ease-in-out infinite; }
+        @keyframes fox-pounce { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-20px) scale(1.1); } 60% { transform: translateY(5px) scale(0.95); } }
+        @keyframes leaf-scatter { 0%, 100% { transform: translateX(-50%) rotate(0deg); } 50% { transform: translateX(-30%) rotate(180deg); } }
+
+        /* Owl themed button */
+        .click-btn.owl-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: owl-blink 4s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(139, 90, 43, 0.6));
+        }
+        .click-btn.owl-btn::before { content: '🦉'; font-size: 5rem; text-shadow: 0 8px 25px rgba(139, 90, 43, 0.8); }
+        .click-btn.owl-btn::after { content: '🌙'; position: absolute; font-size: 1.5rem; top: -30px; left: 50%; transform: translateX(-50%); animation: moon-glow 3s ease-in-out infinite; }
+        @keyframes owl-blink { 0%, 45%, 55%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.9); } }
+        @keyframes moon-glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.5); } }
+
+        /* Crab themed button */
+        .click-btn.crab-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: crab-walk 2s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(255, 99, 71, 0.6));
+        }
+        .click-btn.crab-btn::before { content: '🦀'; font-size: 5rem; text-shadow: 0 8px 25px rgba(255, 99, 71, 0.8); }
+        .click-btn.crab-btn::after { content: '🏖️'; position: absolute; font-size: 1.3rem; bottom: -25px; left: 50%; transform: translateX(-50%); }
+        @keyframes crab-walk { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+
+        /* Octopus themed button */
+        .click-btn.octopus-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: octopus-swim 3s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 25px rgba(138, 43, 226, 0.7));
+        }
+        .click-btn.octopus-btn::before { content: '🐙'; font-size: 5rem; text-shadow: 0 8px 30px rgba(138, 43, 226, 0.9); }
+        .click-btn.octopus-btn::after { content: '🫧'; position: absolute; font-size: 1.5rem; top: -20px; left: 50%; transform: translateX(-50%); animation: bubbles-rise 2s ease-in-out infinite; }
+        @keyframes octopus-swim { 0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); } 50% { transform: translateY(-15px) rotate(5deg) scale(1.05); } }
+        @keyframes bubbles-rise { 0% { transform: translateX(-50%) translateY(0); opacity: 1; } 100% { transform: translateX(-50%) translateY(-30px); opacity: 0; } }
+
+        /* Lion themed button */
+        .click-btn.lion-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: lion-roar 3s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+        }
+        .click-btn.lion-btn::before { content: '🦁'; font-size: 5rem; text-shadow: 0 8px 35px rgba(255, 215, 0, 1); }
+        .click-btn.lion-btn::after { content: '👑'; position: absolute; font-size: 1.5rem; top: -30px; left: 50%; transform: translateX(-50%); animation: crown-float 2s ease-in-out infinite; }
+        @keyframes lion-roar { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        @keyframes crown-float { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
+
+        /* Shark themed button */
+        .click-btn.shark-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: shark-hunt 2.5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 25px rgba(70, 130, 180, 0.7));
+        }
+        .click-btn.shark-btn::before { content: '🦈'; font-size: 5rem; text-shadow: 0 8px 30px rgba(70, 130, 180, 0.9); }
+        .click-btn.shark-btn::after { content: '🌊'; position: absolute; font-size: 1.3rem; bottom: -20px; left: 50%; transform: translateX(-50%); animation: wave-splash 1.5s ease-in-out infinite; }
+        @keyframes shark-hunt { 0%, 100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(-15px) rotate(-10deg); } 75% { transform: translateX(15px) rotate(10deg); } }
+        @keyframes wave-splash { 0%, 100% { transform: translateX(-50%) scaleX(1); } 50% { transform: translateX(-50%) scaleX(1.3); } }
+
+        /* Sloth themed button */
+        .click-btn.sloth-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: sloth-hang 6s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(139, 119, 101, 0.6));
+        }
+        .click-btn.sloth-btn::before { content: '🦥'; font-size: 5rem; text-shadow: 0 8px 25px rgba(139, 119, 101, 0.8); }
+        .click-btn.sloth-btn::after { content: '💤'; position: absolute; font-size: 1.2rem; top: -20px; right: -20px; animation: zzz-float 3s ease-in-out infinite; }
+        @keyframes sloth-hang { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+        @keyframes zzz-float { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(-10px); opacity: 1; } }
+
+        /* Elephant themed button */
+        .click-btn.elephant-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: elephant-stomp 2s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 25px rgba(169, 169, 169, 0.7));
+        }
+        .click-btn.elephant-btn::before { content: '🐘'; font-size: 5rem; text-shadow: 0 8px 30px rgba(169, 169, 169, 0.9); }
+        .click-btn.elephant-btn::after { content: '🥜'; position: absolute; font-size: 1.3rem; bottom: -20px; left: 50%; transform: translateX(-50%); }
+        @keyframes elephant-stomp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Parrot themed button */
+        .click-btn.parrot-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: parrot-bob 1.5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.5));
+        }
+        .click-btn.parrot-btn::before { content: '🦜'; font-size: 5rem; text-shadow: 0 8px 30px rgba(255, 100, 0, 0.9); animation: parrot-rainbow 3s linear infinite; }
+        .click-btn.parrot-btn::after { content: '🪶'; position: absolute; font-size: 1.3rem; bottom: -25px; left: 50%; transform: translateX(-50%); animation: feather-fall 2s ease-in-out infinite; }
+        @keyframes parrot-bob { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+        @keyframes parrot-rainbow { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(90deg); } }
+        @keyframes feather-fall { 0% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateX(-30%) translateY(20px) rotate(45deg); opacity: 0; } }
+
+        /* Panda themed button */
+        .click-btn.panda-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: panda-munch 2.5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.4));
+        }
+        .click-btn.panda-btn::before { content: '🐼'; font-size: 5rem; text-shadow: 0 8px 25px rgba(100, 100, 100, 0.8); }
+        .click-btn.panda-btn::after { content: '🎋'; position: absolute; font-size: 1.5rem; right: -30px; top: 50%; transform: translateY(-50%); animation: bamboo-sway 2s ease-in-out infinite; }
+        @keyframes panda-munch { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-5deg) scale(1.05); } 75% { transform: rotate(5deg) scale(1.05); } }
+        @keyframes bamboo-sway { 0%, 100% { transform: translateY(-50%) rotate(-5deg); } 50% { transform: translateY(-50%) rotate(5deg); } }
+
+        /* Koala themed button */
+        .click-btn.koala-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: koala-sleep 5s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(128, 128, 128, 0.5));
+        }
+        .click-btn.koala-btn::before { content: '🐨'; font-size: 5rem; text-shadow: 0 8px 25px rgba(128, 128, 128, 0.8); }
+        .click-btn.koala-btn::after { content: '🌿'; position: absolute; font-size: 1.3rem; top: -20px; left: 50%; transform: translateX(-50%); }
+        @keyframes koala-sleep { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+        /* Dinosaur themed button */
+        .click-btn.dino-btn {
+            background: transparent;
+            box-shadow: none;
+            font-size: 0;
+            padding: 10px 30px;
+            line-height: 1;
+            animation: dino-stomp 2s ease-in-out infinite;
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(34, 139, 34, 0.7));
+        }
+        .click-btn.dino-btn::before { content: '🦕'; font-size: 5rem; text-shadow: 0 8px 35px rgba(34, 139, 34, 0.9); }
+        .click-btn.dino-btn::after { content: '🦴'; position: absolute; font-size: 1.3rem; bottom: -25px; left: 50%; transform: translateX(-50%); }
+        @keyframes dino-stomp { 0%, 100% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-15px) rotate(-5deg); } 75% { transform: translateY(-5px) rotate(5deg); } }
 
         /* Button frame container */
         .button-frame-container {
@@ -3225,6 +3495,22 @@
             ghost: { name: 'Ghost', iconClass: 'icon-ghost', rarity: 'rare', type: 'button', class: 'ghost-btn', unlocked: false },
             pumpkin: { name: 'Pumpkin', iconClass: 'icon-pumpkin', rarity: 'epic', type: 'button', class: 'pumpkin-btn', unlocked: false },
             bee: { name: 'Bee', iconClass: 'icon-bee', rarity: 'uncommon', type: 'button', class: 'bee-btn', unlocked: false },
+            frog: { name: 'Frog', iconClass: 'icon-frog', rarity: 'uncommon', type: 'button', class: 'frog-btn', unlocked: false },
+            monkey: { name: 'Monkey', iconClass: 'icon-monkey', rarity: 'rare', type: 'button', class: 'monkey-btn', unlocked: false },
+            butterfly: { name: 'Butterfly', iconClass: 'icon-butterfly', rarity: 'epic', type: 'button', class: 'butterfly-btn', unlocked: false },
+            turtle: { name: 'Turtle', iconClass: 'icon-turtle', rarity: 'uncommon', type: 'button', class: 'turtle-btn', unlocked: false },
+            fox: { name: 'Fox', iconClass: 'icon-fox', rarity: 'rare', type: 'button', class: 'fox-btn', unlocked: false },
+            owl: { name: 'Owl', iconClass: 'icon-owl', rarity: 'rare', type: 'button', class: 'owl-btn', unlocked: false },
+            crab: { name: 'Crab', iconClass: 'icon-crab', rarity: 'uncommon', type: 'button', class: 'crab-btn', unlocked: false },
+            octopus: { name: 'Octopus', iconClass: 'icon-octopus', rarity: 'epic', type: 'button', class: 'octopus-btn', unlocked: false },
+            lion: { name: 'Lion', iconClass: 'icon-lion', rarity: 'legendary', type: 'button', class: 'lion-btn', unlocked: false },
+            shark: { name: 'Shark', iconClass: 'icon-shark', rarity: 'epic', type: 'button', class: 'shark-btn', unlocked: false },
+            sloth: { name: 'Sloth', iconClass: 'icon-sloth', rarity: 'rare', type: 'button', class: 'sloth-btn', unlocked: false },
+            elephant: { name: 'Elephant', iconClass: 'icon-elephant', rarity: 'epic', type: 'button', class: 'elephant-btn', unlocked: false },
+            parrot: { name: 'Parrot', iconClass: 'icon-parrot', rarity: 'rare', type: 'button', class: 'parrot-btn', unlocked: false },
+            panda: { name: 'Panda', iconClass: 'icon-panda', rarity: 'epic', type: 'button', class: 'panda-btn', unlocked: false },
+            koala: { name: 'Koala', iconClass: 'icon-koala', rarity: 'rare', type: 'button', class: 'koala-btn', unlocked: false },
+            dino: { name: 'Dinosaur', iconClass: 'icon-dino', rarity: 'legendary', type: 'button', class: 'dino-btn', unlocked: false },
             // Trails
             sparkle_trail: { name: 'Sparkle Trail', iconClass: 'icon-sparkle', rarity: 'uncommon', type: 'trail', effect: 'sparkle', unlocked: false },
             heart_trail: { name: 'Heart Trail', iconClass: 'icon-heart', rarity: 'rare', type: 'trail', effect: 'heart', unlocked: false },
