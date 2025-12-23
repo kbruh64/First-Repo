@@ -4794,6 +4794,11 @@
             { name: 'Electronic', id: 'electronic' },
             { name: 'Meditation', id: 'meditation' },
             { name: 'Rock', id: 'rock' },
+            { name: 'Bossa Nova', id: 'bossanova' },
+            { name: 'Metal', id: 'metal' },
+            { name: 'Country', id: 'country' },
+            { name: 'House', id: 'house' },
+            { name: 'Orchestral', id: 'orchestral' },
         ];
 
         let currentBgColor = '#1a1a2e';
@@ -5430,7 +5435,7 @@
 
                     // Gentle swell
                     const swell = 0.7 + Math.sin(t * 0.15) * 0.3;
-                    sample *= swell * 0.45;
+                    sample *= swell * 0.85;
 
                     // Stereo widening
                     leftChannel[i] = sample + Math.sin(2 * Math.PI * f2 * 1.002 * t) * 0.02;
@@ -5482,7 +5487,7 @@
                         sample += (Math.random() - 0.5) * 0.06;
                     }
 
-                    sample *= 0.45;
+                    sample *= 0.85;
                     leftChannel[i] = sample;
                     rightChannel[i] = sample;
                 }
@@ -5543,7 +5548,7 @@
                         sample += Math.sin(2 * Math.PI * harpNotes[harpIdx] * t) * 0.04 * harpEnv;
                     }
 
-                    sample *= 0.5;
+                    sample *= 0.9;
                     leftChannel[i] = sample;
                     rightChannel[i] = sample * 0.95;
                 }
@@ -5600,7 +5605,7 @@
                         sample += Math.sin(2 * Math.PI * 55 * t) * 0.12 * (1 - kickPos * 12);
                     }
 
-                    sample *= 0.5;
+                    sample *= 0.9;
                     leftChannel[i] = sample;
                     rightChannel[i] = sample;
                 }
@@ -5771,9 +5776,327 @@
                         sample += (Math.random() - 0.5) * 0.06 * (1 - barStartPos / 0.3);
                     }
 
-                    sample *= 0.5;
+                    sample *= 0.9;
                     leftChannel[i] = sample;
                     rightChannel[i] = sample;
+                }
+            } else if (trackId === 'bossanova') {
+                // Bossa Nova - smooth Brazilian jazz with syncopated rhythm
+                const chordProg = [
+                    [261.63, 329.63, 392, 493.88], // Cmaj7
+                    [293.66, 369.99, 440, 523.25], // Dm7
+                    [196, 246.94, 293.66, 369.99], // G7
+                    [261.63, 329.63, 392, 493.88], // Cmaj7
+                    [220, 277.18, 329.63, 415.30], // Am7
+                    [293.66, 369.99, 440, 523.25], // Dm7
+                    [196, 246.94, 293.66, 369.99], // G7
+                    [261.63, 329.63, 392, 493.88], // Cmaj7
+                ];
+                const bassPattern = [130.81, 0, 196, 0, 146.83, 0, 196, 130.81, 110, 0, 164.81, 0, 98, 0, 146.83, 130.81];
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const chordIdx = Math.floor((t / 2) % 8);
+                    const bassIdx = Math.floor((t * 2) % 16);
+                    const chord = chordProg[chordIdx];
+                    const bassFreq = bassPattern[bassIdx];
+
+                    let sample = 0;
+
+                    // Nylon guitar chord - soft and warm
+                    const strumOffset = (t * 2) % 1;
+                    if (strumOffset < 0.15) {
+                        chord.forEach((freq, idx) => {
+                            const noteDelay = idx * 0.02;
+                            if (strumOffset > noteDelay) {
+                                const env = Math.exp(-(strumOffset - noteDelay) * 4);
+                                sample += Math.sin(2 * Math.PI * freq * t) * 0.06 * env;
+                            }
+                        });
+                    }
+
+                    // Upbeat chord stab (signature bossa rhythm)
+                    const upbeat = ((t + 0.25) * 2) % 1;
+                    if (upbeat < 0.1) {
+                        chord.forEach((freq, idx) => {
+                            sample += Math.sin(2 * Math.PI * freq * t) * 0.04 * (1 - upbeat * 10);
+                        });
+                    }
+
+                    // Walking bass
+                    if (bassFreq > 0) {
+                        const bassEnv = Math.max(0, 1 - ((t * 2) % 1) * 2);
+                        sample += Math.sin(2 * Math.PI * bassFreq * t) * 0.12 * bassEnv;
+                    }
+
+                    // Soft brushed snare
+                    const snarePos = (t * 2) % 1;
+                    if (snarePos > 0.45 && snarePos < 0.55) {
+                        sample += (Math.random() - 0.5) * 0.03;
+                    }
+
+                    // Rim click
+                    const rimPos = ((t + 0.5) * 2) % 1;
+                    if (rimPos < 0.02) {
+                        sample += (Math.random() - 0.5) * 0.06;
+                    }
+
+                    sample *= 0.9;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample * 0.95;
+                }
+            } else if (trackId === 'metal') {
+                // Metal - heavy distorted guitars with double bass drums
+                const riffNotes = [
+                    82.41, 82.41, 82.41, 82.41, 77.78, 77.78, 82.41, 82.41,
+                    82.41, 87.31, 82.41, 77.78, 73.42, 73.42, 77.78, 82.41,
+                    110, 110, 103.83, 103.83, 98, 98, 92.50, 92.50,
+                    82.41, 0, 82.41, 0, 82.41, 82.41, 77.78, 82.41
+                ];
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const riffIdx = Math.floor((t * 4) % 32);
+                    const noteFreq = riffNotes[riffIdx];
+
+                    let sample = 0;
+
+                    // Heavy distorted guitar
+                    if (noteFreq > 0) {
+                        let guitar = 0;
+                        // Power chord with palm muting effect
+                        guitar += Math.sin(2 * Math.PI * noteFreq * t);
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 1.5 * t) * 0.9;
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 2 * t) * 0.7;
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 3 * t) * 0.5;
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 4 * t) * 0.4;
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 5 * t) * 0.3;
+                        // Heavy distortion
+                        guitar = Math.tanh(guitar * 3) * 0.2;
+                        // Tight envelope for chugging
+                        const noteEnv = Math.max(0.3, 1 - ((t * 4) % 1) * 0.7);
+                        sample += guitar * noteEnv;
+                    }
+
+                    // Double bass drum pattern
+                    const kickPos = (t * 8) % 1;
+                    if (kickPos < 0.08) {
+                        const kickFreq = 60 * (1 - kickPos * 5);
+                        sample += Math.sin(2 * Math.PI * kickFreq * t) * 0.25 * (1 - kickPos * 12);
+                    }
+
+                    // Snare on 2 and 4
+                    const beatNum = Math.floor((t * 2) % 2);
+                    const snarePos = (t * 2) % 1;
+                    if (beatNum === 1 && snarePos < 0.1) {
+                        sample += (Math.random() - 0.5) * 0.25 * (1 - snarePos * 10);
+                        sample += Math.sin(2 * Math.PI * 180 * t) * 0.1 * (1 - snarePos * 10);
+                    }
+
+                    // Crash cymbal accents
+                    const barPos = (t * 2) % 4;
+                    if (barPos < 0.5 && Math.floor(t * 2) % 8 === 0) {
+                        sample += (Math.random() - 0.5) * 0.08 * (1 - barPos);
+                    }
+
+                    sample *= 0.85;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample;
+                }
+            } else if (trackId === 'country') {
+                // Country - twangy guitar with walking bass
+                const melodyNotes = [
+                    392, 440, 494, 523, 494, 440, 392, 330,
+                    294, 330, 392, 440, 392, 330, 294, 262,
+                    330, 392, 440, 494, 523, 494, 440, 392,
+                    440, 392, 330, 294, 330, 392, 440, 392
+                ];
+                const bassWalk = [130.81, 146.83, 164.81, 146.83, 174.61, 164.81, 146.83, 130.81];
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const melodyIdx = Math.floor((t * 4) % 32);
+                    const bassIdx = Math.floor((t * 2) % 8);
+                    const melodyFreq = melodyNotes[melodyIdx];
+                    const bassFreq = bassWalk[bassIdx];
+
+                    let sample = 0;
+
+                    // Twangy lead guitar
+                    const melodyEnv = Math.exp(-((t * 4) % 1) * 3);
+                    sample += Math.sin(2 * Math.PI * melodyFreq * t) * 0.1 * melodyEnv;
+                    sample += Math.sin(2 * Math.PI * melodyFreq * 2 * t) * 0.05 * melodyEnv;
+                    sample += Math.sin(2 * Math.PI * melodyFreq * 3 * t) * 0.03 * melodyEnv;
+
+                    // Acoustic rhythm guitar (boom-chicka pattern)
+                    const boomPos = (t * 2) % 1;
+                    if (boomPos < 0.1) {
+                        // Boom (bass note)
+                        sample += Math.sin(2 * Math.PI * bassFreq * t) * 0.15 * (1 - boomPos * 10);
+                    }
+                    // Chicka (upstroke)
+                    const chickaPos = ((t + 0.25) * 4) % 1;
+                    if (chickaPos < 0.08) {
+                        sample += (Math.random() - 0.5) * 0.06;
+                        sample += Math.sin(2 * Math.PI * 330 * t) * 0.04;
+                        sample += Math.sin(2 * Math.PI * 440 * t) * 0.03;
+                    }
+
+                    // Walking bass
+                    const bassEnv = Math.max(0.3, 1 - ((t * 2) % 1) * 1.2);
+                    sample += Math.sin(2 * Math.PI * bassFreq * t) * 0.1 * bassEnv;
+
+                    // Simple drum pattern
+                    const kickPos = (t * 2) % 1;
+                    if (kickPos < 0.06) {
+                        sample += Math.sin(2 * Math.PI * 55 * t) * 0.12 * (1 - kickPos * 16);
+                    }
+                    // Snare
+                    const snarePos = ((t + 0.5) * 2) % 1;
+                    if (snarePos < 0.08) {
+                        sample += (Math.random() - 0.5) * 0.1 * (1 - snarePos * 12);
+                    }
+
+                    sample *= 0.85;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample;
+                }
+            } else if (trackId === 'house') {
+                // House - four-on-the-floor with piano chords and synth stabs
+                const chordProg = [
+                    [261.63, 329.63, 392], // C
+                    [220, 261.63, 329.63], // Am
+                    [174.61, 220, 261.63], // F
+                    [196, 246.94, 293.66], // G
+                ];
+                const bassNotes = [65.41, 65.41, 55, 55, 43.65, 43.65, 49, 49];
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const chordIdx = Math.floor((t / 2) % 4);
+                    const bassIdx = Math.floor((t * 2) % 8);
+                    const chord = chordProg[chordIdx];
+                    const bassFreq = bassNotes[bassIdx];
+
+                    let sample = 0;
+
+                    // Pulsing bass
+                    const bassEnv = 0.7 + Math.sin(t * 8 * Math.PI) * 0.3;
+                    sample += Math.sin(2 * Math.PI * bassFreq * t) * 0.18 * bassEnv;
+                    sample += Math.sin(2 * Math.PI * bassFreq * 2 * t) * 0.06 * bassEnv;
+
+                    // Piano chord stabs on offbeats
+                    const offbeat = ((t + 0.25) * 2) % 1;
+                    if (offbeat < 0.15) {
+                        const stabEnv = 1 - offbeat / 0.15;
+                        chord.forEach((freq) => {
+                            sample += Math.sin(2 * Math.PI * freq * t) * 0.06 * stabEnv;
+                            sample += Math.sin(2 * Math.PI * freq * 2 * t) * 0.02 * stabEnv;
+                        });
+                    }
+
+                    // Synth lead (varies per section)
+                    const section = Math.floor((t / 4) % 4);
+                    if (section >= 2) {
+                        const leadFreq = chord[0] * 2;
+                        const leadEnv = Math.max(0, 1 - ((t * 4) % 1) * 2);
+                        sample += Math.sin(2 * Math.PI * leadFreq * t) * 0.08 * leadEnv;
+                    }
+
+                    // Four-on-the-floor kick
+                    const kickPos = (t * 2) % 1;
+                    if (kickPos < 0.1) {
+                        const kickFreq = 80 * (1 - kickPos * 6);
+                        sample += Math.sin(2 * Math.PI * kickFreq * t) * 0.22 * (1 - kickPos * 10);
+                    }
+
+                    // Open hi-hat on offbeats
+                    const hatPos = ((t + 0.25) * 2) % 1;
+                    if (hatPos < 0.1) {
+                        sample += (Math.random() - 0.5) * 0.08 * (1 - hatPos * 10);
+                    }
+
+                    // Clap on 2 and 4
+                    const beatNum = Math.floor((t * 2) % 2);
+                    const clapPos = (t * 2) % 1;
+                    if (beatNum === 1 && clapPos < 0.05) {
+                        sample += (Math.random() - 0.5) * 0.15;
+                    }
+
+                    sample *= 0.85;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample;
+                }
+            } else if (trackId === 'orchestral') {
+                // Orchestral - full orchestra with strings, brass, woodwinds
+                const sections = 4;
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const section = Math.floor((t % 32) / 8);
+
+                    let sample = 0;
+
+                    // String section - lush sustained chords
+                    const stringChords = [
+                        [220, 277.18, 329.63, 440],   // Am
+                        [196, 246.94, 293.66, 392],   // G
+                        [174.61, 220, 261.63, 349.23],// F
+                        [164.81, 207.65, 246.94, 329.63], // E
+                    ];
+                    const stringChord = stringChords[section];
+                    const vibrato = 1 + Math.sin(t * 5.5) * 0.004;
+                    stringChord.forEach((freq, idx) => {
+                        sample += Math.sin(2 * Math.PI * freq * vibrato * t) * (0.08 - idx * 0.015);
+                        sample += Math.sin(2 * Math.PI * freq * 2 * vibrato * t) * 0.02;
+                    });
+
+                    // Brass fanfare in section 2 and 3
+                    if (section === 2 || section === 3) {
+                        const brassNotes = [349.23, 440, 523.25, 659.25, 523.25, 440, 349.23, 293.66];
+                        const brassIdx = Math.floor((t * 2) % 8);
+                        const brassFreq = brassNotes[brassIdx];
+                        const brassEnv = Math.max(0.4, 1 - ((t * 2) % 1) * 0.6);
+                        sample += Math.sin(2 * Math.PI * brassFreq * t) * 0.08 * brassEnv;
+                        sample += Math.sin(2 * Math.PI * brassFreq * 2 * t) * 0.04 * brassEnv;
+                    }
+
+                    // Woodwind melody in section 1 and 3
+                    if (section === 1 || section === 3) {
+                        const fluteNotes = [659.25, 698.46, 783.99, 880, 783.99, 698.46, 659.25, 587.33];
+                        const fluteIdx = Math.floor((t * 2) % 8);
+                        const fluteFreq = fluteNotes[fluteIdx];
+                        const fluteEnv = Math.max(0.3, 1 - ((t * 2) % 1) * 0.8);
+                        sample += Math.sin(2 * Math.PI * fluteFreq * t) * 0.05 * fluteEnv;
+                    }
+
+                    // Timpani on dramatic moments
+                    if (section === 2) {
+                        const timpPos = (t * 1) % 1;
+                        if (timpPos < 0.2) {
+                            sample += Math.sin(2 * Math.PI * 73.42 * t) * 0.12 * (1 - timpPos * 5);
+                        }
+                    }
+
+                    // Cymbal swells
+                    if (section === 3) {
+                        const swellPos = (t % 4) / 4;
+                        sample += (Math.random() - 0.5) * 0.02 * swellPos;
+                    }
+
+                    // Cellos/basses foundation
+                    const bassNote = stringChord[0] / 2;
+                    sample += Math.sin(2 * Math.PI * bassNote * t) * 0.1;
+
+                    // Dynamic envelope per section
+                    const sectionPos = (t % 8) / 8;
+                    let dynamics = 0.7;
+                    if (section === 0) dynamics = 0.5 + sectionPos * 0.3;
+                    else if (section === 2) dynamics = 0.9;
+                    else if (section === 3) dynamics = 0.8 + sectionPos * 0.2;
+
+                    sample *= dynamics * 0.85;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample * 0.97;
                 }
             }
 
