@@ -958,7 +958,6 @@
             perspective: 500px;
             font-size: 0;
             color: transparent;
-            text-indent: -9999px;
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
@@ -966,6 +965,7 @@
             padding: 0;
             min-width: auto;
             min-height: auto;
+            overflow: visible;
         }
         .click-btn.cookie-btn::before,
         .click-btn.hamster-btn::before,
@@ -2879,6 +2879,7 @@
 
     <script>
         let clickCount = 0;
+        let previousClickCount = 0;
         let tokens = 0;
         let highScore = parseInt(localStorage.getItem('clickItHighScore')) || 0;
         const btn = document.getElementById('clickBtn');
@@ -3402,12 +3403,17 @@
             };
         }
 
+        // Helper function to check if a milestone was crossed (for 2x multiplier support)
+        function crossedMilestone(target) {
+            return previousClickCount < target && clickCount >= target;
+        }
+
         // Special achievements
         specialAchievements['first_click'] = {
             title: 'Baby Steps',
             desc: 'Made your first click!',
             icon: '👶',
-            condition: () => clickCount === 1
+            condition: () => crossedMilestone(1)
         };
         specialAchievements['speed_demon'] = {
             title: 'Speed Demon',
@@ -3419,49 +3425,49 @@
             title: 'Halfway There',
             desc: 'Reached 50 clicks!',
             icon: '🌓',
-            condition: () => clickCount === 50
+            condition: () => crossedMilestone(50)
         };
         specialAchievements['lucky_seven'] = {
             title: 'Lucky Seven',
-            desc: 'Hit exactly 777 clicks!',
+            desc: 'Reached 777 clicks!',
             icon: '🍀',
-            condition: () => clickCount === 777
+            condition: () => crossedMilestone(777)
         };
         specialAchievements['nice'] = {
             title: 'Nice',
-            desc: 'Hit 69 clicks... nice.',
+            desc: 'Reached 69 clicks... nice.',
             icon: '😏',
-            condition: () => clickCount === 69
+            condition: () => crossedMilestone(69)
         };
         specialAchievements['answer'] = {
             title: 'The Answer',
             desc: '42 clicks - the answer to everything!',
             icon: '🌌',
-            condition: () => clickCount === 42
+            condition: () => crossedMilestone(42)
         };
         specialAchievements['dedication'] = {
             title: 'Dedicated',
             desc: 'Reached 500 clicks!',
             icon: '💪',
-            condition: () => clickCount === 500
+            condition: () => crossedMilestone(500)
         };
         specialAchievements['thousand'] = {
             title: 'Millennial',
             desc: 'Reached 1000 clicks!',
             icon: '🎯',
-            condition: () => clickCount === 1000
+            condition: () => crossedMilestone(1000)
         };
         specialAchievements['unstoppable'] = {
             title: 'Unstoppable',
             desc: 'Reached 1500 clicks!',
             icon: '🔥',
-            condition: () => clickCount === 1500
+            condition: () => crossedMilestone(1500)
         };
         specialAchievements['legend'] = {
             title: 'Legend',
             desc: 'Reached 2000 clicks!',
             icon: '👑',
-            condition: () => clickCount === 2000
+            condition: () => crossedMilestone(2000)
         };
         specialAchievements['marathon'] = {
             title: 'Marathon Runner',
@@ -3480,51 +3486,51 @@
         };
         specialAchievements['perfectionist'] = {
             title: 'Perfectionist',
-            desc: 'Reached exactly 111 clicks!',
+            desc: 'Reached 111 clicks!',
             icon: '✨',
-            condition: () => clickCount === 111
+            condition: () => crossedMilestone(111)
         };
         specialAchievements['triple_threat'] = {
             title: 'Triple Threat',
             desc: 'Reached 333 clicks!',
             icon: '🎲',
-            condition: () => clickCount === 333
+            condition: () => crossedMilestone(333)
         };
         specialAchievements['high_five'] = {
             title: 'High Five',
             desc: 'Reached 555 clicks!',
             icon: '🖐️',
-            condition: () => clickCount === 555
+            condition: () => crossedMilestone(555)
         };
         specialAchievements['devils_number'] = {
             title: "Devil's Number",
             desc: 'Reached 666 clicks... spooky!',
             icon: '😈',
-            condition: () => clickCount === 666
+            condition: () => crossedMilestone(666)
         };
         specialAchievements['jackpot'] = {
             title: 'Jackpot!',
-            desc: 'Hit exactly 888 clicks!',
+            desc: 'Reached 888 clicks!',
             icon: '🎰',
-            condition: () => clickCount === 888
+            condition: () => crossedMilestone(888)
         };
         specialAchievements['millennium'] = {
             title: 'Over 9000!',
             desc: 'Wait no, just 999 clicks!',
             icon: '💥',
-            condition: () => clickCount === 999
+            condition: () => crossedMilestone(999)
         };
         specialAchievements['binary'] = {
             title: 'Binary Master',
             desc: 'Reached 1024 clicks!',
             icon: '🤖',
-            condition: () => clickCount === 1024
+            condition: () => crossedMilestone(1024)
         };
         specialAchievements['elite'] = {
             title: 'Elite',
             desc: 'Reached 1337 clicks!',
             icon: '🔥',
-            condition: () => clickCount === 1337
+            condition: () => crossedMilestone(1337)
         };
         specialAchievements['quick_starter'] = {
             title: 'Quick Starter',
@@ -3626,7 +3632,7 @@
         btn.addEventListener('click', (e) => {
             // Apply multiplier if active
             const clickValue = multiplierActive ? 2 : 1;
-            const previousClickCount = clickCount;
+            previousClickCount = clickCount;
             clickCount += clickValue;
             countDisplay.textContent = clickCount;
 
