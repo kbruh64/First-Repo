@@ -3698,22 +3698,30 @@
                 }
             }
 
-            // Check for lucky drops
-            if (luckyNumbers.has(clickCount)) {
-                luckyNumbers.delete(clickCount);
-                triggerLuckyDrop();
+            // Check for lucky drops (check range for 2x multiplier)
+            for (let i = previousClickCount + 1; i <= clickCount; i++) {
+                if (luckyNumbers.has(i)) {
+                    luckyNumbers.delete(i);
+                    triggerLuckyDrop();
+                }
             }
 
-            // Check for lucky chests
-            if (chestNumbers.has(clickCount)) {
-                chestNumbers.delete(clickCount);
-                triggerLuckyChest();
+            // Check for lucky chests (check range for 2x multiplier)
+            for (let i = previousClickCount + 1; i <= clickCount; i++) {
+                if (chestNumbers.has(i)) {
+                    chestNumbers.delete(i);
+                    triggerLuckyChest();
+                }
             }
 
-            // Check for dimension frame drops (only when in a dimension)
-            if (currentDimension > 0 && dimensionFrameNumbers.has(clickCount)) {
-                dimensionFrameNumbers.delete(clickCount);
-                triggerDimensionFrameDrop();
+            // Check for dimension frame drops (check range for 2x multiplier)
+            if (currentDimension > 0) {
+                for (let i = previousClickCount + 1; i <= clickCount; i++) {
+                    if (dimensionFrameNumbers.has(i)) {
+                        dimensionFrameNumbers.delete(i);
+                        triggerDimensionFrameDrop();
+                    }
+                }
             }
 
             // Check for dimension unlocks
