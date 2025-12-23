@@ -4789,6 +4789,11 @@
             { name: 'Chiptune', id: 'chiptune' },
             { name: 'Dreamy', id: 'dreamy' },
             { name: 'Funky', id: 'funky' },
+            { name: 'Cinematic', id: 'cinematic' },
+            { name: 'Reggae', id: 'reggae' },
+            { name: 'Electronic', id: 'electronic' },
+            { name: 'Meditation', id: 'meditation' },
+            { name: 'Rock', id: 'rock' },
         ];
 
         let currentBgColor = '#1a1a2e';
@@ -5478,6 +5483,295 @@
                     }
 
                     sample *= 0.45;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample;
+                }
+            } else if (trackId === 'cinematic') {
+                // Cinematic - epic orchestral with building tension and release
+                const duration32 = sampleRate * 32; // Longer loop for more variation
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const section = Math.floor((t % 32) / 8); // 4 sections of 8 seconds each
+
+                    let sample = 0;
+
+                    // Different sections for less repetition
+                    if (section === 0) {
+                        // Quiet intro - strings building
+                        const intensity = (t % 8) / 8;
+                        const f1 = 110 + Math.sin(t * 0.1) * 5;
+                        sample += Math.sin(2 * Math.PI * f1 * t) * 0.08 * intensity;
+                        sample += Math.sin(2 * Math.PI * f1 * 1.5 * t) * 0.06 * intensity;
+                        sample += Math.sin(2 * Math.PI * f1 * 2 * t) * 0.04 * intensity;
+                    } else if (section === 1) {
+                        // Building tension - add brass
+                        const brassFreqs = [220, 277.18, 329.63, 392];
+                        const chordIdx = Math.floor((t * 0.5) % 4);
+                        const brassFreq = brassFreqs[chordIdx];
+                        sample += Math.sin(2 * Math.PI * brassFreq * t) * 0.12;
+                        sample += Math.sin(2 * Math.PI * brassFreq * 2 * t) * 0.06;
+                        // Timpani rolls
+                        if ((t * 4) % 1 < 0.1) {
+                            sample += Math.sin(2 * Math.PI * 65 * t) * 0.15 * (1 - ((t * 4) % 1) * 10);
+                        }
+                    } else if (section === 2) {
+                        // Climax - full orchestra
+                        const melodyNotes = [392, 440, 494, 523, 587, 659, 587, 523, 494, 440, 392, 349, 330, 294, 330, 392];
+                        const melodyIdx = Math.floor((t * 2) % 16);
+                        const melodyFreq = melodyNotes[melodyIdx];
+                        const melodyEnv = Math.max(0.3, 1 - ((t * 2) % 1) * 0.7);
+                        sample += Math.sin(2 * Math.PI * melodyFreq * t) * 0.1 * melodyEnv;
+                        // Strings
+                        sample += Math.sin(2 * Math.PI * 220 * t) * 0.08;
+                        sample += Math.sin(2 * Math.PI * 330 * t) * 0.06;
+                        sample += Math.sin(2 * Math.PI * 440 * t) * 0.05;
+                        // Percussion
+                        const kickPos = (t * 2) % 1;
+                        if (kickPos < 0.08) {
+                            sample += Math.sin(2 * Math.PI * 55 * t) * 0.2 * (1 - kickPos * 12);
+                        }
+                    } else {
+                        // Denouement - gentle resolution
+                        const fadeOut = 1 - ((t % 8) / 8) * 0.5;
+                        sample += Math.sin(2 * Math.PI * 261.63 * t) * 0.1 * fadeOut;
+                        sample += Math.sin(2 * Math.PI * 329.63 * t) * 0.08 * fadeOut;
+                        sample += Math.sin(2 * Math.PI * 392 * t) * 0.06 * fadeOut;
+                        // Harp arpeggios
+                        const harpNotes = [523, 659, 784, 1047, 784, 659, 523, 392];
+                        const harpIdx = Math.floor((t * 3) % 8);
+                        const harpEnv = Math.exp(-((t * 3) % 1) * 4);
+                        sample += Math.sin(2 * Math.PI * harpNotes[harpIdx] * t) * 0.04 * harpEnv;
+                    }
+
+                    sample *= 0.5;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample * 0.95;
+                }
+            } else if (trackId === 'reggae') {
+                // Reggae - offbeat rhythm with organ and bass
+                const bassNotes = [82.41, 82.41, 110, 98, 82.41, 82.41, 73.42, 82.41,
+                                   98, 98, 110, 123.47, 110, 98, 82.41, 73.42];
+                const organChords = [
+                    [261.63, 329.63, 392], // C
+                    [220, 277.18, 329.63], // Am
+                    [246.94, 311.13, 369.99], // B dim approx
+                    [196, 246.94, 293.66], // G
+                ];
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const bassIdx = Math.floor((t * 2) % 16);
+                    const chordIdx = Math.floor((t / 2) % 4);
+                    const bassFreq = bassNotes[bassIdx];
+                    const chord = organChords[chordIdx];
+
+                    let sample = 0;
+
+                    // Reggae bass - syncopated
+                    const bassEnv = Math.max(0, 1 - ((t * 2) % 1) * 1.5);
+                    sample += Math.sin(2 * Math.PI * bassFreq * t) * 0.15 * bassEnv;
+                    sample += Math.sin(2 * Math.PI * bassFreq * 2 * t) * 0.05 * bassEnv;
+
+                    // Organ skanks on offbeat (the signature reggae rhythm)
+                    const beatPos = (t * 2) % 1;
+                    if (beatPos > 0.45 && beatPos < 0.75) {
+                        const skankEnv = 1 - Math.abs(beatPos - 0.6) * 6;
+                        chord.forEach((freq, idx) => {
+                            sample += Math.sin(2 * Math.PI * freq * t) * 0.06 * skankEnv;
+                        });
+                    }
+
+                    // Rim shot on 3
+                    const barPos = (t * 2) % 2;
+                    if (barPos > 0.95 && barPos < 1.05) {
+                        sample += (Math.random() - 0.5) * 0.1 * (1 - Math.abs(barPos - 1) * 20);
+                    }
+
+                    // Hi-hat pattern
+                    const hatPos = (t * 4) % 1;
+                    if (hatPos < 0.04) {
+                        sample += (Math.random() - 0.5) * 0.04;
+                    }
+
+                    // Kick on 1 and 3
+                    const kickBeat = Math.floor((t * 4) % 4);
+                    const kickPos = (t * 4) % 1;
+                    if ((kickBeat === 0 || kickBeat === 2) && kickPos < 0.08) {
+                        sample += Math.sin(2 * Math.PI * 55 * t) * 0.12 * (1 - kickPos * 12);
+                    }
+
+                    sample *= 0.5;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample;
+                }
+            } else if (trackId === 'electronic') {
+                // Electronic - evolving synth patterns with drops
+                const section32 = Math.floor((Date.now() / 1000) % 4); // Pseudo-random section changes
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const section = Math.floor((t % 16) / 4);
+
+                    let sample = 0;
+
+                    // Evolving bass sequence - different each section
+                    const bassPatterns = [
+                        [55, 55, 73.42, 55, 82.41, 55, 73.42, 61.74],
+                        [61.74, 61.74, 82.41, 61.74, 73.42, 61.74, 55, 49],
+                        [73.42, 73.42, 55, 73.42, 82.41, 73.42, 98, 82.41],
+                        [82.41, 73.42, 61.74, 55, 61.74, 73.42, 82.41, 98]
+                    ];
+                    const bassPattern = bassPatterns[section];
+                    const bassIdx = Math.floor((t * 2) % 8);
+                    const bassFreq = bassPattern[bassIdx];
+
+                    // Wobbly bass
+                    const wobble = 1 + Math.sin(t * 8) * 0.3;
+                    sample += Math.sin(2 * Math.PI * bassFreq * wobble * t) * 0.15;
+
+                    // Synth lead - varies by section
+                    const leadPatterns = [
+                        [440, 523, 659, 523, 784, 659, 523, 440],
+                        [494, 587, 698, 587, 880, 698, 587, 494],
+                        [392, 494, 587, 494, 698, 587, 494, 392],
+                        [523, 659, 784, 659, 1047, 784, 659, 523]
+                    ];
+                    const leadPattern = leadPatterns[section];
+                    const leadIdx = Math.floor((t * 4) % 8);
+                    const leadFreq = leadPattern[leadIdx];
+                    const leadEnv = Math.max(0, 1 - ((t * 4) % 1) * 2);
+
+                    // Supersaw-ish lead
+                    for (let d = -2; d <= 2; d++) {
+                        sample += Math.sin(2 * Math.PI * leadFreq * (1 + d * 0.007) * t) * 0.03 * leadEnv;
+                    }
+
+                    // Build-up on section 3
+                    if (section === 3) {
+                        const buildUp = ((t % 4) / 4);
+                        sample += (Math.random() - 0.5) * 0.05 * buildUp;
+                        // Rising pitch
+                        sample += Math.sin(2 * Math.PI * (200 + buildUp * 600) * t) * 0.04 * buildUp;
+                    }
+
+                    // Four-on-floor kick
+                    const kickPos = (t * 2) % 1;
+                    if (kickPos < 0.08) {
+                        sample += Math.sin(2 * Math.PI * (100 - kickPos * 800) * t) * 0.18 * (1 - kickPos * 12);
+                    }
+
+                    // Clap on 2 and 4
+                    const barPos = (t * 2) % 2;
+                    if (barPos > 0.48 && barPos < 0.52) {
+                        sample += (Math.random() - 0.5) * 0.12;
+                    }
+
+                    sample *= 0.45;
+                    leftChannel[i] = sample;
+                    rightChannel[i] = sample;
+                }
+            } else if (trackId === 'meditation') {
+                // Meditation - very slow evolving tones with nature sounds
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+
+                    // Very slowly evolving base frequencies (changes over 32 seconds)
+                    const cyclePos = (t % 32) / 32;
+                    const baseFreq = 110 + Math.sin(cyclePos * Math.PI * 2) * 20;
+
+                    // Om-like drone with multiple harmonics
+                    let sample = 0;
+                    sample += Math.sin(2 * Math.PI * baseFreq * t) * 0.12;
+                    sample += Math.sin(2 * Math.PI * baseFreq * 1.5 * t) * 0.08;
+                    sample += Math.sin(2 * Math.PI * baseFreq * 2 * t) * 0.06;
+                    sample += Math.sin(2 * Math.PI * baseFreq * 3 * t) * 0.03;
+
+                    // Higher ethereal tones
+                    const highFreq1 = 440 + Math.sin(t * 0.02) * 30;
+                    const highFreq2 = 550 + Math.sin(t * 0.015 + 1) * 40;
+                    sample += Math.sin(2 * Math.PI * highFreq1 * t) * 0.04 * (0.5 + Math.sin(t * 0.1) * 0.5);
+                    sample += Math.sin(2 * Math.PI * highFreq2 * t) * 0.03 * (0.5 + Math.sin(t * 0.08 + 1) * 0.5);
+
+                    // Singing bowl strikes (occasional)
+                    const bowlCycle = (t % 8);
+                    if (bowlCycle < 3) {
+                        const bowlDecay = Math.exp(-bowlCycle * 1.2);
+                        const bowlFreq = 528; // "Love frequency"
+                        sample += Math.sin(2 * Math.PI * bowlFreq * t) * 0.06 * bowlDecay;
+                        sample += Math.sin(2 * Math.PI * bowlFreq * 2.1 * t) * 0.03 * bowlDecay;
+                    }
+
+                    // Gentle wind texture
+                    const windMod = 0.3 + Math.sin(t * 0.05) * 0.2;
+                    sample += (Math.random() - 0.5) * 0.015 * windMod;
+
+                    // Very gentle breathing envelope
+                    const breathEnv = 0.7 + Math.sin(t * 0.2) * 0.3;
+                    sample *= breathEnv * 0.5;
+
+                    // Stereo width
+                    leftChannel[i] = sample + Math.sin(2 * Math.PI * highFreq1 * 1.003 * t) * 0.015;
+                    rightChannel[i] = sample + Math.sin(2 * Math.PI * highFreq2 * 0.997 * t) * 0.015;
+                }
+            } else if (trackId === 'rock') {
+                // Rock - power chords and driving drums
+                const riffNotes = [
+                    82.41, 82.41, 0, 82.41, 110, 103.83, 82.41, 0,
+                    98, 98, 0, 98, 130.81, 123.47, 98, 0,
+                    73.42, 73.42, 0, 73.42, 98, 92.5, 73.42, 0,
+                    82.41, 98, 110, 98, 82.41, 73.42, 65.41, 73.42
+                ];
+
+                for (let i = 0; i < bufferSize; i++) {
+                    const t = i / sampleRate;
+                    const riffIdx = Math.floor((t * 4) % 32);
+                    const noteFreq = riffNotes[riffIdx];
+
+                    let sample = 0;
+
+                    // Power chord (root + fifth) with distortion
+                    if (noteFreq > 0) {
+                        const noteEnv = Math.max(0.4, 1 - ((t * 4) % 1) * 0.6);
+                        // Distorted guitar - multiple harmonics
+                        let guitar = Math.sin(2 * Math.PI * noteFreq * t);
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 1.5 * t) * 0.8; // Fifth
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 2 * t) * 0.5; // Octave
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 3 * t) * 0.3;
+                        guitar += Math.sin(2 * Math.PI * noteFreq * 4 * t) * 0.2;
+                        // Soft clipping for distortion
+                        guitar = Math.tanh(guitar * 2) * 0.15 * noteEnv;
+                        sample += guitar;
+                    }
+
+                    // Kick drum - punchy
+                    const kickPos = (t * 2) % 1;
+                    if (kickPos < 0.1) {
+                        const kickFreq = 80 * (1 - kickPos * 6);
+                        sample += Math.sin(2 * Math.PI * kickFreq * t) * 0.2 * (1 - kickPos * 10);
+                    }
+
+                    // Snare on 2 and 4
+                    const beatNum = Math.floor((t * 2) % 2);
+                    const snarePos = (t * 2) % 1;
+                    if (beatNum === 1 && snarePos < 0.12) {
+                        sample += (Math.random() - 0.5) * 0.2 * (1 - snarePos * 8);
+                        sample += Math.sin(2 * Math.PI * 200 * t) * 0.08 * (1 - snarePos * 8);
+                    }
+
+                    // Hi-hat - 8th notes
+                    const hatPos = (t * 4) % 1;
+                    if (hatPos < 0.04) {
+                        sample += (Math.random() - 0.5) * 0.08;
+                    }
+
+                    // Crash on bar starts (every 4 beats)
+                    const barNum = Math.floor(t * 2);
+                    const barStartPos = (t * 2) % 4;
+                    if (barStartPos < 0.3 && barNum % 4 === 0) {
+                        sample += (Math.random() - 0.5) * 0.06 * (1 - barStartPos / 0.3);
+                    }
+
+                    sample *= 0.5;
                     leftChannel[i] = sample;
                     rightChannel[i] = sample;
                 }
