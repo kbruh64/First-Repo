@@ -956,16 +956,17 @@
         .click-btn.bee-btn {
             transform-style: preserve-3d;
             perspective: 500px;
-            font-size: 0;
-            color: transparent;
+            font-size: 0 !important;
+            color: transparent !important;
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
             outline: none !important;
-            padding: 0;
+            padding: 10px !important;
             min-width: auto;
             min-height: auto;
             overflow: visible;
+            border-radius: 0 !important;
         }
         .click-btn.cookie-btn::before,
         .click-btn.hamster-btn::before,
@@ -983,8 +984,8 @@
         .click-btn.ghost-btn::before,
         .click-btn.pumpkin-btn::before,
         .click-btn.bee-btn::before {
-            display: block;
-            font-size: 6rem;
+            display: block !important;
+            font-size: 6rem !important;
             cursor: pointer;
             animation: themed-3d-float 6s ease-in-out infinite;
             text-shadow:
