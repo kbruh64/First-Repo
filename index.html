@@ -3226,6 +3226,7 @@
         let previousClickCount = 0;
         let tokens = 0;
         let highScore = parseInt(localStorage.getItem('clickItHighScore')) || 0;
+        let highScoreCelebrated = false; // Track if we've already celebrated beating the high score this session
         const btn = document.getElementById('clickBtn');
         const countDisplay = document.getElementById('count');
         const highScoreDisplay = document.getElementById('highScore');
@@ -4042,13 +4043,13 @@
 
             // Update high score if current count exceeds it
             if (clickCount > highScore) {
-                const justBeatHighScore = previousClickCount <= highScore && clickCount > highScore;
                 highScore = clickCount;
                 highScoreDisplay.textContent = highScore;
                 localStorage.setItem('clickItHighScore', highScore);
 
-                // Trigger celebration only when first beating the high score
-                if (justBeatHighScore && previousClickCount > 0) {
+                // Trigger celebration only once when first beating the high score this session
+                if (!highScoreCelebrated && previousClickCount > 0) {
+                    highScoreCelebrated = true;
                     triggerHighScoreCelebration();
                 }
             }
