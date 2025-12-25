@@ -4043,6 +4043,7 @@
             rocket: { name: 'Rocket', iconClass: 'icon-rocket', rarity: 'epic', type: 'button', class: 'rocket-btn', unlocked: false },
             snowman: { name: 'Snowman', iconClass: 'icon-snowman', rarity: 'rare', type: 'button', class: 'snowman-btn', unlocked: false },
             dragon: { name: 'Dragon', iconClass: 'icon-dragon', rarity: 'legendary', type: 'button', class: 'dragon-btn', unlocked: false },
+            enderdragon: { name: 'Ender Dragon', iconClass: 'icon-enderdragon', rarity: 'legendary', type: 'button', class: 'enderdragon-btn', unlocked: false, bossExclusive: true },
             alien: { name: 'Alien', iconClass: 'icon-alien', rarity: 'epic', type: 'button', class: 'alien-btn', unlocked: false },
             ghost: { name: 'Ghost', iconClass: 'icon-ghost', rarity: 'rare', type: 'button', class: 'ghost-btn', unlocked: false },
             pumpkin: { name: 'Pumpkin', iconClass: 'icon-pumpkin', rarity: 'epic', type: 'button', class: 'pumpkin-btn', unlocked: false },
@@ -7146,6 +7147,305 @@
             desc: 'Traveled to a new dimension!',
             icon: '🌌',
             condition: null
+        };
+
+        // ==================== BOSS FIGHT SYSTEM ====================
+        let bossActive = false;
+        let bossDefeated = false;
+        let bossDeflects = 0;
+        let bossAttackInterval = null;
+        let currentAttack = null;
+        let clickTimestamps = [];
+        const REQUIRED_CPS = 5; // Clicks per second needed to deflect
+        const CPS_WINDOW = 1000; // 1 second window
+
+        function checkBossDimensionUnlock() {
+            // Check if player has 20000+ clicks and all non-boss cosmetics unlocked
+            if (clickCount < 20000) return false;
+
+            const allCosmetics = Object.entries(cosmetics).filter(([key, c]) => !c.bossExclusive);
+            const allUnlocked = allCosmetics.every(([key, c]) => c.unlocked);
+
+            return allUnlocked;
+        }
+
+        function getPlayerCPS() {
+            const now = Date.now();
+            // Remove old timestamps outside the window
+            clickTimestamps = clickTimestamps.filter(t => now - t < CPS_WINDOW);
+            return clickTimestamps.length;
+        }
+
+        function recordClick() {
+            clickTimestamps.push(Date.now());
+        }
+
+        function startBossFight() {
+            if (bossActive || bossDefeated) return;
+
+            bossActive = true;
+            bossDeflects = 0;
+
+            // Show boss UI
+            document.getElementById('bossContainer').classList.add('active');
+            document.getElementById('bossHealthContainer').classList.add('active');
+            updateBossHealth();
+            updateDeflectCounter();
+
+            // Start attack cycle after a delay
+            setTimeout(() => {
+                scheduleBossAttack();
+            }, 2000);
+        }
+
+        function scheduleBossAttack() {
+            if (!bossActive) return;
+
+            // Random delay between attacks (2-4 seconds)
+            const delay = 2000 + Math.random() * 2000;
+
+            bossAttackInterval = setTimeout(() => {
+                launchBossAttack();
+            }, delay);
+        }
+
+        function launchBossAttack() {
+            if (!bossActive) return;
+
+            const bossContainer = document.getElementById('bossContainer');
+            const btnEl = document.getElementById('clickBtn');
+            const btnRect = btnEl.getBoundingClientRect();
+
+            // Create attack projectile
+            const attack = document.createElement('div');
+            attack.className = 'dragon-attack';
+
+            // Start from dragon's head area
+            const dragonRect = bossContainer.getBoundingClientRect();
+            const startX = dragonRect.left + dragonRect.width / 2 + 80;
+            const startY = dragonRect.top + 50;
+
+            attack.style.left = startX + 'px';
+            attack.style.top = startY + 'px';
+
+            document.body.appendChild(attack);
+            currentAttack = attack;
+
+            // Animate towards button
+            const targetX = btnRect.left + btnRect.width / 2 - 20;
+            const targetY = btnRect.top + btnRect.height / 2 - 20;
+
+            const duration = 1500; // 1.5 seconds to reach button
+            const startTime = Date.now();
+
+            function animateAttack() {
+                if (!currentAttack) return;
+
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const currentX = startX + (targetX - startX) * progress;
+                const currentY = startY + (targetY - startY) * progress;
+
+                attack.style.left = currentX + 'px';
+                attack.style.top = currentY + 'px';
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateAttack);
+                } else {
+                    // Attack reached button - check CPS
+                    checkDeflect(attack);
+                }
+            }
+
+            requestAnimationFrame(animateAttack);
+        }
+
+        function checkDeflect(attack) {
+            const cps = getPlayerCPS();
+
+            if (cps >= REQUIRED_CPS) {
+                // Successful deflect!
+                deflectAttack(attack);
+            } else {
+                // Failed to deflect - reset score
+                attackHit(attack);
+            }
+        }
+
+        function deflectAttack(attack) {
+            const rect = attack.getBoundingClientRect();
+
+            // Remove attack
+            attack.remove();
+            currentAttack = null;
+
+            // Create deflect effect
+            const effect = document.createElement('div');
+            effect.className = 'deflect-effect';
+            effect.style.left = rect.left + 20 + 'px';
+            effect.style.top = rect.top + 20 + 'px';
+            document.body.appendChild(effect);
+            setTimeout(() => effect.remove(), 500);
+
+            // Show deflect text
+            const text = document.createElement('div');
+            text.className = 'deflect-text';
+            text.textContent = 'DEFLECTED!';
+            text.style.left = rect.left + 20 + 'px';
+            text.style.top = rect.top + 'px';
+            document.body.appendChild(text);
+            setTimeout(() => text.remove(), 1000);
+
+            // Increment deflect counter
+            bossDeflects++;
+            updateDeflectCounter();
+            updateBossHealth();
+
+            if (bossDeflects >= 5) {
+                // Boss defeated!
+                defeatBoss();
+            } else {
+                // Continue fight
+                scheduleBossAttack();
+            }
+        }
+
+        function attackHit(attack) {
+            const rect = attack.getBoundingClientRect();
+
+            // Remove attack
+            attack.remove();
+            currentAttack = null;
+
+            // Reset score to half
+            const oldScore = clickCount;
+            clickCount = Math.floor(clickCount / 2);
+            countDisplay.textContent = clickCount;
+
+            // Flash screen
+            const flash = document.createElement('div');
+            flash.className = 'score-reset-flash';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 500);
+
+            // Show reset text
+            const text = document.createElement('div');
+            text.className = 'score-reset-text';
+            text.textContent = `SCORE HALVED! (${oldScore} → ${clickCount})`;
+            document.body.appendChild(text);
+            setTimeout(() => text.remove(), 1500);
+
+            // Continue fight (dragon doesn't reset deflects on hit)
+            scheduleBossAttack();
+        }
+
+        function updateBossHealth() {
+            const healthPercent = ((5 - bossDeflects) / 5) * 100;
+            document.getElementById('bossHealthFill').style.width = healthPercent + '%';
+        }
+
+        function updateDeflectCounter() {
+            document.getElementById('deflectCounter').textContent = bossDeflects;
+        }
+
+        function defeatBoss() {
+            bossActive = false;
+            bossDefeated = true;
+
+            // Clear any pending attacks
+            if (bossAttackInterval) {
+                clearTimeout(bossAttackInterval);
+            }
+            if (currentAttack) {
+                currentAttack.remove();
+                currentAttack = null;
+            }
+
+            // Play death animation
+            const bossContainer = document.getElementById('bossContainer');
+            bossContainer.classList.add('dying');
+
+            setTimeout(() => {
+                bossContainer.classList.remove('active', 'dying');
+                document.getElementById('bossHealthContainer').classList.remove('active');
+
+                // Show victory popup
+                showBossVictoryPopup();
+            }, 2000);
+        }
+
+        function showBossVictoryPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'boss-victory-popup';
+            popup.innerHTML = `
+                <div class="victory-title">ENDER DRAGON DEFEATED!</div>
+                <div class="victory-dragon-icon">🐲</div>
+                <div class="victory-reward-text">You have earned an Ultra Rare reward:</div>
+                <div class="victory-cosmetic-name">Ender Dragon Button</div>
+                <button class="victory-claim-btn">Claim Reward!</button>
+            `;
+
+            document.body.appendChild(popup);
+
+            popup.querySelector('.victory-claim-btn').addEventListener('click', () => {
+                // Unlock the Ender Dragon cosmetic
+                cosmetics['enderdragon'].unlocked = true;
+                updateCosmeticsPanel();
+
+                // Remove popup
+                popup.style.animation = 'victory-appear 0.5s ease reverse forwards';
+                setTimeout(() => popup.remove(), 500);
+
+                // Unlock special achievement
+                if (!unlockedAchievements.has('dragon_slayer')) {
+                    unlockSpecialAchievement('dragon_slayer');
+                }
+            });
+        }
+
+        // Dragon Slayer achievement
+        specialAchievements['dragon_slayer'] = {
+            title: 'Dragon Slayer',
+            desc: 'Defeated the Ender Dragon!',
+            icon: '🐲',
+            condition: null
+        };
+
+        // Hook into the click handler to record clicks for CPS
+        btn.addEventListener('click', () => {
+            recordClick();
+        });
+
+        // Modify transitionToDimension to start boss fight
+        const originalTransition = transitionToDimension;
+        transitionToDimension = function(index) {
+            const dim = dimensions[index];
+
+            // Call original transition
+            originalTransition(index);
+
+            // If entering boss dimension, start the fight after transition
+            if (dim.isBoss && !bossDefeated) {
+                setTimeout(() => {
+                    startBossFight();
+                }, 2500);
+            }
+        };
+
+        // Modify checkDimensionUnlock to handle secret boss dimension
+        const originalCheckDimensionUnlock = checkDimensionUnlock;
+        checkDimensionUnlock = function() {
+            // First run original unlock check
+            originalCheckDimensionUnlock();
+
+            // Then check for secret boss dimension
+            const bossIndex = dimensions.findIndex(d => d.id === 'boss');
+            if (bossIndex !== -1 && !unlockedDimensions.has(bossIndex) && !bossDefeated) {
+                if (checkBossDimensionUnlock()) {
+                    unlockDimension(bossIndex);
+                }
+            }
         };
     </script>
 </body>
