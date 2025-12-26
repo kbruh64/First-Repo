@@ -3409,7 +3409,7 @@
 
         .click-btn.enderdragon-btn::before {
             content: '🐉';
-            filter: hue-rotate(270deg) saturate(1.5);
+            filter: hue-rotate(270deg) saturate(2) brightness(0.5) contrast(1.5);
         }
 
         .click-btn.enderdragon-btn::after {
@@ -7024,6 +7024,8 @@
         function checkDimensionUnlock() {
             for (let i = 0; i < dimensions.length; i++) {
                 const dim = dimensions[i];
+                // Skip secret dimensions - they have special unlock conditions
+                if (dim.secret) continue;
                 if (clickCount >= dim.unlockAt && !unlockedDimensions.has(i) && i > 0) {
                     unlockDimension(i);
                     return; // Only unlock one at a time
