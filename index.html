@@ -2279,6 +2279,90 @@
             gap: 10px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .dimension-indicator:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .dimension-selector {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: linear-gradient(135deg, rgba(42, 42, 74, 0.98), rgba(26, 26, 46, 0.98));
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 15px;
+            z-index: 600;
+            min-width: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .dimension-selector.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .dimension-selector-title {
+            color: #ffd700;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .dimension-selector-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+        }
+
+        .dimension-selector-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dimension-selector-item.current {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+        }
+
+        .dimension-selector-item.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .dimension-selector-item .dim-icon {
+            font-size: 1.5rem;
+        }
+
+        .dimension-selector-item .dim-info {
+            flex: 1;
+        }
+
+        .dimension-selector-item .dim-name {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .dimension-selector-item .dim-unlock {
+            font-size: 0.75rem;
+            color: #888;
         }
 
         .dimension-icon {
@@ -3676,6 +3760,12 @@
         <div class="dimension-progress">
             <div class="dimension-progress-bar" id="dimensionProgress" style="width: 0%"></div>
         </div>
+    </div>
+
+    <!-- Dimension Selector Dropdown -->
+    <div class="dimension-selector" id="dimensionSelector">
+        <div class="dimension-selector-title">Select Dimension</div>
+        <div class="dimension-selector-list" id="dimensionSelectorList"></div>
     </div>
 
     <!-- Dimension Transition Overlay -->
@@ -7143,6 +7233,7 @@
         function initDimensionSystem() {
             updateDimensionIndicator();
             createDimensionParticles();
+            setupDimensionSelector();
         }
 
         function updateDimensionIndicator() {
@@ -7151,6 +7242,58 @@
             document.getElementById('dimensionName').textContent = dim.name;
             document.getElementById('dimensionIndicator').style.borderColor = dim.color;
             document.getElementById('dimensionIndicator').style.boxShadow = `0 0 20px ${dim.color}40`;
+        }
+
+        // Dimension Selector
+        function setupDimensionSelector() {
+            const indicator = document.getElementById('dimensionIndicator');
+            const selector = document.getElementById('dimensionSelector');
+
+            indicator.addEventListener('click', () => {
+                selector.classList.toggle('active');
+                if (selector.classList.contains('active')) {
+                    renderDimensionSelector();
+                }
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!indicator.contains(e.target) && !selector.contains(e.target)) {
+                    selector.classList.remove('active');
+                }
+            });
+        }
+
+        function renderDimensionSelector() {
+            const list = document.getElementById('dimensionSelectorList');
+            list.innerHTML = '';
+
+            dimensions.forEach((dim, index) => {
+                const isUnlocked = unlockedDimensions.has(index) || index === 0;
+                const isCurrent = currentDimension === index;
+
+                const item = document.createElement('div');
+                item.className = 'dimension-selector-item';
+                if (isCurrent) item.classList.add('current');
+                if (!isUnlocked) item.classList.add('locked');
+
+                item.innerHTML = `
+                    <span class="dim-icon">${dim.icon}</span>
+                    <div class="dim-info">
+                        <div class="dim-name" style="color: ${dim.color}">${dim.name}</div>
+                        <div class="dim-unlock">${isUnlocked ? (isCurrent ? 'Current' : 'Click to travel') : `Unlocks at ${dim.unlockAt} clicks`}</div>
+                    </div>
+                `;
+
+                if (isUnlocked && !isCurrent) {
+                    item.addEventListener('click', () => {
+                        document.getElementById('dimensionSelector').classList.remove('active');
+                        transitionToDimension(index);
+                    });
+                }
+
+                list.appendChild(item);
+            });
         }
 
         function updateDimensionProgress() {
@@ -7621,14 +7764,6 @@
                 if (!unlockedDimensions.has(i)) {
                     unlockedDimensions.add(i);
                 }
-            }
-
-            // Show boss dimension popup so player can enter
-            const bossIndex = dimensions.findIndex(d => d.id === 'boss');
-            if (bossIndex !== -1) {
-                setTimeout(() => {
-                    showDimensionUnlockPopup(dimensions[bossIndex]);
-                }, 600);
             }
 
             // Give some tokens too
