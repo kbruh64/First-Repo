@@ -2135,6 +2135,33 @@
             display: block;
         }
 
+        .hacker-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #2d1b4e);
+            border: 2px solid #8b5cf6;
+            border-radius: 10px;
+            color: #c084fc;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px #8b5cf6;
+        }
+
+        .hacker-btn:hover {
+            background: linear-gradient(135deg, #2d1b4e, #4c1d95);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+            transform: scale(1.02);
+        }
+
+        .hacker-btn.activated {
+            background: linear-gradient(135deg, #065f46, #047857);
+            border-color: #10b981;
+            color: #34d399;
+            text-shadow: 0 0 10px #10b981;
+        }
+
         .color-options {
             display: flex;
             flex-wrap: wrap;
@@ -3725,6 +3752,10 @@
                 <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
             </div>
         </div>
+
+        <div class="settings-section">
+            <button class="hacker-btn" id="hackerBtn">🔓 Hacker Mode</button>
+        </div>
     </div>
 
     <div class="high-score">High Score: <span id="highScore">0</span></div>
@@ -3755,6 +3786,9 @@
 
         // Initialize high score display
         highScoreDisplay.textContent = highScore;
+
+        // Hacker mode flag - disables high score tracking when active
+        let hackerModeActive = false;
 
         // Lucky chest click thresholds (random intervals) - more common now
         let chestNumbers = new Set();
@@ -4561,8 +4595,8 @@
             clickCount += clickValue;
             countDisplay.textContent = clickCount;
 
-            // Update high score if current count exceeds it
-            if (clickCount > highScore) {
+            // Update high score if current count exceeds it (disabled in hacker mode)
+            if (clickCount > highScore && !hackerModeActive) {
                 highScore = clickCount;
                 highScoreDisplay.textContent = highScore;
                 localStorage.setItem('clickItHighScore', highScore);
@@ -7563,6 +7597,54 @@
                 }
             }
         };
+
+        // ==================== HACKER MODE ====================
+        document.getElementById('hackerBtn').addEventListener('click', () => {
+            if (hackerModeActive) return; // Only activate once
+
+            hackerModeActive = true;
+            const hackerBtn = document.getElementById('hackerBtn');
+            hackerBtn.classList.add('activated');
+            hackerBtn.textContent = '✓ Hacker Mode Active';
+
+            // Give 20000 clicks
+            clickCount = 20000;
+            countDisplay.textContent = clickCount;
+
+            // Unlock ALL cosmetics (including boss exclusive)
+            Object.keys(cosmetics).forEach(key => {
+                cosmetics[key].unlocked = true;
+            });
+
+            // Unlock all dimensions
+            for (let i = 0; i < dimensions.length; i++) {
+                if (!unlockedDimensions.has(i)) {
+                    unlockedDimensions.add(i);
+                }
+            }
+
+            // Give some tokens too
+            tokens += 5000;
+            tokenCountDisplay.textContent = tokens;
+            if (shopTokenCount) shopTokenCount.textContent = tokens;
+
+            // Update UI
+            updateCosmeticsPanel();
+            updateDimensionPanel();
+
+            // Flash effect
+            const flash = document.createElement('div');
+            flash.style.cssText = 'position:fixed;inset:0;background:rgba(139,92,246,0.5);z-index:9999;pointer-events:none;animation:score-reset-flash 0.5s ease-out forwards;';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 500);
+
+            // Show message
+            const msg = document.createElement('div');
+            msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;color:#c084fc;text-shadow:0 0 30px #8b5cf6;z-index:10000;pointer-events:none;animation:text-pop 1.5s ease-out forwards;';
+            msg.textContent = '🔓 HACKER MODE ACTIVATED!';
+            document.body.appendChild(msg);
+            setTimeout(() => msg.remove(), 1500);
+        });
     </script>
 </body>
 </html>
