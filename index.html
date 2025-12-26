@@ -3398,35 +3398,127 @@
         .click-btn.enderdragon-btn {
             background: transparent;
             box-shadow: none;
-            font-size: 4rem;
-            min-width: 150px;
-            min-height: 150px;
+            min-width: 180px;
+            min-height: 140px;
             position: relative;
             animation: enderdragon-fly 2s ease-in-out infinite;
-            text-shadow: 0 5px 30px rgba(139, 92, 246, 0.8);
-            filter: drop-shadow(0 0 20px #8b5cf6);
+            filter: drop-shadow(0 0 30px #8b5cf6);
         }
 
         .click-btn.enderdragon-btn::before {
-            content: '🐉';
-            filter: hue-rotate(270deg) saturate(2) brightness(0.5) contrast(1.5);
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
         .click-btn.enderdragon-btn::after {
             content: '';
             position: absolute;
-            inset: -20px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+            inset: -30px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
             animation: enderdragon-aura 1s ease-in-out infinite alternate;
             pointer-events: none;
             border-radius: 50%;
         }
 
+        /* Pixelated Ender Dragon Button Body */
+        .click-btn.enderdragon-btn .dragon-btn-body {
+            position: absolute;
+            width: 70px;
+            height: 35px;
+            background: #1a1a1a;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow:
+                -4px 0 0 #1a1a1a, 4px 0 0 #1a1a1a,
+                0 -4px 0 #2a2a2a, 0 4px 0 #0a0a0a,
+                8px -4px 0 #8b5cf6, -8px -4px 0 #8b5cf6,
+                12px 0 0 #7c3aed, -12px 0 0 #7c3aed,
+                0 -8px 0 #c084fc, 4px -8px 0 #c084fc, -4px -8px 0 #c084fc;
+        }
+
+        .click-btn.enderdragon-btn .dragon-btn-head {
+            position: absolute;
+            width: 28px;
+            height: 24px;
+            background: #1a1a1a;
+            left: calc(50% + 45px);
+            top: calc(50% - 8px);
+            transform: translateY(-50%);
+            box-shadow:
+                4px 0 0 #1a1a1a, 8px 0 0 #1a1a1a, 12px 2px 0 #1a1a1a,
+                4px -4px 0 #c084fc, 8px -4px 0 #c084fc,
+                4px -8px 0 #e879f9, 8px -8px 0 #e879f9,
+                12px 6px 0 #2a2a2a, 16px 6px 0 #2a2a2a;
+        }
+
+        .click-btn.enderdragon-btn .dragon-btn-wing-left {
+            position: absolute;
+            width: 50px;
+            height: 40px;
+            left: calc(50% - 60px);
+            top: calc(50% - 35px);
+            background: transparent;
+            box-shadow:
+                0 0 0 3px #2a2a2a,
+                -6px 6px 0 #1a1a1a, -12px 12px 0 #1a1a1a, -18px 18px 0 #1a1a1a,
+                -6px 3px 0 #8b5cf6, -12px 6px 0 #7c3aed, -18px 9px 0 #6d28d9,
+                -24px 15px 0 #5b21b6;
+            animation: enderdragon-wing-left 0.4s ease-in-out infinite;
+        }
+
+        .click-btn.enderdragon-btn .dragon-btn-wing-right {
+            position: absolute;
+            width: 50px;
+            height: 40px;
+            left: calc(50% + 10px);
+            top: calc(50% - 35px);
+            background: transparent;
+            box-shadow:
+                0 0 0 3px #2a2a2a,
+                6px 6px 0 #1a1a1a, 12px 12px 0 #1a1a1a, 18px 18px 0 #1a1a1a,
+                6px 3px 0 #8b5cf6, 12px 6px 0 #7c3aed, 18px 9px 0 #6d28d9,
+                24px 15px 0 #5b21b6;
+            animation: enderdragon-wing-right 0.4s ease-in-out infinite;
+        }
+
+        .click-btn.enderdragon-btn .dragon-btn-tail {
+            position: absolute;
+            left: calc(50% - 80px);
+            top: calc(50% + 5px);
+            width: 50px;
+            height: 6px;
+            background: #1a1a1a;
+            box-shadow:
+                -6px 3px 0 #1a1a1a, -12px 6px 0 #2a2a2a, -18px 9px 0 #2a2a2a,
+                -6px 0 0 #8b5cf6, -12px 3px 0 #7c3aed;
+            animation: enderdragon-tail 1s ease-in-out infinite;
+        }
+
+        @keyframes enderdragon-wing-left {
+            0%, 100% { transform: rotate(0deg) scaleY(1); }
+            50% { transform: rotate(-15deg) scaleY(0.7); }
+        }
+
+        @keyframes enderdragon-wing-right {
+            0%, 100% { transform: rotate(0deg) scaleY(1); }
+            50% { transform: rotate(15deg) scaleY(0.7); }
+        }
+
+        @keyframes enderdragon-tail {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(8deg); }
+        }
+
         @keyframes enderdragon-fly {
-            0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
-            25% { transform: translateY(-12px) rotate(0deg) scale(1.02); }
-            50% { transform: translateY(-8px) rotate(3deg) scale(1); }
-            75% { transform: translateY(-15px) rotate(0deg) scale(1.03); }
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            25% { transform: translateY(-10px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(2deg); }
+            75% { transform: translateY(-12px) rotate(0deg); }
         }
 
         @keyframes enderdragon-aura {
@@ -5182,14 +5274,36 @@
         function equipCosmetic(key, type, cosmetic) {
             const buttonFrame = document.getElementById('buttonFrame');
             if (type === 'button') {
-                // Remove old class
+                // Remove old class and dragon parts if they exist
                 const oldCosmetic = cosmetics[activeCosmetics.button];
                 if (oldCosmetic && oldCosmetic.class) {
                     btn.classList.remove(oldCosmetic.class);
                 }
+                // Remove dragon button parts if they exist
+                btn.querySelectorAll('.dragon-btn-body, .dragon-btn-head, .dragon-btn-wing-left, .dragon-btn-wing-right, .dragon-btn-tail').forEach(el => el.remove());
+
                 activeCosmetics.button = key;
                 if (cosmetic.class) {
                     btn.classList.add(cosmetic.class);
+                }
+
+                // Add dragon parts for enderdragon button
+                if (key === 'enderdragon') {
+                    const body = document.createElement('div');
+                    body.className = 'dragon-btn-body';
+                    const head = document.createElement('div');
+                    head.className = 'dragon-btn-head';
+                    const wingLeft = document.createElement('div');
+                    wingLeft.className = 'dragon-btn-wing-left';
+                    const wingRight = document.createElement('div');
+                    wingRight.className = 'dragon-btn-wing-right';
+                    const tail = document.createElement('div');
+                    tail.className = 'dragon-btn-tail';
+                    btn.appendChild(wingLeft);
+                    btn.appendChild(wingRight);
+                    btn.appendChild(body);
+                    btn.appendChild(head);
+                    btn.appendChild(tail);
                 }
             } else if (type === 'frame') {
                 // Toggle frame - applies to both button frame and screen border
