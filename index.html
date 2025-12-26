@@ -3225,199 +3225,202 @@
         /* Boss Dragon Body - Boxy Minecraft Style - LONGER */
         .dragon-body {
             position: absolute;
-            width: 180px;
-            height: 55px;
+            width: 200px;
+            height: 65px;
             background: #1a1a1a;
-            left: 30px;
-            top: 65px;
-            border-radius: 5px;
+            left: 20px;
+            top: 70px;
+            border-radius: 6px;
             box-shadow:
-                inset 0 -5px 0 #0a0a0a,
-                inset 0 5px 0 #2a2a2a,
-                0 0 30px rgba(139, 92, 246, 0.4);
+                inset 0 -6px 0 #0a0a0a,
+                inset 0 6px 0 #2a2a2a,
+                0 0 35px rgba(139, 92, 246, 0.4);
         }
 
-        /* Boss Dragon Neck - BIGGER */
+        /* Boss Dragon Neck - BIGGER & POINTING */
         .dragon-neck {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             background: #1a1a1a;
-            left: 195px;
-            top: 45px;
-            border-radius: 5px;
-            transform: rotate(-25deg);
-            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
+            left: 200px;
+            top: 35px;
+            border-radius: 6px;
+            transform: rotate(-35deg);
+            box-shadow: inset 0 -5px 0 #0a0a0a, inset 0 5px 0 #2a2a2a;
         }
 
         /* Boss Dragon Head - BIGGER & BOXIER */
         .dragon-head {
             position: absolute;
-            width: 70px;
-            height: 45px;
+            width: 90px;
+            height: 55px;
             background: #1a1a1a;
-            left: 220px;
-            top: 18px;
-            border-radius: 5px;
+            left: 235px;
+            top: 5px;
+            border-radius: 6px;
             box-shadow:
-                inset 0 -5px 0 #0a0a0a,
-                inset 0 5px 0 #2a2a2a,
+                inset 0 -6px 0 #0a0a0a,
+                inset 0 6px 0 #2a2a2a,
                 /* Pixel details for boxier look */
-                inset 8px 0 0 #0d0d0d,
-                inset -8px 0 0 #0d0d0d;
+                inset 10px 0 0 #0d0d0d,
+                inset -10px 0 0 #0d0d0d;
         }
 
         /* Boss Dragon Eye - Glowing BIGGER */
         .dragon-eye {
             position: absolute;
-            width: 14px;
-            height: 14px;
+            width: 18px;
+            height: 18px;
             background: #c084fc;
-            left: 270px;
-            top: 30px;
-            border-radius: 2px;
+            left: 300px;
+            top: 20px;
+            border-radius: 3px;
             box-shadow:
-                0 0 15px #c084fc,
-                0 0 30px #8b5cf6;
+                0 0 20px #c084fc,
+                0 0 40px #8b5cf6;
             animation: boss-eye-glow 1.5s ease-in-out infinite;
         }
 
         @keyframes boss-eye-glow {
-            0%, 100% { box-shadow: 0 0 15px #c084fc, 0 0 30px #8b5cf6; background: #c084fc; }
-            50% { box-shadow: 0 0 25px #e879f9, 0 0 45px #c084fc; background: #e879f9; }
+            0%, 100% { box-shadow: 0 0 20px #c084fc, 0 0 40px #8b5cf6; background: #c084fc; }
+            50% { box-shadow: 0 0 35px #e879f9, 0 0 60px #c084fc; background: #e879f9; }
         }
 
-        /* Boss Dragon Snout - BIGGER & BOXIER */
+        /* Boss Dragon Snout - BIGGER & BOXIER & POINTING */
         .dragon-snout {
             position: absolute;
-            width: 38px;
-            height: 26px;
+            width: 50px;
+            height: 35px;
             background: #1a1a1a;
-            left: 280px;
-            top: 40px;
-            border-radius: 4px;
+            left: 310px;
+            top: 30px;
+            border-radius: 5px;
+            transform: rotate(-5deg);
             box-shadow:
-                inset 0 -3px 0 #0a0a0a,
-                inset 0 3px 0 #2a2a2a,
-                inset 5px 0 0 #0d0d0d;
+                inset 0 -4px 0 #0a0a0a,
+                inset 0 4px 0 #2a2a2a,
+                inset 6px 0 0 #0d0d0d;
         }
 
-        /* Boss Dragon Horns - BIGGER */
+        /* Boss Dragon Horns - BIGGER & POINTING DOWN/BACK */
         .dragon-horn-left {
             position: absolute;
-            width: 10px;
-            height: 30px;
+            width: 14px;
+            height: 45px;
             background: #2a2a2a;
-            left: 228px;
-            top: -8px;
-            border-radius: 4px 4px 0 0;
-            transform: rotate(-20deg);
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+            left: 240px;
+            top: -10px;
+            border-radius: 0 0 5px 5px;
+            transform: rotate(140deg);
+            transform-origin: top center;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
         }
 
         .dragon-horn-right {
             position: absolute;
-            width: 10px;
-            height: 30px;
+            width: 14px;
+            height: 45px;
             background: #2a2a2a;
-            left: 258px;
-            top: -5px;
-            border-radius: 4px 4px 0 0;
-            transform: rotate(15deg);
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+            left: 280px;
+            top: -10px;
+            border-radius: 0 0 5px 5px;
+            transform: rotate(155deg);
+            transform-origin: top center;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
         }
 
         /* Boss Dragon Wings - Pixelated Box Shadow Style - BIGGER */
         .dragon-wing {
             position: absolute;
-            width: 22px;
-            height: 22px;
+            width: 28px;
+            height: 28px;
             background: #2a2a2a;
-            top: 25px;
+            top: 30px;
         }
 
         .dragon-wing.left {
-            left: 40px;
+            left: 30px;
             box-shadow:
                 /* Wing bone structure - thick boxy segments */
-                -20px -15px 0 #1a1a1a,
-                -40px -30px 0 #1a1a1a,
-                -60px -45px 0 #1a1a1a,
-                -80px -38px 0 #1a1a1a,
-                -100px -28px 0 #1a1a1a,
-                -120px -18px 0 #1a1a1a,
+                -25px -18px 0 #1a1a1a,
+                -50px -36px 0 #1a1a1a,
+                -75px -54px 0 #1a1a1a,
+                -100px -48px 0 #1a1a1a,
+                -125px -38px 0 #1a1a1a,
+                -150px -25px 0 #1a1a1a,
                 /* Wing membrane - purple tinted boxy */
-                -20px -5px 0 #7c3aed,
-                -40px -15px 0 #6d28d9,
-                -60px -25px 0 #5b21b6,
-                -80px -18px 0 #4c1d95,
-                -100px -10px 0 #3b0764,
+                -25px -6px 0 #7c3aed,
+                -50px -18px 0 #6d28d9,
+                -75px -30px 0 #5b21b6,
+                -100px -24px 0 #4c1d95,
+                -125px -15px 0 #3b0764,
                 /* More membrane pixels */
-                -30px 5px 0 #8b5cf6,
-                -50px 0 0 #7c3aed,
-                -70px -5px 0 #6d28d9,
-                -90px 0 0 #5b21b6,
-                -110px 5px 0 #4c1d95,
+                -38px 6px 0 #8b5cf6,
+                -62px 0 0 #7c3aed,
+                -88px -6px 0 #6d28d9,
+                -112px 0 0 #5b21b6,
+                -138px 6px 0 #4c1d95,
                 /* Bottom edge */
-                -40px 10px 0 #1a1a1a,
-                -60px 5px 0 #1a1a1a,
-                -80px 8px 0 #1a1a1a,
-                -100px 10px 0 #1a1a1a;
+                -50px 12px 0 #1a1a1a,
+                -75px 6px 0 #1a1a1a,
+                -100px 10px 0 #1a1a1a,
+                -125px 12px 0 #1a1a1a;
             animation: wing-flap-left 0.5s ease-in-out infinite;
             transform-origin: right center;
         }
 
         .dragon-wing.right {
-            left: 190px;
+            left: 200px;
             box-shadow:
                 /* Wing bone structure - thick boxy segments */
-                20px -15px 0 #1a1a1a,
-                40px -30px 0 #1a1a1a,
-                60px -45px 0 #1a1a1a,
-                80px -38px 0 #1a1a1a,
-                100px -28px 0 #1a1a1a,
-                120px -18px 0 #1a1a1a,
+                25px -18px 0 #1a1a1a,
+                50px -36px 0 #1a1a1a,
+                75px -54px 0 #1a1a1a,
+                100px -48px 0 #1a1a1a,
+                125px -38px 0 #1a1a1a,
+                150px -25px 0 #1a1a1a,
                 /* Wing membrane - purple tinted boxy */
-                20px -5px 0 #7c3aed,
-                40px -15px 0 #6d28d9,
-                60px -25px 0 #5b21b6,
-                80px -18px 0 #4c1d95,
-                100px -10px 0 #3b0764,
+                25px -6px 0 #7c3aed,
+                50px -18px 0 #6d28d9,
+                75px -30px 0 #5b21b6,
+                100px -24px 0 #4c1d95,
+                125px -15px 0 #3b0764,
                 /* More membrane pixels */
-                30px 5px 0 #8b5cf6,
-                50px 0 0 #7c3aed,
-                70px -5px 0 #6d28d9,
-                90px 0 0 #5b21b6,
-                110px 5px 0 #4c1d95,
+                38px 6px 0 #8b5cf6,
+                62px 0 0 #7c3aed,
+                88px -6px 0 #6d28d9,
+                112px 0 0 #5b21b6,
+                138px 6px 0 #4c1d95,
                 /* Bottom edge */
-                40px 10px 0 #1a1a1a,
-                60px 5px 0 #1a1a1a,
-                80px 8px 0 #1a1a1a,
-                100px 10px 0 #1a1a1a;
+                50px 12px 0 #1a1a1a,
+                75px 6px 0 #1a1a1a,
+                100px 10px 0 #1a1a1a,
+                125px 12px 0 #1a1a1a;
             animation: wing-flap-right 0.5s ease-in-out infinite;
             transform-origin: left center;
         }
 
         @keyframes wing-flap-left {
             0%, 100% { transform: rotate(0deg) scaleY(1); }
-            50% { transform: rotate(-10deg) scaleY(0.8); }
+            50% { transform: rotate(-12deg) scaleY(0.8); }
         }
 
         @keyframes wing-flap-right {
             0%, 100% { transform: rotate(0deg) scaleY(1); }
-            50% { transform: rotate(10deg) scaleY(0.8); }
+            50% { transform: rotate(12deg) scaleY(0.8); }
         }
 
         /* Boss Dragon Tail - Boxy Segmented - BIGGER */
         .dragon-tail {
             position: absolute;
-            left: -10px;
-            top: 85px;
-            width: 90px;
-            height: 20px;
+            left: -25px;
+            top: 90px;
+            width: 110px;
+            height: 25px;
             background: #1a1a1a;
-            border-radius: 4px;
-            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
+            border-radius: 5px;
+            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
             animation: tail-sway 1.5s ease-in-out infinite;
             transform-origin: right center;
         }
@@ -3425,40 +3428,42 @@
         .dragon-tail::after {
             content: '';
             position: absolute;
-            left: -35px;
-            top: 4px;
-            width: 40px;
-            height: 12px;
+            left: -45px;
+            top: 5px;
+            width: 50px;
+            height: 15px;
             background: #1a1a1a;
-            border-radius: 4px;
+            border-radius: 5px;
             box-shadow:
-                -30px 4px 0 8px #8b5cf6,
-                inset 0 -2px 0 #0a0a0a;
+                -40px 5px 0 10px #8b5cf6,
+                inset 0 -3px 0 #0a0a0a;
         }
 
-        /* Boss Dragon Legs - BIGGER - Pointing Sideways */
+        /* Boss Dragon Legs - BIGGER - Pointing Back */
         .dragon-leg-left {
             position: absolute;
-            width: 35px;
-            height: 18px;
+            width: 50px;
+            height: 24px;
             background: #1a1a1a;
-            left: 35px;
-            top: 105px;
-            border-radius: 4px;
-            transform: rotate(-25deg);
-            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
+            left: 40px;
+            top: 115px;
+            border-radius: 5px;
+            transform: rotate(-150deg);
+            transform-origin: right center;
+            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
         }
 
         .dragon-leg-right {
             position: absolute;
-            width: 35px;
-            height: 18px;
+            width: 50px;
+            height: 24px;
             background: #1a1a1a;
-            left: 170px;
-            top: 105px;
-            border-radius: 4px;
-            transform: rotate(25deg);
-            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
+            left: 140px;
+            top: 115px;
+            border-radius: 5px;
+            transform: rotate(-150deg);
+            transform-origin: right center;
+            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
         }
 
         @keyframes tail-sway {
@@ -3693,182 +3698,184 @@
             border-radius: 50%;
         }
 
-        /* Pixelated Ender Dragon Button - Minecraft Style Boxy - LONGER */
+        /* Pixelated Ender Dragon Button - Minecraft Style Boxy - BIGGER */
         .click-btn.enderdragon-btn .dragon-btn-body {
             position: absolute;
-            width: 80px;
-            height: 24px;
+            width: 90px;
+            height: 30px;
             background: #1a1a1a;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            border-radius: 4px;
+            border-radius: 5px;
             box-shadow:
-                inset 0 -3px 0 #0a0a0a,
-                inset 0 3px 0 #2a2a2a,
-                0 0 15px rgba(139, 92, 246, 0.4);
+                inset 0 -4px 0 #0a0a0a,
+                inset 0 4px 0 #2a2a2a,
+                0 0 20px rgba(139, 92, 246, 0.4);
         }
 
-        /* Neck - boxy */
+        /* Neck - boxy & pointing */
         .click-btn.enderdragon-btn .dragon-btn-neck {
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 24px;
+            height: 24px;
             background: #1a1a1a;
-            left: calc(50% + 35px);
-            top: calc(50% - 18px);
-            border-radius: 3px;
-            transform: rotate(-30deg);
-            box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
+            left: calc(50% + 38px);
+            top: calc(50% - 22px);
+            border-radius: 4px;
+            transform: rotate(-40deg);
+            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
         }
 
         .click-btn.enderdragon-btn .dragon-btn-head {
             position: absolute;
-            width: 30px;
-            height: 18px;
+            width: 38px;
+            height: 24px;
             background: #1a1a1a;
-            left: calc(50% + 48px);
-            top: calc(50% - 26px);
-            border-radius: 3px;
+            left: calc(50% + 52px);
+            top: calc(50% - 32px);
+            border-radius: 4px;
             box-shadow:
-                inset 0 -2px 0 #0a0a0a,
-                inset 0 2px 0 #2a2a2a;
+                inset 0 -3px 0 #0a0a0a,
+                inset 0 3px 0 #2a2a2a;
         }
 
-        /* Glowing dragon eyes - boxy pixel style */
+        /* Glowing dragon eyes - boxy pixel style - BIGGER */
         .click-btn.enderdragon-btn .dragon-btn-eye {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: #c084fc;
-            left: calc(50% + 68px);
-            top: calc(50% - 24px);
-            border-radius: 1px;
+            left: calc(50% + 78px);
+            top: calc(50% - 28px);
+            border-radius: 2px;
             box-shadow:
-                0 0 8px #c084fc,
-                0 0 15px #8b5cf6;
+                0 0 10px #c084fc,
+                0 0 20px #8b5cf6;
             animation: dragon-eye-glow 2s ease-in-out infinite;
         }
 
         @keyframes dragon-eye-glow {
-            0%, 100% { box-shadow: 0 0 8px #c084fc, 0 0 15px #8b5cf6; background: #c084fc; }
-            50% { box-shadow: 0 0 15px #e879f9, 0 0 25px #c084fc; background: #e879f9; }
+            0%, 100% { box-shadow: 0 0 10px #c084fc, 0 0 20px #8b5cf6; background: #c084fc; }
+            50% { box-shadow: 0 0 18px #e879f9, 0 0 30px #c084fc; background: #e879f9; }
         }
 
-        /* Snout - boxy */
+        /* Snout - boxy & bigger */
         .click-btn.enderdragon-btn .dragon-btn-snout {
             position: absolute;
-            width: 16px;
-            height: 10px;
+            width: 22px;
+            height: 14px;
             background: #1a1a1a;
-            left: calc(50% + 74px);
-            top: calc(50% - 20px);
-            border-radius: 2px;
+            left: calc(50% + 85px);
+            top: calc(50% - 24px);
+            border-radius: 3px;
             box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
         }
 
-        /* Horns - boxy pixel style */
+        /* Horns - pointing down/back */
         .click-btn.enderdragon-btn .dragon-btn-horn-left {
             position: absolute;
-            width: 5px;
-            height: 14px;
+            width: 6px;
+            height: 18px;
             background: #2a2a2a;
-            left: calc(50% + 52px);
-            top: calc(50% - 38px);
-            border-radius: 2px 2px 0 0;
-            transform: rotate(-15deg);
-            box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+            left: calc(50% + 55px);
+            top: calc(50% - 28px);
+            border-radius: 0 0 3px 3px;
+            transform: rotate(140deg);
+            transform-origin: top center;
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
         }
 
         .click-btn.enderdragon-btn .dragon-btn-horn-right {
             position: absolute;
-            width: 5px;
-            height: 14px;
+            width: 6px;
+            height: 18px;
             background: #2a2a2a;
-            left: calc(50% + 65px);
-            top: calc(50% - 38px);
-            border-radius: 2px 2px 0 0;
-            transform: rotate(15deg);
-            box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+            left: calc(50% + 72px);
+            top: calc(50% - 28px);
+            border-radius: 0 0 3px 3px;
+            transform: rotate(155deg);
+            transform-origin: top center;
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
         }
 
-        /* Wings - Pixelated Boxy Minecraft Style */
+        /* Wings - Pixelated Boxy Minecraft Style - BIGGER */
         .click-btn.enderdragon-btn .dragon-btn-wing-left {
             position: absolute;
-            width: 16px;
-            height: 16px;
-            left: calc(50% - 25px);
-            top: calc(50% - 30px);
+            width: 20px;
+            height: 20px;
+            left: calc(50% - 30px);
+            top: calc(50% - 35px);
             background: #2a2a2a;
             animation: enderdragon-wing-left 0.4s ease-in-out infinite;
             transform-origin: right center;
             box-shadow:
                 /* Wing bone structure - thick boxy segments */
-                -14px -10px 0 #1a1a1a,
-                -28px -20px 0 #1a1a1a,
-                -42px -30px 0 #1a1a1a,
-                -56px -25px 0 #1a1a1a,
-                -70px -18px 0 #1a1a1a,
+                -18px -12px 0 #1a1a1a,
+                -36px -24px 0 #1a1a1a,
+                -54px -36px 0 #1a1a1a,
+                -72px -30px 0 #1a1a1a,
+                -90px -22px 0 #1a1a1a,
                 /* Wing membrane - purple tinted boxy */
-                -14px -2px 0 #7c3aed,
-                -28px -8px 0 #6d28d9,
-                -42px -14px 0 #5b21b6,
-                -56px -10px 0 #4c1d95,
-                -70px -4px 0 #3b0764,
+                -18px -3px 0 #7c3aed,
+                -36px -10px 0 #6d28d9,
+                -54px -18px 0 #5b21b6,
+                -72px -12px 0 #4c1d95,
+                -90px -6px 0 #3b0764,
                 /* More membrane pixels */
-                -20px 6px 0 #8b5cf6,
-                -34px 2px 0 #7c3aed,
-                -48px -2px 0 #6d28d9,
-                -62px 2px 0 #5b21b6,
+                -26px 6px 0 #8b5cf6,
+                -44px 2px 0 #7c3aed,
+                -62px -3px 0 #6d28d9,
+                -80px 2px 0 #5b21b6,
                 /* Bottom edge */
-                -28px 10px 0 #1a1a1a,
-                -42px 6px 0 #1a1a1a,
-                -56px 8px 0 #1a1a1a;
+                -36px 12px 0 #1a1a1a,
+                -54px 8px 0 #1a1a1a,
+                -72px 10px 0 #1a1a1a;
         }
 
         .click-btn.enderdragon-btn .dragon-btn-wing-right {
             position: absolute;
-            width: 16px;
-            height: 16px;
-            left: calc(50% + 10px);
-            top: calc(50% - 30px);
+            width: 20px;
+            height: 20px;
+            left: calc(50% + 12px);
+            top: calc(50% - 35px);
             background: #2a2a2a;
             animation: enderdragon-wing-right 0.4s ease-in-out infinite;
             transform-origin: left center;
             box-shadow:
                 /* Wing bone structure - thick boxy segments */
-                14px -10px 0 #1a1a1a,
-                28px -20px 0 #1a1a1a,
-                42px -30px 0 #1a1a1a,
-                56px -25px 0 #1a1a1a,
-                70px -18px 0 #1a1a1a,
+                18px -12px 0 #1a1a1a,
+                36px -24px 0 #1a1a1a,
+                54px -36px 0 #1a1a1a,
+                72px -30px 0 #1a1a1a,
+                90px -22px 0 #1a1a1a,
                 /* Wing membrane - purple tinted boxy */
-                14px -2px 0 #7c3aed,
-                28px -8px 0 #6d28d9,
-                42px -14px 0 #5b21b6,
-                56px -10px 0 #4c1d95,
-                70px -4px 0 #3b0764,
+                18px -3px 0 #7c3aed,
+                36px -10px 0 #6d28d9,
+                54px -18px 0 #5b21b6,
+                72px -12px 0 #4c1d95,
+                90px -6px 0 #3b0764,
                 /* More membrane pixels */
-                20px 6px 0 #8b5cf6,
-                34px 2px 0 #7c3aed,
-                48px -2px 0 #6d28d9,
-                62px 2px 0 #5b21b6,
+                26px 6px 0 #8b5cf6,
+                44px 2px 0 #7c3aed,
+                62px -3px 0 #6d28d9,
+                80px 2px 0 #5b21b6,
                 /* Bottom edge */
-                28px 10px 0 #1a1a1a,
-                42px 6px 0 #1a1a1a,
-                56px 8px 0 #1a1a1a;
+                36px 12px 0 #1a1a1a,
+                54px 8px 0 #1a1a1a,
+                72px 10px 0 #1a1a1a;
         }
 
-        /* Tail - boxy segmented - longer */
+        /* Tail - boxy segmented - BIGGER */
         .click-btn.enderdragon-btn .dragon-btn-tail {
             position: absolute;
-            left: calc(50% - 80px);
-            top: calc(50% + 2px);
-            width: 60px;
-            height: 10px;
+            left: calc(50% - 90px);
+            top: calc(50% + 3px);
+            width: 70px;
+            height: 14px;
             background: #1a1a1a;
-            border-radius: 2px;
-            box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
+            border-radius: 3px;
+            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
             animation: enderdragon-tail 1.5s ease-in-out infinite;
             transform-origin: right center;
         }
@@ -3876,40 +3883,42 @@
         .click-btn.enderdragon-btn .dragon-btn-tail::after {
             content: '';
             position: absolute;
-            left: -22px;
-            top: 2px;
-            width: 25px;
-            height: 6px;
+            left: -28px;
+            top: 3px;
+            width: 32px;
+            height: 8px;
             background: #1a1a1a;
-            border-radius: 2px;
+            border-radius: 3px;
             box-shadow:
-                -20px 2px 0 5px #8b5cf6,
-                inset 0 -1px 0 #0a0a0a;
+                -26px 3px 0 6px #8b5cf6,
+                inset 0 -2px 0 #0a0a0a;
         }
 
-        /* Legs - boxy pointing sideways */
+        /* Legs - boxy pointing back - BIGGER */
         .click-btn.enderdragon-btn .dragon-btn-leg-left {
             position: absolute;
-            width: 18px;
-            height: 8px;
+            width: 24px;
+            height: 12px;
             background: #1a1a1a;
             left: calc(50% - 28px);
             top: calc(50% + 12px);
-            border-radius: 2px;
-            transform: rotate(-25deg);
-            box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
+            border-radius: 3px;
+            transform: rotate(-150deg);
+            transform-origin: right center;
+            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
         }
 
         .click-btn.enderdragon-btn .dragon-btn-leg-right {
             position: absolute;
-            width: 18px;
-            height: 8px;
+            width: 24px;
+            height: 12px;
             background: #1a1a1a;
-            left: calc(50% + 12px);
+            left: calc(50% + 8px);
             top: calc(50% + 12px);
-            border-radius: 2px;
-            transform: rotate(25deg);
-            box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
+            border-radius: 3px;
+            transform: rotate(-150deg);
+            transform-origin: right center;
+            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
         }
 
         @keyframes enderdragon-wing-left {
