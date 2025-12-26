@@ -3210,8 +3210,8 @@
         }
 
         .ender-dragon {
-            width: 200px;
-            height: 120px;
+            width: 220px;
+            height: 140px;
             position: relative;
             image-rendering: pixelated;
             animation: dragon-hover 2s ease-in-out infinite;
@@ -3222,90 +3222,211 @@
             50% { transform: translateY(-15px) rotate(2deg); }
         }
 
+        /* Boss Dragon Body - Boxy Minecraft Style */
         .dragon-body {
             position: absolute;
-            width: 80px;
-            height: 40px;
+            width: 90px;
+            height: 45px;
             background: #1a1a1a;
-            left: 60px;
-            top: 40px;
+            left: 65px;
+            top: 50px;
+            border-radius: 4px;
             box-shadow:
-                -4px 0 0 #1a1a1a, 4px 0 0 #1a1a1a,
-                0 -4px 0 #2a2a2a, 0 4px 0 #0a0a0a,
-                8px -4px 0 #8b5cf6, -8px -4px 0 #8b5cf6,
-                12px 0 0 #7c3aed, -12px 0 0 #7c3aed;
+                inset 0 -4px 0 #0a0a0a,
+                inset 0 4px 0 #2a2a2a,
+                0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Boss Dragon Neck */
+        .dragon-neck {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #1a1a1a;
+            left: 145px;
+            top: 35px;
+            border-radius: 4px;
+            transform: rotate(-25deg);
+            box-shadow: inset 0 -3px 0 #0a0a0a, inset 0 3px 0 #2a2a2a;
         }
 
         .dragon-head {
             position: absolute;
-            width: 32px;
-            height: 28px;
+            width: 50px;
+            height: 35px;
             background: #1a1a1a;
-            left: 140px;
-            top: 35px;
+            left: 160px;
+            top: 20px;
+            border-radius: 4px;
             box-shadow:
-                4px 0 0 #1a1a1a, 8px 0 0 #1a1a1a, 12px 0 0 #1a1a1a,
-                12px -4px 0 #1a1a1a, 12px 4px 0 #1a1a1a,
-                4px -4px 0 #c084fc, 8px -4px 0 #c084fc,
-                4px -8px 0 #e879f9, 8px -8px 0 #e879f9,
-                16px 4px 0 #2a2a2a, 20px 4px 0 #2a2a2a,
-                16px 8px 0 #1a1a1a, 20px 8px 0 #1a1a1a;
+                inset 0 -3px 0 #0a0a0a,
+                inset 0 3px 0 #2a2a2a;
         }
 
+        /* Boss Dragon Eye - Glowing */
+        .dragon-eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #c084fc;
+            left: 195px;
+            top: 28px;
+            border-radius: 2px;
+            box-shadow:
+                0 0 10px #c084fc,
+                0 0 20px #8b5cf6;
+            animation: boss-eye-glow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes boss-eye-glow {
+            0%, 100% { box-shadow: 0 0 10px #c084fc, 0 0 20px #8b5cf6; background: #c084fc; }
+            50% { box-shadow: 0 0 20px #e879f9, 0 0 35px #c084fc; background: #e879f9; }
+        }
+
+        /* Boss Dragon Snout */
+        .dragon-snout {
+            position: absolute;
+            width: 25px;
+            height: 18px;
+            background: #1a1a1a;
+            left: 200px;
+            top: 35px;
+            border-radius: 3px;
+            box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
+        }
+
+        /* Boss Dragon Horns */
+        .dragon-horn-left {
+            position: absolute;
+            width: 8px;
+            height: 22px;
+            background: #2a2a2a;
+            left: 165px;
+            top: 2px;
+            border-radius: 3px 3px 0 0;
+            transform: rotate(-20deg);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+        }
+
+        .dragon-horn-right {
+            position: absolute;
+            width: 8px;
+            height: 22px;
+            background: #2a2a2a;
+            left: 185px;
+            top: 5px;
+            border-radius: 3px 3px 0 0;
+            transform: rotate(15deg);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Boss Dragon Wings - Boxy Style */
         .dragon-wing {
             position: absolute;
-            width: 60px;
-            height: 50px;
-            background: transparent;
-            top: 10px;
+            width: 80px;
+            height: 60px;
+            background: #1a1a1a;
+            top: 15px;
         }
 
         .dragon-wing.left {
-            left: 30px;
-            box-shadow:
-                0 0 0 4px #2a2a2a,
-                -8px 8px 0 #1a1a1a, -16px 16px 0 #1a1a1a, -24px 24px 0 #1a1a1a,
-                -8px 4px 0 #8b5cf6, -16px 8px 0 #7c3aed, -24px 12px 0 #6d28d9,
-                -32px 20px 0 #5b21b6, -20px 20px 0 #1a1a1a;
+            left: 10px;
+            clip-path: polygon(100% 100%, 100% 50%, 70% 20%, 40% 5%, 10% 15%, 0% 45%, 25% 100%);
             animation: wing-flap-left 0.5s ease-in-out infinite;
+            transform-origin: right bottom;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .dragon-wing.left::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 92, 246, 0.25);
+            clip-path: polygon(100% 100%, 100% 60%, 75% 35%, 50% 20%, 25% 30%, 15% 55%, 35% 100%);
         }
 
         .dragon-wing.right {
-            left: 100px;
-            box-shadow:
-                0 0 0 4px #2a2a2a,
-                8px 8px 0 #1a1a1a, 16px 16px 0 #1a1a1a, 24px 24px 0 #1a1a1a,
-                8px 4px 0 #8b5cf6, 16px 8px 0 #7c3aed, 24px 12px 0 #6d28d9,
-                32px 20px 0 #5b21b6, 20px 20px 0 #1a1a1a;
+            left: 110px;
+            clip-path: polygon(0% 100%, 0% 50%, 30% 20%, 60% 5%, 90% 15%, 100% 45%, 75% 100%);
             animation: wing-flap-right 0.5s ease-in-out infinite;
+            transform-origin: left bottom;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .dragon-wing.right::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 92, 246, 0.25);
+            clip-path: polygon(0% 100%, 0% 60%, 25% 35%, 50% 20%, 75% 30%, 85% 55%, 65% 100%);
         }
 
         @keyframes wing-flap-left {
-            0%, 100% { transform: rotate(0deg) scaleY(1); }
-            50% { transform: rotate(-10deg) scaleY(0.8); }
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-12deg); }
         }
 
         @keyframes wing-flap-right {
-            0%, 100% { transform: rotate(0deg) scaleY(1); }
-            50% { transform: rotate(10deg) scaleY(0.8); }
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(12deg); }
         }
 
+        /* Boss Dragon Tail - Boxy Segmented */
         .dragon-tail {
             position: absolute;
-            left: 0;
-            top: 50px;
-            width: 60px;
+            left: 5px;
+            top: 60px;
+            width: 65px;
+            height: 14px;
+            background: #1a1a1a;
+            border-radius: 3px;
+            box-shadow: inset 0 -2px 0 #0a0a0a, inset 0 2px 0 #2a2a2a;
+            animation: tail-sway 1.5s ease-in-out infinite;
+            transform-origin: right center;
+        }
+
+        .dragon-tail::after {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 3px;
+            width: 28px;
             height: 8px;
             background: #1a1a1a;
+            border-radius: 3px;
             box-shadow:
-                -8px 4px 0 #1a1a1a, -16px 8px 0 #2a2a2a, -24px 12px 0 #2a2a2a,
-                -8px 0 0 #8b5cf6, -16px 4px 0 #7c3aed;
-            animation: tail-sway 1s ease-in-out infinite;
+                -22px 3px 0 6px #8b5cf6,
+                inset 0 -1px 0 #0a0a0a;
+        }
+
+        /* Boss Dragon Legs */
+        .dragon-leg-left {
+            position: absolute;
+            width: 12px;
+            height: 25px;
+            background: #1a1a1a;
+            left: 80px;
+            top: 88px;
+            border-radius: 3px;
+            box-shadow: inset -2px 0 0 #0a0a0a, inset 2px 0 0 #2a2a2a;
+        }
+
+        .dragon-leg-right {
+            position: absolute;
+            width: 12px;
+            height: 25px;
+            background: #1a1a1a;
+            left: 120px;
+            top: 88px;
+            border-radius: 3px;
+            box-shadow: inset -2px 0 0 #0a0a0a, inset 2px 0 0 #2a2a2a;
         }
 
         @keyframes tail-sway {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(5deg); }
+            50% { transform: rotate(8deg); }
         }
 
         .boss-health-container {
@@ -3896,11 +4017,18 @@
     <!-- Boss Container (Pixelated Ender Dragon) -->
     <div class="boss-container" id="bossContainer">
         <div class="ender-dragon">
+            <div class="dragon-tail"></div>
+            <div class="dragon-leg-left"></div>
+            <div class="dragon-leg-right"></div>
             <div class="dragon-wing left"></div>
             <div class="dragon-wing right"></div>
             <div class="dragon-body"></div>
+            <div class="dragon-neck"></div>
             <div class="dragon-head"></div>
-            <div class="dragon-tail"></div>
+            <div class="dragon-snout"></div>
+            <div class="dragon-eye"></div>
+            <div class="dragon-horn-left"></div>
+            <div class="dragon-horn-right"></div>
         </div>
     </div>
 
