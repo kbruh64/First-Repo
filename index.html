@@ -7623,6 +7623,14 @@
                 }
             }
 
+            // Show boss dimension popup so player can enter
+            const bossIndex = dimensions.findIndex(d => d.id === 'boss');
+            if (bossIndex !== -1) {
+                setTimeout(() => {
+                    showDimensionUnlockPopup(dimensions[bossIndex]);
+                }, 600);
+            }
+
             // Give some tokens too
             tokens += 5000;
             tokenCountDisplay.textContent = tokens;
