@@ -2135,33 +2135,6 @@
             display: block;
         }
 
-        .hacker-btn {
-            width: 100%;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, #1a1a1a, #2d1b4e);
-            border: 2px solid #8b5cf6;
-            border-radius: 10px;
-            color: #c084fc;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-shadow: 0 0 10px #8b5cf6;
-        }
-
-        .hacker-btn:hover {
-            background: linear-gradient(135deg, #2d1b4e, #4c1d95);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
-            transform: scale(1.02);
-        }
-
-        .hacker-btn.activated {
-            background: linear-gradient(135deg, #065f46, #047857);
-            border-color: #10b981;
-            color: #34d399;
-            text-shadow: 0 0 10px #10b981;
-        }
-
         .color-options {
             display: flex;
             flex-wrap: wrap;
@@ -2279,90 +2252,6 @@
             gap: 10px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             transition: all 0.5s ease;
-            cursor: pointer;
-        }
-
-        .dimension-indicator:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-        }
-
-        .dimension-selector {
-            position: fixed;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%) scale(0.9);
-            background: linear-gradient(135deg, rgba(42, 42, 74, 0.98), rgba(26, 26, 46, 0.98));
-            border: 2px solid #ffd700;
-            border-radius: 15px;
-            padding: 15px;
-            z-index: 600;
-            min-width: 250px;
-            max-height: 400px;
-            overflow-y: auto;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .dimension-selector.active {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateX(-50%) scale(1);
-        }
-
-        .dimension-selector-title {
-            color: #ffd700;
-            font-size: 1rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #444;
-        }
-
-        .dimension-selector-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-bottom: 5px;
-        }
-
-        .dimension-selector-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .dimension-selector-item.current {
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid #ffd700;
-        }
-
-        .dimension-selector-item.locked {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .dimension-selector-item .dim-icon {
-            font-size: 1.5rem;
-        }
-
-        .dimension-selector-item .dim-info {
-            flex: 1;
-        }
-
-        .dimension-selector-item .dim-name {
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .dimension-selector-item .dim-unlock {
-            font-size: 0.75rem;
-            color: #888;
         }
 
         .dimension-icon {
@@ -3210,8 +3099,8 @@
         }
 
         .ender-dragon {
-            width: 220px;
-            height: 140px;
+            width: 200px;
+            height: 120px;
             position: relative;
             image-rendering: pixelated;
             animation: dragon-hover 2s ease-in-out infinite;
@@ -3222,249 +3111,90 @@
             50% { transform: translateY(-15px) rotate(2deg); }
         }
 
-        /* Boss Dragon Body - Boxy Minecraft Style - LONGER */
         .dragon-body {
             position: absolute;
-            width: 200px;
-            height: 65px;
+            width: 80px;
+            height: 40px;
             background: #1a1a1a;
-            left: 20px;
-            top: 70px;
-            border-radius: 6px;
+            left: 60px;
+            top: 40px;
             box-shadow:
-                inset 0 -6px 0 #0a0a0a,
-                inset 0 6px 0 #2a2a2a,
-                0 0 35px rgba(139, 92, 246, 0.4);
+                -4px 0 0 #1a1a1a, 4px 0 0 #1a1a1a,
+                0 -4px 0 #2a2a2a, 0 4px 0 #0a0a0a,
+                8px -4px 0 #8b5cf6, -8px -4px 0 #8b5cf6,
+                12px 0 0 #7c3aed, -12px 0 0 #7c3aed;
         }
 
-        /* Boss Dragon Neck - POINTING RIGHT */
-        .dragon-neck {
-            position: absolute;
-            width: 55px;
-            height: 45px;
-            background: #1a1a1a;
-            left: 205px;
-            top: 55px;
-            border-radius: 6px;
-            transform: rotate(0deg);
-            box-shadow: inset 0 -5px 0 #0a0a0a, inset 0 5px 0 #2a2a2a;
-        }
-
-        /* Boss Dragon Head - POINTING RIGHT */
         .dragon-head {
             position: absolute;
-            width: 90px;
-            height: 55px;
+            width: 32px;
+            height: 28px;
             background: #1a1a1a;
-            left: 250px;
-            top: 50px;
-            border-radius: 6px;
-            box-shadow:
-                inset 0 -6px 0 #0a0a0a,
-                inset 0 6px 0 #2a2a2a,
-                /* Pixel details for boxier look */
-                inset 10px 0 0 #0d0d0d,
-                inset -10px 0 0 #0d0d0d;
-        }
-
-        /* Boss Dragon Eye - Glowing BIGGER */
-        .dragon-eye {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: #c084fc;
-            left: 315px;
-            top: 62px;
-            border-radius: 3px;
-            box-shadow:
-                0 0 20px #c084fc,
-                0 0 40px #8b5cf6;
-            animation: boss-eye-glow 1.5s ease-in-out infinite;
-        }
-
-        @keyframes boss-eye-glow {
-            0%, 100% { box-shadow: 0 0 20px #c084fc, 0 0 40px #8b5cf6; background: #c084fc; }
-            50% { box-shadow: 0 0 35px #e879f9, 0 0 60px #c084fc; background: #e879f9; }
-        }
-
-        /* Boss Dragon Snout - POINTING RIGHT */
-        .dragon-snout {
-            position: absolute;
-            width: 50px;
-            height: 35px;
-            background: #1a1a1a;
-            left: 330px;
-            top: 60px;
-            border-radius: 5px;
-            transform: rotate(0deg);
-            box-shadow:
-                inset 0 -4px 0 #0a0a0a,
-                inset 0 4px 0 #2a2a2a,
-                inset 6px 0 0 #0d0d0d;
-        }
-
-        /* Boss Dragon Horns - POINTING RIGHT - Both on top */
-        .dragon-horn-left {
-            position: absolute;
-            width: 45px;
-            height: 14px;
-            background: #2a2a2a;
-            left: 280px;
+            left: 140px;
             top: 35px;
-            border-radius: 0 5px 5px 0;
-            transform: rotate(0deg);
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+            box-shadow:
+                4px 0 0 #1a1a1a, 8px 0 0 #1a1a1a, 12px 0 0 #1a1a1a,
+                12px -4px 0 #1a1a1a, 12px 4px 0 #1a1a1a,
+                4px -4px 0 #c084fc, 8px -4px 0 #c084fc,
+                4px -8px 0 #e879f9, 8px -8px 0 #e879f9,
+                16px 4px 0 #2a2a2a, 20px 4px 0 #2a2a2a,
+                16px 8px 0 #1a1a1a, 20px 8px 0 #1a1a1a;
         }
 
-        .dragon-horn-right {
-            position: absolute;
-            width: 45px;
-            height: 14px;
-            background: #2a2a2a;
-            left: 300px;
-            top: 35px;
-            border-radius: 0 5px 5px 0;
-            transform: rotate(0deg);
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
-        }
-
-        /* Boss Dragon Wings - Pixelated Box Shadow Style - BIGGER */
         .dragon-wing {
             position: absolute;
-            width: 28px;
-            height: 28px;
-            background: #2a2a2a;
-            top: 30px;
+            width: 60px;
+            height: 50px;
+            background: transparent;
+            top: 10px;
         }
 
         .dragon-wing.left {
             left: 30px;
             box-shadow:
-                /* Wing bone structure - thick boxy segments */
-                -25px -18px 0 #1a1a1a,
-                -50px -36px 0 #1a1a1a,
-                -75px -54px 0 #1a1a1a,
-                -100px -48px 0 #1a1a1a,
-                -125px -38px 0 #1a1a1a,
-                -150px -25px 0 #1a1a1a,
-                /* Wing membrane - purple tinted boxy */
-                -25px -6px 0 #7c3aed,
-                -50px -18px 0 #6d28d9,
-                -75px -30px 0 #5b21b6,
-                -100px -24px 0 #4c1d95,
-                -125px -15px 0 #3b0764,
-                /* More membrane pixels */
-                -38px 6px 0 #8b5cf6,
-                -62px 0 0 #7c3aed,
-                -88px -6px 0 #6d28d9,
-                -112px 0 0 #5b21b6,
-                -138px 6px 0 #4c1d95,
-                /* Bottom edge */
-                -50px 12px 0 #1a1a1a,
-                -75px 6px 0 #1a1a1a,
-                -100px 10px 0 #1a1a1a,
-                -125px 12px 0 #1a1a1a;
+                0 0 0 4px #2a2a2a,
+                -8px 8px 0 #1a1a1a, -16px 16px 0 #1a1a1a, -24px 24px 0 #1a1a1a,
+                -8px 4px 0 #8b5cf6, -16px 8px 0 #7c3aed, -24px 12px 0 #6d28d9,
+                -32px 20px 0 #5b21b6, -20px 20px 0 #1a1a1a;
             animation: wing-flap-left 0.5s ease-in-out infinite;
-            transform-origin: right center;
         }
 
         .dragon-wing.right {
-            left: 200px;
+            left: 100px;
             box-shadow:
-                /* Wing bone structure - thick boxy segments */
-                25px -18px 0 #1a1a1a,
-                50px -36px 0 #1a1a1a,
-                75px -54px 0 #1a1a1a,
-                100px -48px 0 #1a1a1a,
-                125px -38px 0 #1a1a1a,
-                150px -25px 0 #1a1a1a,
-                /* Wing membrane - purple tinted boxy */
-                25px -6px 0 #7c3aed,
-                50px -18px 0 #6d28d9,
-                75px -30px 0 #5b21b6,
-                100px -24px 0 #4c1d95,
-                125px -15px 0 #3b0764,
-                /* More membrane pixels */
-                38px 6px 0 #8b5cf6,
-                62px 0 0 #7c3aed,
-                88px -6px 0 #6d28d9,
-                112px 0 0 #5b21b6,
-                138px 6px 0 #4c1d95,
-                /* Bottom edge */
-                50px 12px 0 #1a1a1a,
-                75px 6px 0 #1a1a1a,
-                100px 10px 0 #1a1a1a,
-                125px 12px 0 #1a1a1a;
+                0 0 0 4px #2a2a2a,
+                8px 8px 0 #1a1a1a, 16px 16px 0 #1a1a1a, 24px 24px 0 #1a1a1a,
+                8px 4px 0 #8b5cf6, 16px 8px 0 #7c3aed, 24px 12px 0 #6d28d9,
+                32px 20px 0 #5b21b6, 20px 20px 0 #1a1a1a;
             animation: wing-flap-right 0.5s ease-in-out infinite;
-            transform-origin: left center;
         }
 
         @keyframes wing-flap-left {
             0%, 100% { transform: rotate(0deg) scaleY(1); }
-            50% { transform: rotate(-12deg) scaleY(0.8); }
+            50% { transform: rotate(-10deg) scaleY(0.8); }
         }
 
         @keyframes wing-flap-right {
             0%, 100% { transform: rotate(0deg) scaleY(1); }
-            50% { transform: rotate(12deg) scaleY(0.8); }
+            50% { transform: rotate(10deg) scaleY(0.8); }
         }
 
-        /* Boss Dragon Tail - Boxy Segmented - BIGGER */
         .dragon-tail {
             position: absolute;
-            left: -25px;
-            top: 90px;
-            width: 110px;
-            height: 25px;
+            left: 0;
+            top: 50px;
+            width: 60px;
+            height: 8px;
             background: #1a1a1a;
-            border-radius: 5px;
-            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
-            animation: tail-sway 1.5s ease-in-out infinite;
-            transform-origin: right center;
-        }
-
-        .dragon-tail::after {
-            content: '';
-            position: absolute;
-            left: -45px;
-            top: 5px;
-            width: 50px;
-            height: 15px;
-            background: #1a1a1a;
-            border-radius: 5px;
             box-shadow:
-                -40px 5px 0 10px #8b5cf6,
-                inset 0 -3px 0 #0a0a0a;
-        }
-
-        /* Boss Dragon Legs - Pointing Right */
-        .dragon-leg-left {
-            position: absolute;
-            width: 50px;
-            height: 24px;
-            background: #1a1a1a;
-            left: 55px;
-            top: 115px;
-            border-radius: 0 5px 5px 0;
-            transform: rotate(0deg);
-            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
-        }
-
-        .dragon-leg-right {
-            position: absolute;
-            width: 50px;
-            height: 24px;
-            background: #1a1a1a;
-            left: 145px;
-            top: 115px;
-            border-radius: 0 5px 5px 0;
-            transform: rotate(0deg);
-            box-shadow: inset 0 -4px 0 #0a0a0a, inset 0 4px 0 #2a2a2a;
+                -8px 4px 0 #1a1a1a, -16px 8px 0 #2a2a2a, -24px 12px 0 #2a2a2a,
+                -8px 0 0 #8b5cf6, -16px 4px 0 #7c3aed;
+            animation: tail-sway 1s ease-in-out infinite;
         }
 
         @keyframes tail-sway {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(8deg); }
+            50% { transform: rotate(5deg); }
         }
 
         .boss-health-container {
@@ -3694,7 +3424,7 @@
             border-radius: 50%;
         }
 
-        /* Pixelated Ender Dragon Button Body - OLD STYLE WITH EYES */
+        /* Pixelated Ender Dragon Button Body */
         .click-btn.enderdragon-btn .dragon-btn-body {
             position: absolute;
             width: 70px;
@@ -3724,27 +3454,6 @@
                 4px -4px 0 #c084fc, 8px -4px 0 #c084fc,
                 4px -8px 0 #e879f9, 8px -8px 0 #e879f9,
                 12px 6px 0 #2a2a2a, 16px 6px 0 #2a2a2a;
-        }
-
-        /* Dragon Eyes - Glowing purple */
-        .click-btn.enderdragon-btn .dragon-btn-eye {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #c084fc;
-            left: calc(50% + 58px);
-            top: calc(50% - 12px);
-            box-shadow:
-                0 0 8px #c084fc,
-                0 0 15px #8b5cf6,
-                8px 0 0 #c084fc,
-                8px 0 8px #c084fc;
-            animation: dragon-eye-glow 1.5s ease-in-out infinite;
-        }
-
-        @keyframes dragon-eye-glow {
-            0%, 100% { box-shadow: 0 0 8px #c084fc, 0 0 15px #8b5cf6, 8px 0 0 #c084fc, 8px 0 8px #c084fc; background: #c084fc; }
-            50% { box-shadow: 0 0 15px #e879f9, 0 0 25px #c084fc, 8px 0 0 #e879f9, 8px 0 15px #e879f9; background: #e879f9; }
         }
 
         .click-btn.enderdragon-btn .dragon-btn-wing-left {
@@ -3817,90 +3526,6 @@
             100% { opacity: 0.8; transform: scale(1.2); }
         }
 
-        /* Purple Fire Breath */
-        .dragon-fire-breath {
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .dragon-fire-particle {
-            position: absolute;
-            border-radius: 60% 20% 60% 20%;
-            pointer-events: none;
-            animation: fire-particle-fly 0.8s ease-out forwards;
-            filter: blur(1px);
-        }
-
-        @keyframes fire-particle-fly {
-            0% {
-                transform: translateX(0) scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translateX(60px) scale(1.2) rotate(15deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateX(120px) scale(0.2) rotate(30deg);
-                opacity: 0;
-            }
-        }
-
-        .dragon-fire-stream {
-            position: absolute;
-            right: -10px;
-            top: calc(50% - 15px);
-            width: 100px;
-            height: 30px;
-            background: linear-gradient(90deg, #c084fc, #8b5cf6, #7c3aed, transparent);
-            border-radius: 0 50% 50% 0;
-            opacity: 0;
-            transform-origin: left center;
-            pointer-events: none;
-            filter: blur(3px);
-            animation: fire-stream 0.6s ease-out forwards;
-        }
-
-        @keyframes fire-stream {
-            0% {
-                opacity: 0;
-                transform: scaleX(0);
-            }
-            20% {
-                opacity: 1;
-                transform: scaleX(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: scaleX(1.5);
-            }
-        }
-
-        .dragon-fire-glow {
-            position: absolute;
-            right: -30px;
-            top: calc(50% - 40px);
-            width: 150px;
-            height: 80px;
-            background: radial-gradient(ellipse at left, rgba(192, 132, 252, 0.6), rgba(139, 92, 246, 0.3), transparent);
-            border-radius: 50%;
-            opacity: 0;
-            pointer-events: none;
-            animation: fire-glow 0.6s ease-out forwards;
-        }
-
-        @keyframes fire-glow {
-            0% { opacity: 0; transform: scale(0.5); }
-            30% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.3); }
-        }
-
         .cosmetic-icon.icon-enderdragon {
             background: linear-gradient(135deg, #1a1a1a, #2d1b4e);
             box-shadow: inset 0 0 10px #8b5cf6;
@@ -3955,24 +3580,17 @@
         <div class="boss-health-bar">
             <div class="boss-health-fill" id="bossHealthFill"></div>
         </div>
-        <div class="boss-deflect-counter">Deflects: <span id="deflectCounter">0</span> / 10</div>
+        <div class="boss-deflect-counter">Deflects: <span id="deflectCounter">0</span> / 5</div>
     </div>
 
     <!-- Boss Container (Pixelated Ender Dragon) -->
     <div class="boss-container" id="bossContainer">
         <div class="ender-dragon">
-            <div class="dragon-tail"></div>
-            <div class="dragon-leg-left"></div>
-            <div class="dragon-leg-right"></div>
             <div class="dragon-wing left"></div>
             <div class="dragon-wing right"></div>
             <div class="dragon-body"></div>
-            <div class="dragon-neck"></div>
             <div class="dragon-head"></div>
-            <div class="dragon-snout"></div>
-            <div class="dragon-eye"></div>
-            <div class="dragon-horn-left"></div>
-            <div class="dragon-horn-right"></div>
+            <div class="dragon-tail"></div>
         </div>
     </div>
 
@@ -4031,12 +3649,6 @@
         <div class="dimension-progress">
             <div class="dimension-progress-bar" id="dimensionProgress" style="width: 0%"></div>
         </div>
-    </div>
-
-    <!-- Dimension Selector Dropdown -->
-    <div class="dimension-selector" id="dimensionSelector">
-        <div class="dimension-selector-title">Select Dimension</div>
-        <div class="dimension-selector-list" id="dimensionSelectorList"></div>
     </div>
 
     <!-- Dimension Transition Overlay -->
@@ -4113,10 +3725,6 @@
                 <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
             </div>
         </div>
-
-        <div class="settings-section">
-            <button class="hacker-btn" id="hackerBtn">🔓 Hacker Mode</button>
-        </div>
     </div>
 
     <div class="high-score">High Score: <span id="highScore">0</span></div>
@@ -4147,9 +3755,6 @@
 
         // Initialize high score display
         highScoreDisplay.textContent = highScore;
-
-        // Hacker mode flag - disables high score tracking when active
-        let hackerModeActive = false;
 
         // Lucky chest click thresholds (random intervals) - more common now
         let chestNumbers = new Set();
@@ -4956,8 +4561,8 @@
             clickCount += clickValue;
             countDisplay.textContent = clickCount;
 
-            // Update high score if current count exceeds it (disabled in hacker mode)
-            if (clickCount > highScore && !hackerModeActive) {
+            // Update high score if current count exceeds it
+            if (clickCount > highScore) {
                 highScore = clickCount;
                 highScoreDisplay.textContent = highScore;
                 localStorage.setItem('clickItHighScore', highScore);
@@ -5675,7 +5280,7 @@
                     btn.classList.remove(oldCosmetic.class);
                 }
                 // Remove dragon button parts if they exist
-                btn.querySelectorAll('[class^="dragon-btn-"]').forEach(el => el.remove());
+                btn.querySelectorAll('.dragon-btn-body, .dragon-btn-head, .dragon-btn-wing-left, .dragon-btn-wing-right, .dragon-btn-tail').forEach(el => el.remove());
 
                 activeCosmetics.button = key;
                 if (cosmetic.class) {
@@ -5684,33 +5289,21 @@
 
                 // Add dragon parts for enderdragon button
                 if (key === 'enderdragon') {
-                    // Create all dragon parts
-                    const parts = [
-                        'dragon-btn-tail',
-                        'dragon-btn-leg-left',
-                        'dragon-btn-leg-right',
-                        'dragon-btn-wing-left',
-                        'dragon-btn-wing-right',
-                        'dragon-btn-body',
-                        'dragon-btn-neck',
-                        'dragon-btn-head',
-                        'dragon-btn-snout',
-                        'dragon-btn-eye',
-                        'dragon-btn-horn-left',
-                        'dragon-btn-horn-right'
-                    ];
-
-                    parts.forEach(partClass => {
-                        const part = document.createElement('div');
-                        part.className = partClass;
-                        btn.appendChild(part);
-                    });
-
-                    // Start fire breath effect
-                    startDragonFireBreath();
-                } else {
-                    // Stop fire breath if switching away from enderdragon
-                    stopDragonFireBreath();
+                    const body = document.createElement('div');
+                    body.className = 'dragon-btn-body';
+                    const head = document.createElement('div');
+                    head.className = 'dragon-btn-head';
+                    const wingLeft = document.createElement('div');
+                    wingLeft.className = 'dragon-btn-wing-left';
+                    const wingRight = document.createElement('div');
+                    wingRight.className = 'dragon-btn-wing-right';
+                    const tail = document.createElement('div');
+                    tail.className = 'dragon-btn-tail';
+                    btn.appendChild(wingLeft);
+                    btn.appendChild(wingRight);
+                    btn.appendChild(body);
+                    btn.appendChild(head);
+                    btn.appendChild(tail);
                 }
             } else if (type === 'frame') {
                 // Toggle frame - applies to both button frame and screen border
@@ -7516,7 +7109,6 @@
         function initDimensionSystem() {
             updateDimensionIndicator();
             createDimensionParticles();
-            setupDimensionSelector();
         }
 
         function updateDimensionIndicator() {
@@ -7525,58 +7117,6 @@
             document.getElementById('dimensionName').textContent = dim.name;
             document.getElementById('dimensionIndicator').style.borderColor = dim.color;
             document.getElementById('dimensionIndicator').style.boxShadow = `0 0 20px ${dim.color}40`;
-        }
-
-        // Dimension Selector
-        function setupDimensionSelector() {
-            const indicator = document.getElementById('dimensionIndicator');
-            const selector = document.getElementById('dimensionSelector');
-
-            indicator.addEventListener('click', () => {
-                selector.classList.toggle('active');
-                if (selector.classList.contains('active')) {
-                    renderDimensionSelector();
-                }
-            });
-
-            // Close when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!indicator.contains(e.target) && !selector.contains(e.target)) {
-                    selector.classList.remove('active');
-                }
-            });
-        }
-
-        function renderDimensionSelector() {
-            const list = document.getElementById('dimensionSelectorList');
-            list.innerHTML = '';
-
-            dimensions.forEach((dim, index) => {
-                const isUnlocked = unlockedDimensions.has(index) || index === 0;
-                const isCurrent = currentDimension === index;
-
-                const item = document.createElement('div');
-                item.className = 'dimension-selector-item';
-                if (isCurrent) item.classList.add('current');
-                if (!isUnlocked) item.classList.add('locked');
-
-                item.innerHTML = `
-                    <span class="dim-icon">${dim.icon}</span>
-                    <div class="dim-info">
-                        <div class="dim-name" style="color: ${dim.color}">${dim.name}</div>
-                        <div class="dim-unlock">${isUnlocked ? (isCurrent ? 'Current' : 'Click to travel') : `Unlocks at ${dim.unlockAt} clicks`}</div>
-                    </div>
-                `;
-
-                if (isUnlocked && !isCurrent) {
-                    item.addEventListener('click', () => {
-                        document.getElementById('dimensionSelector').classList.remove('active');
-                        transitionToDimension(index);
-                    });
-                }
-
-                list.appendChild(item);
-            });
         }
 
         function updateDimensionProgress() {
@@ -7878,7 +7418,7 @@
             updateDeflectCounter();
             updateBossHealth();
 
-            if (bossDeflects >= 10) {
+            if (bossDeflects >= 5) {
                 // Boss defeated!
                 defeatBoss();
             } else {
@@ -7917,7 +7457,7 @@
         }
 
         function updateBossHealth() {
-            const healthPercent = ((10 - bossDeflects) / 10) * 100;
+            const healthPercent = ((5 - bossDeflects) / 5) * 100;
             document.getElementById('bossHealthFill').style.width = healthPercent + '%';
         }
 
@@ -7993,67 +7533,6 @@
             recordClick();
         });
 
-        // ==================== DRAGON FIRE BREATH ====================
-        let dragonFireInterval = null;
-
-        function startDragonFireBreath() {
-            stopDragonFireBreath(); // Clear any existing interval
-
-            // Fire immediately, then every 4-6 seconds
-            triggerFireBreath();
-            dragonFireInterval = setInterval(() => {
-                triggerFireBreath();
-            }, 4000 + Math.random() * 2000);
-        }
-
-        function stopDragonFireBreath() {
-            if (dragonFireInterval) {
-                clearInterval(dragonFireInterval);
-                dragonFireInterval = null;
-            }
-        }
-
-        function triggerFireBreath() {
-            if (activeCosmetics.button !== 'enderdragon') return;
-
-            // Create fire stream
-            const stream = document.createElement('div');
-            stream.className = 'dragon-fire-stream';
-            btn.appendChild(stream);
-            setTimeout(() => stream.remove(), 600);
-
-            // Create glow effect
-            const glow = document.createElement('div');
-            glow.className = 'dragon-fire-glow';
-            btn.appendChild(glow);
-            setTimeout(() => glow.remove(), 600);
-
-            // Create fire particles - wispy flame shapes
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const particle = document.createElement('div');
-                    particle.className = 'dragon-fire-particle';
-
-                    const width = 12 + Math.random() * 16;
-                    const height = 4 + Math.random() * 6;
-                    const yOffset = (Math.random() - 0.5) * 40;
-                    const rotation = (Math.random() - 0.5) * 30;
-
-                    particle.style.width = width + 'px';
-                    particle.style.height = height + 'px';
-                    particle.style.right = '-15px';
-                    particle.style.top = `calc(50% + ${yOffset}px)`;
-                    particle.style.transform = `rotate(${rotation}deg)`;
-                    particle.style.background = `linear-gradient(90deg, ${Math.random() > 0.5 ? '#c084fc' : '#e879f9'}, ${Math.random() > 0.5 ? '#8b5cf6' : '#7c3aed'}, transparent)`;
-                    particle.style.boxShadow = `0 0 ${height * 2}px ${Math.random() > 0.5 ? '#c084fc' : '#8b5cf6'}`;
-                    particle.style.animationDuration = (0.6 + Math.random() * 0.5) + 's';
-
-                    btn.appendChild(particle);
-                    setTimeout(() => particle.remove(), 1000);
-                }, i * 35);
-            }
-        }
-
         // Modify transitionToDimension to start boss fight
         const originalTransition = transitionToDimension;
         transitionToDimension = function(index) {
@@ -8084,54 +7563,6 @@
                 }
             }
         };
-
-        // ==================== HACKER MODE ====================
-        document.getElementById('hackerBtn').addEventListener('click', () => {
-            if (hackerModeActive) return; // Only activate once
-
-            hackerModeActive = true;
-            const hackerBtn = document.getElementById('hackerBtn');
-            hackerBtn.classList.add('activated');
-            hackerBtn.textContent = '✓ Hacker Mode Active';
-
-            // Give 20000 clicks
-            clickCount = 20000;
-            countDisplay.textContent = clickCount;
-
-            // Unlock ALL cosmetics (including boss exclusive)
-            Object.keys(cosmetics).forEach(key => {
-                cosmetics[key].unlocked = true;
-            });
-
-            // Unlock all dimensions
-            for (let i = 0; i < dimensions.length; i++) {
-                if (!unlockedDimensions.has(i)) {
-                    unlockedDimensions.add(i);
-                }
-            }
-
-            // Give some tokens too
-            tokens += 5000;
-            tokenCountDisplay.textContent = tokens;
-            if (shopTokenCount) shopTokenCount.textContent = tokens;
-
-            // Update UI
-            updateCosmeticsPanel();
-            updateDimensionPanel();
-
-            // Flash effect
-            const flash = document.createElement('div');
-            flash.style.cssText = 'position:fixed;inset:0;background:rgba(139,92,246,0.5);z-index:9999;pointer-events:none;animation:score-reset-flash 0.5s ease-out forwards;';
-            document.body.appendChild(flash);
-            setTimeout(() => flash.remove(), 500);
-
-            // Show message
-            const msg = document.createElement('div');
-            msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;color:#c084fc;text-shadow:0 0 30px #8b5cf6;z-index:10000;pointer-events:none;animation:text-pop 1.5s ease-out forwards;';
-            msg.textContent = '🔓 HACKER MODE ACTIVATED!';
-            document.body.appendChild(msg);
-            setTimeout(() => msg.remove(), 1500);
-        });
     </script>
 </body>
 </html>
