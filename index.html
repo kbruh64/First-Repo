@@ -3345,6 +3345,267 @@
             display: none;
         }
 
+        /* ==================== EVIL SNOWMAN ==================== */
+        .evil-snowman {
+            position: fixed;
+            width: 80px;
+            height: 120px;
+            z-index: 600;
+            pointer-events: none;
+            display: none;
+        }
+
+        .evil-snowman.active {
+            display: block;
+            animation: snowman-appear 0.5s ease-out;
+        }
+
+        .evil-snowman.running {
+            animation: snowman-run 0.8s ease-in forwards;
+        }
+
+        @keyframes snowman-appear {
+            0% { transform: translateY(100px) scale(0.5); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        @keyframes snowman-run {
+            0% { transform: translateX(0) scale(1); opacity: 1; }
+            100% { transform: translateX(-300px) scale(0.5); opacity: 0; }
+        }
+
+        /* Snowman Bottom Ball */
+        .snowman-bottom {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            background: #f0f0f0;
+            bottom: 0;
+            left: 5px;
+            border-radius: 50%;
+            box-shadow:
+                inset 0 -10px 20px rgba(200, 220, 255, 0.5),
+                inset 0 10px 10px rgba(255, 255, 255, 0.8),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Snowman Middle Ball */
+        .snowman-middle {
+            position: absolute;
+            width: 55px;
+            height: 40px;
+            background: #f0f0f0;
+            bottom: 40px;
+            left: 12px;
+            border-radius: 50%;
+            box-shadow:
+                inset 0 -8px 15px rgba(200, 220, 255, 0.5),
+                inset 0 8px 8px rgba(255, 255, 255, 0.8),
+                0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Snowman Buttons */
+        .snowman-buttons {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #1a1a1a;
+            bottom: 50px;
+            left: 36px;
+            border-radius: 50%;
+            box-shadow:
+                0 12px 0 #1a1a1a,
+                0 24px 0 #1a1a1a;
+        }
+
+        /* Snowman Head */
+        .snowman-head {
+            position: absolute;
+            width: 45px;
+            height: 35px;
+            background: #f0f0f0;
+            bottom: 75px;
+            left: 17px;
+            border-radius: 50%;
+            box-shadow:
+                inset 0 -6px 12px rgba(200, 220, 255, 0.5),
+                inset 0 6px 6px rgba(255, 255, 255, 0.8),
+                0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Snowman Evil Eyes */
+        .snowman-eyes {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff0000;
+            bottom: 92px;
+            left: 28px;
+            border-radius: 50%;
+            box-shadow:
+                14px 0 0 #ff0000,
+                0 0 10px #ff0000,
+                14px 0 10px #ff0000;
+            animation: evil-eyes-glow 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes evil-eyes-glow {
+            0% { box-shadow: 14px 0 0 #ff0000, 0 0 5px #ff0000, 14px 0 5px #ff0000; }
+            100% { box-shadow: 14px 0 0 #ff3333, 0 0 15px #ff0000, 14px 0 15px #ff0000; }
+        }
+
+        /* Snowman Angry Eyebrows */
+        .snowman-eyebrows {
+            position: absolute;
+            width: 10px;
+            height: 3px;
+            background: #1a1a1a;
+            bottom: 100px;
+            left: 26px;
+            transform: rotate(-20deg);
+            box-shadow: 16px 2px 0 #1a1a1a;
+        }
+
+        .snowman-eyebrows::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 3px;
+            background: #1a1a1a;
+            left: 16px;
+            transform: rotate(40deg);
+        }
+
+        /* Snowman Carrot Nose */
+        .snowman-nose {
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            background: linear-gradient(90deg, #ff8c00, #ff6600);
+            bottom: 88px;
+            left: 50px;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Snowman Evil Mouth */
+        .snowman-mouth {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            bottom: 80px;
+            left: 30px;
+            border-bottom: 4px solid #1a1a1a;
+            border-radius: 0 0 50% 50%;
+        }
+
+        /* Snowman Top Hat */
+        .snowman-hat {
+            position: absolute;
+            width: 35px;
+            height: 25px;
+            background: #1a1a1a;
+            bottom: 105px;
+            left: 22px;
+            box-shadow:
+                inset 0 5px 10px rgba(50, 50, 50, 1),
+                0 -2px 0 5px #1a1a1a,
+                0 -2px 0 15px #2a2a2a;
+        }
+
+        .snowman-hat::after {
+            content: '';
+            position: absolute;
+            width: 45px;
+            height: 6px;
+            background: #1a1a1a;
+            bottom: 0;
+            left: -5px;
+            border-radius: 2px;
+        }
+
+        /* Snowman Stick Arms */
+        .snowman-arm-left {
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background: #8B4513;
+            bottom: 60px;
+            left: -30px;
+            transform: rotate(-30deg);
+            border-radius: 2px;
+            box-shadow:
+                inset 0 1px 0 #a0522d,
+                inset 0 -1px 0 #654321;
+        }
+
+        .snowman-arm-right {
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background: #8B4513;
+            bottom: 60px;
+            right: -30px;
+            transform: rotate(30deg);
+            border-radius: 2px;
+            box-shadow:
+                inset 0 1px 0 #a0522d,
+                inset 0 -1px 0 #654321;
+            animation: arm-throw 0.3s ease-in-out;
+            transform-origin: left center;
+        }
+
+        .snowman-arm-right.throwing {
+            animation: arm-throw 0.3s ease-in-out;
+        }
+
+        @keyframes arm-throw {
+            0% { transform: rotate(30deg); }
+            50% { transform: rotate(-60deg); }
+            100% { transform: rotate(30deg); }
+        }
+
+        /* Snowball Projectile */
+        .snowball {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e0e8f0, #c0d0e0);
+            border-radius: 50%;
+            box-shadow:
+                inset -3px -3px 8px rgba(150, 180, 220, 0.5),
+                2px 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 601;
+            pointer-events: none;
+        }
+
+        .snowball.deflected {
+            animation: snowball-deflect 0.5s ease-out forwards;
+        }
+
+        @keyframes snowball-deflect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(0) rotate(180deg); opacity: 0; }
+        }
+
+        /* Snowball hit effect */
+        .snowball-splat {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(200,220,255,0.5), transparent);
+            border-radius: 50%;
+            z-index: 602;
+            pointer-events: none;
+            animation: splat 0.4s ease-out forwards;
+        }
+
+        @keyframes splat {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
         .boss-health-container {
             position: fixed;
             top: 20px;
@@ -3850,6 +4111,21 @@
             <div class="dragon-horn-left"></div>
             <div class="dragon-horn-right"></div>
         </div>
+    </div>
+
+    <!-- Evil Snowman -->
+    <div class="evil-snowman" id="evilSnowman">
+        <div class="snowman-hat"></div>
+        <div class="snowman-eyebrows"></div>
+        <div class="snowman-eyes"></div>
+        <div class="snowman-head"></div>
+        <div class="snowman-nose"></div>
+        <div class="snowman-mouth"></div>
+        <div class="snowman-arm-left"></div>
+        <div class="snowman-arm-right"></div>
+        <div class="snowman-buttons"></div>
+        <div class="snowman-middle"></div>
+        <div class="snowman-bottom"></div>
     </div>
 
     <!-- Token Display -->
@@ -7868,6 +8144,215 @@
         btn.addEventListener('click', () => {
             recordClick();
         });
+
+        // ==================== EVIL SNOWMAN ====================
+        const evilSnowman = document.getElementById('evilSnowman');
+        let snowmanActive = false;
+        let snowmanInterval = null;
+        let snowballInterval = null;
+        let activeSnowballs = [];
+
+        function spawnEvilSnowman() {
+            if (snowmanActive || bossActive) return;
+
+            snowmanActive = true;
+
+            // Random position on screen edge
+            const side = Math.random() > 0.5 ? 'left' : 'right';
+            const yPos = 150 + Math.random() * (window.innerHeight - 300);
+
+            evilSnowman.style.top = yPos + 'px';
+            if (side === 'left') {
+                evilSnowman.style.left = '50px';
+                evilSnowman.style.right = 'auto';
+                evilSnowman.style.transform = 'scaleX(1)';
+            } else {
+                evilSnowman.style.right = '50px';
+                evilSnowman.style.left = 'auto';
+                evilSnowman.style.transform = 'scaleX(-1)';
+            }
+
+            evilSnowman.classList.remove('running');
+            evilSnowman.classList.add('active');
+
+            // Start throwing snowballs
+            throwSnowball();
+            snowballInterval = setInterval(throwSnowball, 1500);
+
+            // Snowman leaves after 8-12 seconds if not deflected
+            setTimeout(() => {
+                if (snowmanActive) {
+                    snowmanRunAway();
+                }
+            }, 8000 + Math.random() * 4000);
+        }
+
+        function throwSnowball() {
+            if (!snowmanActive) return;
+
+            const armRight = evilSnowman.querySelector('.snowman-arm-right');
+            armRight.classList.remove('throwing');
+            void armRight.offsetWidth; // Trigger reflow
+            armRight.classList.add('throwing');
+
+            // Create snowball
+            const snowball = document.createElement('div');
+            snowball.className = 'snowball';
+
+            const snowmanRect = evilSnowman.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+
+            // Start position from snowman's arm
+            let startX, startY;
+            if (evilSnowman.style.left !== 'auto') {
+                startX = snowmanRect.right - 20;
+            } else {
+                startX = snowmanRect.left;
+            }
+            startY = snowmanRect.top + 60;
+
+            snowball.style.left = startX + 'px';
+            snowball.style.top = startY + 'px';
+
+            document.body.appendChild(snowball);
+
+            // Target the click button
+            const targetX = btnRect.left + btnRect.width / 2;
+            const targetY = btnRect.top + btnRect.height / 2;
+
+            const snowballData = {
+                element: snowball,
+                x: startX,
+                y: startY,
+                targetX: targetX,
+                targetY: targetY,
+                speed: 8,
+                deflected: false
+            };
+
+            activeSnowballs.push(snowballData);
+            animateSnowball(snowballData);
+        }
+
+        function animateSnowball(snowballData) {
+            if (snowballData.deflected) return;
+
+            const dx = snowballData.targetX - snowballData.x;
+            const dy = snowballData.targetY - snowballData.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 30) {
+                // Hit the button - player loses 5 clicks
+                snowballHit(snowballData);
+                return;
+            }
+
+            // Move towards target
+            snowballData.x += (dx / distance) * snowballData.speed;
+            snowballData.y += (dy / distance) * snowballData.speed;
+
+            snowballData.element.style.left = snowballData.x + 'px';
+            snowballData.element.style.top = snowballData.y + 'px';
+
+            requestAnimationFrame(() => animateSnowball(snowballData));
+        }
+
+        function snowballHit(snowballData) {
+            // Create splat effect
+            const splat = document.createElement('div');
+            splat.className = 'snowball-splat';
+            splat.style.left = snowballData.x + 'px';
+            splat.style.top = snowballData.y + 'px';
+            document.body.appendChild(splat);
+            setTimeout(() => splat.remove(), 400);
+
+            // Remove snowball
+            snowballData.element.remove();
+            activeSnowballs = activeSnowballs.filter(s => s !== snowballData);
+
+            // Lose 5 clicks
+            count = Math.max(0, count - 5);
+            counterEl.textContent = count;
+            saveGame();
+
+            // Visual feedback
+            btn.style.filter = 'brightness(0.5) sepia(1) hue-rotate(180deg)';
+            setTimeout(() => {
+                btn.style.filter = '';
+            }, 200);
+        }
+
+        function deflectSnowball() {
+            // Check if any snowball is near the button
+            const btnRect = btn.getBoundingClientRect();
+            const btnCenterX = btnRect.left + btnRect.width / 2;
+            const btnCenterY = btnRect.top + btnRect.height / 2;
+
+            for (let i = activeSnowballs.length - 1; i >= 0; i--) {
+                const snowball = activeSnowballs[i];
+                if (snowball.deflected) continue;
+
+                const dx = snowball.x - btnCenterX;
+                const dy = snowball.y - btnCenterY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    // Deflect this snowball!
+                    snowball.deflected = true;
+                    snowball.element.classList.add('deflected');
+
+                    setTimeout(() => {
+                        snowball.element.remove();
+                        activeSnowballs = activeSnowballs.filter(s => s !== snowball);
+                    }, 500);
+
+                    // Snowman runs away on deflect
+                    snowmanRunAway();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function snowmanRunAway() {
+            if (!snowmanActive) return;
+
+            snowmanActive = false;
+            clearInterval(snowballInterval);
+
+            // Clear remaining snowballs
+            activeSnowballs.forEach(s => s.element.remove());
+            activeSnowballs = [];
+
+            // Run away animation
+            evilSnowman.classList.remove('active');
+            evilSnowman.classList.add('running');
+
+            setTimeout(() => {
+                evilSnowman.classList.remove('running');
+            }, 800);
+        }
+
+        // Check for deflect on click
+        btn.addEventListener('click', () => {
+            if (snowmanActive) {
+                deflectSnowball();
+            }
+        });
+
+        // Random snowman spawns (every 30-60 seconds)
+        function scheduleSnowmanSpawn() {
+            const delay = 30000 + Math.random() * 30000;
+            snowmanInterval = setTimeout(() => {
+                if (!bossActive) {
+                    spawnEvilSnowman();
+                }
+                scheduleSnowmanSpawn();
+            }, delay);
+        }
+
+        // Start snowman spawn timer after a short delay
+        setTimeout(scheduleSnowmanSpawn, 10000);
 
         // ==================== DRAGON FIRE BREATH ====================
         let dragonFireInterval = null;
