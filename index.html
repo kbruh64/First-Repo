@@ -3726,25 +3726,23 @@
                 12px 6px 0 #2a2a2a, 16px 6px 0 #2a2a2a;
         }
 
-        /* Dragon Eyes - Glowing purple */
+        /* Dragon Eye - Single glowing purple eye */
         .click-btn.enderdragon-btn .dragon-btn-eye {
             position: absolute;
             width: 6px;
             height: 6px;
             background: #c084fc;
-            left: calc(50% + 58px);
-            top: calc(50% - 12px);
+            left: calc(50% + 62px);
+            top: calc(50% - 10px);
             box-shadow:
                 0 0 8px #c084fc,
-                0 0 15px #8b5cf6,
-                8px 0 0 #c084fc,
-                8px 0 8px #c084fc;
+                0 0 15px #8b5cf6;
             animation: dragon-eye-glow 1.5s ease-in-out infinite;
         }
 
         @keyframes dragon-eye-glow {
-            0%, 100% { box-shadow: 0 0 8px #c084fc, 0 0 15px #8b5cf6, 8px 0 0 #c084fc, 8px 0 8px #c084fc; background: #c084fc; }
-            50% { box-shadow: 0 0 15px #e879f9, 0 0 25px #c084fc, 8px 0 0 #e879f9, 8px 0 15px #e879f9; background: #e879f9; }
+            0%, 100% { box-shadow: 0 0 8px #c084fc, 0 0 15px #8b5cf6; background: #c084fc; }
+            50% { box-shadow: 0 0 15px #e879f9, 0 0 25px #c084fc; background: #e879f9; }
         }
 
         .click-btn.enderdragon-btn .dragon-btn-wing-left {
